@@ -52,7 +52,7 @@ namespace rose.row.ui.ingame.screens.death_screen
             deathScreenUi._screen = screen;
         }
 
-        public static void initializeEvents()
+        public static void subscribeToInitializationEvents()
         {
             MouseCursor.cursorHandlers.Add((e) => instance != null && instance._screen.gameObject.activeSelf);
         }

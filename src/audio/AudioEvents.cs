@@ -6,7 +6,7 @@ namespace rose.row.audio
 {
     public static class AudioEvents
     {
-        public static void initializeEvents()
+        public static void subscribeToInitializationEvents()
         {
             Events.onPointCaptured.after += onPointCaptured;
         }

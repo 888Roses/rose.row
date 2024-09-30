@@ -13,7 +13,7 @@ namespace rose.row.ui.ingame.screens.killfeed
             return KillfeedManager.instance != null;
         }
 
-        public static void initializeOwnEvents()
+        public static void subscribeToInitializationEvents()
         {
             Events.onActorDie.after += onKilled;
             // Using the "before" event instead of the "after" event so that we get

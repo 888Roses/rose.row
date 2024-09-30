@@ -14,7 +14,7 @@ namespace rose.row.ui.ingame.scoreboard
     {
         public static Dictionary<Actor, PlayerInfo> players = new Dictionary<Actor, PlayerInfo>();
 
-        public static void initializeEvents()
+        public static void subscribeToInitializationEvents()
         {
             Events.onGameManagerStartLevel.after += onGameStarts;
 

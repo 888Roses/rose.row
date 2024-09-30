@@ -8,6 +8,8 @@ namespace rose.row.easy_package.ui.factory.elements
         public UiElement fill;
         public UiElement bar;
 
+        public float smoothSpeed = 5f;
+        public bool isSmooth;
         public float progress;
 
         public override void build()
@@ -31,7 +33,20 @@ namespace rose.row.easy_package.ui.factory.elements
         public void setProgress(float progress)
         {
             this.progress = progress;
-            fill.setAnchors(new LiteralAnchors(0, 0, progress, 1));
+
+            if (!isSmooth)
+            {
+                fill.setAnchors(new LiteralAnchors(0, 0, progress, 1));
+            }
+        }
+
+        private void Update()
+        {
+            if (isSmooth)
+            {
+                var anchor = Mathf.Lerp(fill.rectTransform.anchorMax.x, progress, Time.fixedDeltaTime * smoothSpeed);
+                fill.setAnchors(new LiteralAnchors(0, 0, anchor, 1));
+            }
         }
     }
 }

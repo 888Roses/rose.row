@@ -11,7 +11,7 @@ namespace rose.row.data.mod
         public static bool isLoading { get; private set; }
         public static float progress;
 
-        public static void initializeEvents()
+        public static void subscribeToInitializationEvents()
         {
             Events.onLoadModWorkerEndJob.after += onLoadModWorkerEndJob;
             Events.onAllContentLoaded.after += onAllContentLoaded;

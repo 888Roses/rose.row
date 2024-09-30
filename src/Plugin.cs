@@ -3,6 +3,7 @@ using BepInEx.Logging;
 using HarmonyLib;
 using rose.row.data.localisation;
 using rose.row.easy_package.coroutines;
+using rose.row.loading;
 using rose.row.match;
 
 namespace rose.row
@@ -32,6 +33,8 @@ namespace rose.row
 
             // ImageLoader.loadRequiredImages();
             CoroutineManager.create();
+
+            SpashScreenSkipper.skip();
 
             Local.populateLanguages();
             EventInitializer.initialize();

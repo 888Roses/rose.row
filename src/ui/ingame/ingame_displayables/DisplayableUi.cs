@@ -18,7 +18,7 @@ namespace rose.row.ui.ingame.ingame_displayables
         /// Hooks base events once only, so that it doesn't have to do it everytime a
         /// game starts for instance.
         /// </summary>
-        public static void initializeEvents()
+        public static void subscribeToInitializationEvents()
         {
             if (!_hasInitializedEvents)
             {

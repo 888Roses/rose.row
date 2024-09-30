@@ -30,7 +30,7 @@ namespace rose.row.actor.ai
             defaultValue: 5f
         );
 
-        public static void initializeEvents()
+        public static void subscribeToInitializationEvents()
         {
             Events.onWhistle.after += onWhistle;
             Events.onActorDie.after += onActorDie;

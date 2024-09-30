@@ -33,7 +33,7 @@ namespace rose.row.ui.ingame.screens.end_screen
             gameObject.AddComponent<EndGameScreen>();
         }
 
-        public static void initializeEvents()
+        public static void subscribeToInitializationEvents()
         {
             Events.onGameManagerStartLevel.after += () =>
             {

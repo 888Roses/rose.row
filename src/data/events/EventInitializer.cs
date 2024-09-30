@@ -9,7 +9,6 @@ using rose.row.dev.dev_weapon_selec;
 using rose.row.dev.vehicle_selector;
 using rose.row.easy_events;
 using rose.row.main_menu.ui;
-using rose.row.rendering.game_preview;
 using rose.row.ui.console;
 using rose.row.ui.ingame.crosshair;
 using rose.row.ui.ingame.ingame_displayables;
@@ -25,33 +24,31 @@ namespace rose.row
 {
     public static class EventInitializer
     {
+        public static void initializePostLoadEvents()
+        {
+            AudioEvents.subscribeToInitializationEvents();
+
+            KillfeedProvider.subscribeToInitializationEvents();
+            CustomActorHealth.subscribeToInitializationEvents();
+            DisplayableUi.subscribeToInitializationEvents();
+            EndGameScreen.subscribeToInitializationEvents();
+            DeathScreen.subscribeToInitializationEvents();
+
+            AiEventsListener.subscribeToInitializationEvents();
+            Scoreboard.subscribeToInitializationEvents();
+        }
+
+        public static void createMenuUi()
+        {
+            MainMenuUiManager.create().initialize();
+        }
+
         public static void initialize()
         {
-            ModHelper.initializeEvents();
+            ModHelper.subscribeToInitializationEvents();
 
             ConsoleManager.create();
             DeveloperInfoScreen.create();
-            AudioEvents.initializeEvents();
-            MainMenuUiManager.create().initialize();
-
-            KillfeedProvider.initializeOwnEvents();
-            CustomActorHealth.subscribeToInitializationEvents();
-            DisplayableUi.initializeEvents();
-            EndGameScreen.initializeEvents();
-            DeathScreen.initializeEvents();
-
-            AiEventsListener.initializeEvents();
-            Scoreboard.initializeEvents();
-
-            Events.onAllContentLoaded.after += () =>
-            {
-                VehiclePreviewManager.create();
-            };
-
-            Events.onFinishedRenderingVehiclePreviews.after += () =>
-            {
-                //WeaponPreviewManager.create();
-            };
 
             Events.onGameManagerStartLevel.before += () =>
             {

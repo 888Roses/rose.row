@@ -142,6 +142,7 @@ namespace rose.row.main_menu.ui.login.elements
             _modLoadingProgress.setSize(relativeWidth(392f), relativeHeight(90.5f / 4));
             _modLoadingProgress.setAnchoredPosition(0, relativeHeight(57.6f));
             _modLoadingProgress.fill.image().color = new Color32(244, 169, 0, 255);
+            _modLoadingProgress.isSmooth = true;
         }
 
         private void updateModLoadingProgress()
