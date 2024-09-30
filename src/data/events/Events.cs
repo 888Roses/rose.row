@@ -25,7 +25,6 @@ namespace rose.row.easy_events
         /// Last int represents the team.
         /// </summary>
         public static DynamicEvent<Vehicle, VehicleSpawner.VehicleSpawnType, Vector3, Quaternion, int> onVehicleSpawn;
-
         public static DynamicEvent<Vehicle, DamageInfo> onVehicleDie;
 
         /// <summary>
@@ -52,6 +51,7 @@ namespace rose.row.easy_events
         public static DynamicEvent onAllContentLoaded;
         public static DynamicEvent<LoadModWorker.State> onLoadModWorkerEndJob;
         public static DynamicEvent onStartLoadingMods;
+        public static DynamicEvent onFinalizeLoadedModContent;
 
         public static DynamicEvent<Player> onPlayerWhistle;
         public static DynamicEvent<AdvancedAi> onAiWhistle;
