@@ -31,8 +31,8 @@ namespace rose.row
 
             ConsoleManager.create();
             DeveloperInfoScreen.create();
-            MainMenuUiManager.create().initialize();
             AudioEvents.initializeEvents();
+            MainMenuUiManager.create().initialize();
 
             KillfeedProvider.initializeOwnEvents();
             CustomActorHealth.subscribeToInitializationEvents();
