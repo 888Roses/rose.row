@@ -6,6 +6,15 @@ namespace rose.row.easy_package.audio
     {
         public static string audioRoot => $"{Constants.basePath}/Audio";
 
+        public static readonly LocalAudioHolder[] hitPain = new LocalAudioHolder[]
+        {
+            new LocalAudioHolder("pain/hit_pain_01.wav"),
+            new LocalAudioHolder("pain/hit_pain_02.wav"),
+            new LocalAudioHolder("pain/hit_pain_03.wav"),
+            new LocalAudioHolder("pain/hit_pain_04.wav"),
+            new LocalAudioHolder("pain/hit_pain_05.wav"),
+        };
+
         public static readonly LocalAudioHolder[] whistles = new LocalAudioHolder[]
         {
             new LocalAudioHolder("whistle/whistle_01.wav"),
