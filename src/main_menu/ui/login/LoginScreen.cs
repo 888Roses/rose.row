@@ -111,6 +111,7 @@ namespace rose.row.main_menu.ui.login
                 return;
             }
 
+            PlayerPrefs.SetString("client_input_custom_name", Client.name);
             MainMenuUiManager.instance.goToDesktop();
         }
     }
