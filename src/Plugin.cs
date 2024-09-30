@@ -36,10 +36,7 @@ namespace rose.row
             // ImageLoader.loadRequiredImages();
             CoroutineManager.create();
 
-            IconChanger.change(
-                $"{Constants.basePath}/Textures/icons/small.ico",
-                $"{Constants.basePath}/Textures/icons/big.ico"
-            );
+            updateWindow();
 
             SpashScreenSkipper.skip();
 
@@ -50,9 +47,17 @@ namespace rose.row
 
         private void Start()
         {
-            IconChanger.change(
+            updateWindow();
+
+            Invoke(nameof(updateWindow), .5f);
+        }
+
+        private void updateWindow()
+        {
+            WinApplicationManager.change(
                 $"{Constants.basePath}/Textures/icons/small.ico",
-                $"{Constants.basePath}/Textures/icons/big.ico"
+                $"{Constants.basePath}/Textures/icons/big.ico",
+                "Rise of War"
             );
         }
     }
