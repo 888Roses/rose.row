@@ -1,9 +1,11 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
+using rose.row.data;
 using rose.row.data.localisation;
 using rose.row.easy_package.coroutines;
 using rose.row.loading;
+using rose.row.main;
 using rose.row.match;
 
 namespace rose.row
@@ -34,11 +36,24 @@ namespace rose.row
             // ImageLoader.loadRequiredImages();
             CoroutineManager.create();
 
+            IconChanger.change(
+                $"{Constants.basePath}/Textures/icons/small.ico",
+                $"{Constants.basePath}/Textures/icons/big.ico"
+            );
+
             SpashScreenSkipper.skip();
 
             Local.populateLanguages();
             EventInitializer.initialize();
             GameModes.initializeGameModes();
+        }
+
+        private void Start()
+        {
+            IconChanger.change(
+                $"{Constants.basePath}/Textures/icons/small.ico",
+                $"{Constants.basePath}/Textures/icons/big.ico"
+            );
         }
     }
 }

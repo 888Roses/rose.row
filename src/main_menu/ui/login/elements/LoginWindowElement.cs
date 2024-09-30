@@ -100,6 +100,11 @@ namespace rose.row.main_menu.ui.login.elements
         protected void createPlayernameInputField()
         {
             _playernameInputField = createInputField("Player Name", "Email/Playername");
+
+            var name = GameManager.GetPlayerName();
+            if (PlayerPrefs.HasKey("client_input_custom_name"))
+                name = PlayerPrefs.GetString("client_input_custom_name");
+            _playernameInputField.inputField.inputField.text = name;
         }
 
         protected void createPasswordInputField()
