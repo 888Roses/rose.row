@@ -1,4 +1,5 @@
-﻿using rose.row.easy_events;
+﻿using rose.row.client;
+using rose.row.easy_events;
 using rose.row.match;
 using rose.row.util;
 using System;
@@ -115,7 +116,7 @@ namespace rose.row.ui.ingame.scoreboard
 
                 var info = new PlayerInfo()
                 {
-                    name = actor.getNameSafe(),
+                    name = actor.aiControlled ? actor.getNameSafe() : Client.name,
 
                     faction = (actor.team == CurrentMatch.playerTeam)
                             ? CurrentMatch.playerFaction

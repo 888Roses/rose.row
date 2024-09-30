@@ -67,6 +67,9 @@ namespace rose.row.main_menu.ui
         private LoginScreen _loginScreen;
         private DesktopScreen _desktopScreen;
 
+        public LoginScreen loginScreen => _loginScreen;
+        public DesktopScreen desktopScreen => _desktopScreen;
+
         #endregion components
 
         public void initialize()

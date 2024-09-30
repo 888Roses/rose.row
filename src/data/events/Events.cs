@@ -1,5 +1,6 @@
 ﻿using rose.row.actor.ai;
 using rose.row.actor.player;
+using rose.row.client;
 using rose.row.easy_package.events;
 using rose.row.main_menu.ui.desktop.war.missions;
 using rose.row.match;
@@ -58,5 +59,8 @@ namespace rose.row.easy_events
         public static DynamicEvent<ActorController> onWhistle;
 
         public static DynamicEvent onFinishedRenderingVehiclePreviews;
+
+        public static DynamicEvent<LoginInfo> onLoggedIn;
+        public static DynamicEvent onFinishedLoading;
     }
 }

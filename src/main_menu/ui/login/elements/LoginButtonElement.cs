@@ -62,7 +62,7 @@ namespace rose.row.main_menu.ui.login.elements
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            MainMenuUiManager.instance.goToDesktop();
+            MainMenuUiManager.instance.loginScreen.login();
         }
     }
 }

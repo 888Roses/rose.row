@@ -1,5 +1,6 @@
 ﻿using rose.row.data;
 using rose.row.data.mod;
+using rose.row.easy_events;
 using rose.row.easy_package.ui.factory;
 using rose.row.easy_package.ui.factory.elements;
 using rose.row.main_menu.ui.abstraction.elements;
@@ -53,6 +54,9 @@ namespace rose.row.main_menu.ui.login.elements
         private LoginInputFieldElement _playernameInputField;
         private LoginInputFieldElement _passwordInputField;
 
+        public LoginInputFieldElement playerNameInputField => _playernameInputField;
+        public LoginInputFieldElement passwordInputField => _passwordInputField;
+
         #endregion components
 
         #region creating components
@@ -61,6 +65,12 @@ namespace rose.row.main_menu.ui.login.elements
         {
             base.build();
 
+            Events.onFinishedLoading.after += () =>
+            {
+                _modLoadingProgress.gameObject.SetActive(false);
+                _loginButton.gameObject.SetActive(true);
+            };
+
             createBackground();
 
             createTitle();
@@ -68,7 +78,13 @@ namespace rose.row.main_menu.ui.login.elements
 
             createLoginButton();
             createModLoadingProgress();
+
+            _modLoadingProgress.gameObject.SetActive(true);
+            _loginButton.gameObject.SetActive(false);
+
+            _modLoadingProgress.setProgress(ModHelper.progress);
         }
+
         protected void createLoginSection()
         {
             _loginSection = UiFactory.createGenericUiElement("Login Section", _wrapper);
@@ -145,22 +161,6 @@ namespace rose.row.main_menu.ui.login.elements
             _modLoadingProgress.isSmooth = true;
         }
 
-        private void updateModLoadingProgress()
-        {
-            if (ModHelper.isLoading)
-            {
-                _modLoadingProgress.gameObject.SetActive(true);
-                _loginButton.gameObject.SetActive(false);
-
-                _modLoadingProgress.setProgress(ModHelper.progress);
-            }
-            else
-            {
-                _modLoadingProgress.gameObject.SetActive(false);
-                _loginButton.gameObject.SetActive(ModHelper.hasLoadedOnce);
-            }
-        }
-
         protected override void createWrapper()
         {
             base.createWrapper();
@@ -205,7 +205,6 @@ namespace rose.row.main_menu.ui.login.elements
         private void Update()
         {
             updateSizes();
-            updateModLoadingProgress();
         }
 
         #endregion creating components

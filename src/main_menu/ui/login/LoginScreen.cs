@@ -1,4 +1,5 @@
-﻿using rose.row.data;
+﻿using rose.row.client;
+using rose.row.data;
 using rose.row.easy_package.ui.factory;
 using rose.row.easy_package.ui.factory.elements;
 using rose.row.main_menu.ui.login.elements;
@@ -100,5 +101,17 @@ namespace rose.row.main_menu.ui.login
         }
 
         #endregion
+
+        public void login()
+        {
+            Client.name = _loginWindowElement.playerNameInputField.inputField.inputField.text;
+            if (string.IsNullOrEmpty(Client.name)
+            || string.IsNullOrWhiteSpace(Client.name))
+            {
+                return;
+            }
+
+            MainMenuUiManager.instance.goToDesktop();
+        }
     }
 }

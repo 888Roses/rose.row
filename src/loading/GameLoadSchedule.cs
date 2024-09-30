@@ -35,6 +35,7 @@ namespace rose.row.loading
                 typeof(ModLoadAction),
                 typeof(VehiclePreviewLoadAction),
                 typeof(InitializePostLoadEventsLoadAction),
+                typeof(FinalizeLoadAction)
             });
         }
     }

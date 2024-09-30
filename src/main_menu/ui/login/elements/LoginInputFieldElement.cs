@@ -19,6 +19,8 @@ namespace rose.row.main_menu.ui.login.elements
         private BorderedUiElement _background;
         private InputFieldElement _inputField;
 
+        public InputFieldElement inputField => _inputField;
+
         #endregion components
 
         protected override void Awake()
@@ -56,5 +58,7 @@ namespace rose.row.main_menu.ui.login.elements
             element.setTextAlign(HorizontalAlignmentOptions.Geometry);
             element.setTextAlign(VerticalAlignmentOptions.Geometry);
         }
+
+        public string text => _inputField.inputField.text;
     }
 }
