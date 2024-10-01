@@ -4,10 +4,45 @@ using UnityEngine;
 
 namespace rose.row.actor.ai
 {
+    [HarmonyPatch(typeof(Squad), nameof(Squad.ReissueLastMoveSegment))]
+    internal class ReissueLastMoveSegmentPatcher
+    {
+        [HarmonyPrefix]
+        static bool prefix(Squad __instance)
+        {
+            //Debug.Log(__instance.activePathSegment());
+            if (__instance.activePathSegment() != null)
+            {
+                //Debug.Log("Issuing move segment!");
+                Debug.DrawLine(__instance.leader().actor.Position(), __instance.activePathSegment().destination, Color.magenta, 10f);
+                __instance.issueMovePathSegment(__instance.activePathSegment());
+            }
+
+            return false;
+        }
+    }
+
+    [HarmonyPatch(typeof(Vehicle), nameof(Vehicle.IssueAvoidancePath))]
+    internal class VehicleIssueAvoidancePathPatcher
+    {
+        [HarmonyPrefix]
+        public static bool prefix(Vehicle __instance, VehicleParticleManager.AvoidancePath path)
+        {
+            if (__instance.Driver() == null)
+            {
+                return false;
+            }
+
+            ((AiActorController) __instance.Driver().controller).IssueAvoidancePath(path);
+            return false;
+        }
+    }
+
     [HarmonyPatch(typeof(AiActorController), nameof(AiActorController.IssueAvoidancePath))]
     internal class AiIssueAvoidancePathPatcher
     {
-        public static void prefix(AiActorController __instance, VehicleParticleManager.AvoidancePath path)
+        [HarmonyPrefix]
+        public static bool prefix(AiActorController __instance, VehicleParticleManager.AvoidancePath path)
         {
             __instance.setAvoidancePassSegment(path.thruB - path.thruA);
             Vector3 position = __instance.actor.seat.vehicle.GetPosition();
@@ -21,6 +56,26 @@ namespace rose.row.actor.ai
 
             __instance.setAvoidancePassPoint(path.passPoint);
             __instance.setIsOnAvoidancePath(true);
+
+            return false;
+        }
+    }
+
+    [HarmonyPatch(typeof(AiActorController), "OnAvoidancePathCompleted")]
+    internal class OnAvoidancePathCompletedPatcher
+    {
+        [HarmonyPrefix]
+        public static bool prefix(AiActorController __instance)
+        {
+            if (__instance.isSquadLeader)
+            {
+                //Debug.Log("Reissuing squad move segment");
+                __instance.squad.ReissueLastMoveSegment();
+                return false;
+            }
+
+            Traverse.Create(__instance).Method("RecalculatePath").GetValue();
+            return false;
         }
     }
 }
