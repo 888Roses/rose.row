@@ -25,6 +25,11 @@ namespace rose.row.actor.behaviour
                 return;
             }
 
+            if (info.sourceActor.team == actor.team)
+            {
+                return;
+            }
+
             Audio.playAtPoint(AudioRegistry.hitPain.random().get(), info.point);
         }
     }
