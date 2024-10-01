@@ -7,7 +7,7 @@ namespace rose.row.actor.behaviour
 {
     public static class PlayPainSoundOnHurt
     {
-        public static void initializeEvents()
+        public static void subscribeToInitializationEvents()
         {
             Events.onActorHurt.after += onActorHurt;
         }

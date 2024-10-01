@@ -1,4 +1,5 @@
 ﻿using rose.row.actor.ai;
+using rose.row.actor.behaviour;
 using rose.row.actor.health;
 using rose.row.actor.player;
 using rose.row.actor.player.camera;
@@ -27,14 +28,14 @@ namespace rose.row
         public static void initializePostLoadEvents()
         {
             AudioEvents.subscribeToInitializationEvents();
+            AiEventsListener.subscribeToInitializationEvents();
+            PlayPainSoundOnHurt.subscribeToInitializationEvents();
 
             KillfeedProvider.subscribeToInitializationEvents();
             CustomActorHealth.subscribeToInitializationEvents();
             DisplayableUi.subscribeToInitializationEvents();
             EndGameScreen.subscribeToInitializationEvents();
             DeathScreen.subscribeToInitializationEvents();
-
-            AiEventsListener.subscribeToInitializationEvents();
             Scoreboard.subscribeToInitializationEvents();
         }
 
