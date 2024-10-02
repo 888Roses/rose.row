@@ -4,6 +4,11 @@ namespace rose.row.util
 {
     public static class LoadoutUiUtil
     {
+        public static bool canUseWeaponEntry(WeaponManager.WeaponEntry weaponEntry)
+        {
+            return (bool) Traverse.Create<LoadoutUi>().Method("CanUseWeaponEntry", weaponEntry).GetValue();
+        }
+
         public static void showCustomized(this LoadoutUi loadout,
                                           bool tactics,
                                           bool showLoadout = true,
