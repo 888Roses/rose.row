@@ -12,9 +12,6 @@ namespace rose.row
             if (__instance.IsMountedWeapon())
                 return;
 
-            if (!__instance.aiming)
-                return;
-
             if (hasUser)
             {
                 var user = __instance.user;
