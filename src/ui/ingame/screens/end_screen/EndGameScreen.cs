@@ -3,8 +3,10 @@ using rose.row.data;
 using rose.row.data.localisation;
 using rose.row.default_package;
 using rose.row.easy_events;
+using rose.row.easy_package.audio;
 using rose.row.easy_package.ui.factory;
 using rose.row.easy_package.ui.factory.elements;
+using rose.row.match;
 using rose.row.ui.cursor;
 using rose.row.ui.ingame.screens.death_screen;
 using System;
@@ -57,6 +59,11 @@ namespace rose.row.ui.ingame.screens.end_screen
 
         private void onGameEnd(int winner, bool allowContinueBattle)
         {
+            if (winner == CurrentMatch.playerTeam)
+            {
+                Audio.play(AudioRegistry.win.get());
+            }
+
             VictoryUi.instance.victoryContainer.SetActive(false);
 
             setEnabled(true);
