@@ -51,7 +51,8 @@ namespace rose.row.dev.vehicle_selector
             _grid.setPivot(0.5f, 1f);
             _grid.setHeight(400f);
             var padding = 2 * 8 - 4 * 4;
-            _grid.setTileSize(Screen.width / 4f - padding, Screen.height / 4f - padding);
+            var size = Screen.width / 6f - padding;
+            _grid.setTileSize(size, size);
             _grid.setSpacing(4);
             _grid.setPadding(8);
             _scrollable.setContent(_grid);

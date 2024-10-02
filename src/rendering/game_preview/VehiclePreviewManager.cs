@@ -148,7 +148,8 @@ namespace rose.row.rendering.game_preview
                     if (isVehicleEntryRegistered(entry))
                     {
                         var texture = getStandardTexture2D();
-                        texture.LoadImage(File.ReadAllBytes(path));
+                        var bytes = File.ReadAllBytes(path);
+                        texture.LoadImage(bytes);
                         texture.Apply();
                         _vehicleTextures[entry] = texture;
                         Debug.Log($"Pulled vehicle texture '{entry.prefab.transform.name}' from disk.");
