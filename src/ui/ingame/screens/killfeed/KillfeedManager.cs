@@ -10,12 +10,12 @@ using UnityEngine;
 
 namespace rose.row.ui.ingame.screens.killfeed
 {
-    public struct KillfeedQueueItem
+    public struct KillfeedWaitingQueueItem
     {
         public AbstractKillfeedInfo info;
         public Actor actor;
 
-        public KillfeedQueueItem(AbstractKillfeedInfo info, Actor actor)
+        public KillfeedWaitingQueueItem(AbstractKillfeedInfo info, Actor actor)
         {
             this.info = info;
             this.actor = actor;
@@ -38,45 +38,43 @@ namespace rose.row.ui.ingame.screens.killfeed
         public const float k_ItemsGap = 4f;
 
         public UiScreen uiScreen;
-
         public UiElement wrapper;
-        public List<KillfeedItemElement> items;
 
-        private Queue<KillfeedQueueItem> _killfeedQueue;
+        public List<KillfeedItemElement> items;
+        private Queue<KillfeedWaitingQueueItem> _killfeedItemWaitingQueue;
 
         private void Awake()
         {
             items = new List<KillfeedItemElement>();
-            _killfeedQueue = new Queue<KillfeedQueueItem>();
+            _killfeedItemWaitingQueue = new Queue<KillfeedWaitingQueueItem>();
 
             uiScreen = UiFactory.createUiScreen("Canvas", ScreenOrder.killfeedMenu, transform);
 
             wrapper = UiFactory.createGenericUiElement("Wrapper", uiScreen.transform);
             wrapper.setAnchors(UiElement.Anchors.BottomCenter, false, false);
             wrapper.setPivot(0.5f, 0);
-            //wrapper.setAnchors(new UiElement.LiteralAnchors(k_Width, 0.1f, 1f - k_Width, k_Height));
             wrapper.setHeight(k_Height);
             wrapper.setWidth(k_Width);
             wrapper.setAnchoredPosition(0, Screen.height * 0.1f);
 
-            InvokeRepeating(nameof(itemCycle), 0, 0.025f);
+            InvokeRepeating(nameof(treatItemsInWaitingQueue), 0, 0.025f);
         }
 
-        public void addItem(AbstractKillfeedInfo info, Actor actor)
+        public void registerItem(AbstractKillfeedInfo info, Actor actor)
         {
-            _killfeedQueue.Enqueue(new KillfeedQueueItem(info, actor));
+            _killfeedItemWaitingQueue.Enqueue(new KillfeedWaitingQueueItem(info, actor));
         }
 
-        private void itemCycle()
+        private void treatItemsInWaitingQueue()
         {
-            if (_killfeedQueue.isEmpty())
+            if (_killfeedItemWaitingQueue.isEmpty())
                 return;
 
-            var queueItem = _killfeedQueue.Dequeue();
-            actuallyAddItem(queueItem.info, queueItem.actor);
+            var queueItem = _killfeedItemWaitingQueue.Dequeue();
+            internalCreateItem(queueItem.info, queueItem.actor);
         }
 
-        private void actuallyAddItem(AbstractKillfeedInfo info, Actor actor)
+        private void internalCreateItem(AbstractKillfeedInfo info, Actor actor)
         {
             Scoreboard.players[actor].score += info.getXP();
 

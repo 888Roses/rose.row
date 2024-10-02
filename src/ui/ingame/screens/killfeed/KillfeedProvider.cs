@@ -32,14 +32,14 @@ namespace rose.row.ui.ingame.screens.killfeed
             {
                 if (team == -1f)
                 {
-                    KillfeedManager.instance.addItem(new CapturePointNeutralizedInfo(
+                    KillfeedManager.instance.registerItem(new CapturePointNeutralizedInfo(
                         spawnPoint: spawnPoint
                     ), actor);
                 }
 
                 else if (team == actor.team)
                 {
-                    KillfeedManager.instance.addItem(new CapturePointCapturedInfo(
+                    KillfeedManager.instance.registerItem(new CapturePointCapturedInfo(
                         spawnPoint: spawnPoint
                     ), actor);
                 }
@@ -76,7 +76,7 @@ namespace rose.row.ui.ingame.screens.killfeed
 
             var source = info.sourceActor;
 
-            KillfeedManager.instance.addItem(new HurtInfo(
+            KillfeedManager.instance.registerItem(new HurtInfo(
                 source: source,
                 killed: target,
                 damageInfo: info,
@@ -96,7 +96,7 @@ namespace rose.row.ui.ingame.screens.killfeed
 
             if (target == info.sourceActor)
             {
-                KillfeedManager.instance.addItem(new SuicideInfo(
+                KillfeedManager.instance.registerItem(new SuicideInfo(
                     source: source,
                     killed: target,
                     damageInfo: info,
@@ -108,7 +108,7 @@ namespace rose.row.ui.ingame.screens.killfeed
 
             if (target.team == source.team)
             {
-                KillfeedManager.instance.addItem(new TeamKillInfo(
+                KillfeedManager.instance.registerItem(new TeamKillInfo(
                     source: source,
                     killed: target,
                     damageInfo: info,
@@ -117,7 +117,7 @@ namespace rose.row.ui.ingame.screens.killfeed
             }
             else
             {
-                KillfeedManager.instance.addItem(new KillInfo(
+                KillfeedManager.instance.registerItem(new KillInfo(
                     source: source,
                     killed: target,
                     damageInfo: info,
@@ -141,7 +141,7 @@ namespace rose.row.ui.ingame.screens.killfeed
                     // That means that the source defended their own point.
                     if (isClosestSpawnPointOwnerBySource)
                     {
-                        KillfeedManager.instance.addItem(new CapturePointDefenseInfo(
+                        KillfeedManager.instance.registerItem(new CapturePointDefenseInfo(
                             source: source,
                             killed: target,
                             damageInfo: info,
@@ -151,7 +151,7 @@ namespace rose.row.ui.ingame.screens.killfeed
                     // Otherwise, it's an attack kill.
                     else
                     {
-                        KillfeedManager.instance.addItem(new CapturePointAttackInfo(
+                        KillfeedManager.instance.registerItem(new CapturePointAttackInfo(
                             source: source,
                             killed: target,
                             damageInfo: info,
