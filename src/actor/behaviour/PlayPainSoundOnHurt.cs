@@ -25,7 +25,7 @@ namespace rose.row.actor.behaviour
                 return;
             }
 
-            if (info.sourceActor.team == actor.team)
+            if (info.sourceActor.team == actor.team || actor.dead)
             {
                 return;
             }
