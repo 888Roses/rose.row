@@ -4,12 +4,24 @@ using rose.row.easy_package.ui.factory;
 using rose.row.easy_package.ui.factory.elements;
 using rose.row.killfeed;
 using rose.row.ui.ingame.scoreboard;
-using System.Collections;
+using rose.row.util;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace rose.row.ui.ingame.screens.killfeed
 {
+    public struct KillfeedQueueItem
+    {
+        public AbstractKillfeedInfo info;
+        public Actor actor;
+
+        public KillfeedQueueItem(AbstractKillfeedInfo info, Actor actor)
+        {
+            this.info = info;
+            this.actor = actor;
+        }
+    }
+
     public class KillfeedManager : Singleton<KillfeedManager>
     {
         // Pulled from Heroes & Generals files directly.
@@ -30,9 +42,13 @@ namespace rose.row.ui.ingame.screens.killfeed
         public UiElement wrapper;
         public List<KillfeedItemElement> items;
 
+        private Queue<KillfeedQueueItem> _killfeedQueue;
+
         private void Awake()
         {
             items = new List<KillfeedItemElement>();
+            _killfeedQueue = new Queue<KillfeedQueueItem>();
+
             uiScreen = UiFactory.createUiScreen("Canvas", ScreenOrder.killfeedMenu, transform);
 
             wrapper = UiFactory.createGenericUiElement("Wrapper", uiScreen.transform);
@@ -42,17 +58,22 @@ namespace rose.row.ui.ingame.screens.killfeed
             wrapper.setHeight(k_Height);
             wrapper.setWidth(k_Width);
             wrapper.setAnchoredPosition(0, Screen.height * 0.1f);
+
+            InvokeRepeating(nameof(itemCycle), 0, 0.025f);
         }
 
         public void addItem(AbstractKillfeedInfo info, Actor actor)
         {
-            StartCoroutine(addItemCoroutine(info, actor));
+            _killfeedQueue.Enqueue(new KillfeedQueueItem(info, actor));
         }
 
-        private IEnumerator addItemCoroutine(AbstractKillfeedInfo info, Actor actor)
+        private void itemCycle()
         {
-            yield return new WaitForSeconds(0.1f);
-            actuallyAddItem(info, actor);
+            if (_killfeedQueue.isEmpty())
+                return;
+
+            var queueItem = _killfeedQueue.Dequeue();
+            actuallyAddItem(queueItem.info, queueItem.actor);
         }
 
         private void actuallyAddItem(AbstractKillfeedInfo info, Actor actor)
