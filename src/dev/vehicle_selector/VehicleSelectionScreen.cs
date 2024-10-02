@@ -13,7 +13,7 @@ namespace rose.row.dev.vehicle_selector
         {
             var gameObject = new GameObject("Vehicle Selection Screen");
             gameObject.AddComponent<VehicleSelectionScreen>();
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
 
         private UiScreen _uiScreen;
