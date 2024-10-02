@@ -70,10 +70,16 @@ namespace rose.row.match
             var possibleMaps = Maps.cachedMaps;
             // Adds the Island map to the map pool.
             bool isMap(MapEntry x, string name) => x.getDisplayName().ToLowerInvariant() == name;
-            var islandMap = instance.officialEntries.FirstOrDefault(x => isMap(x, "island"));
-            var coastlineMap = instance.officialEntries.FirstOrDefault(x => isMap(x, "coastline"));
-            possibleMaps.Add(islandMap);
-            possibleMaps.Add(coastlineMap);
+
+            foreach (var officialMap in Maps.officialWhitelistedMaps)
+            {
+                var whitelisted = instance.officialEntries.First(x => isMap(x, officialMap));
+                if (whitelisted == null)
+                    continue;
+
+                possibleMaps.Add(whitelisted);
+            }
+
             // Throws the name of the possible maps in the console to make my life easier.
             Debug.Log("Available maps:");
             foreach (var possibleMap in possibleMaps)

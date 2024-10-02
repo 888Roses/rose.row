@@ -9,6 +9,13 @@ namespace rose.row.match
 {
     public static class Maps
     {
+        public static readonly string[] officialWhitelistedMaps = new string[]
+        {
+            "island",
+            "coastline",
+            "dustbowl"
+        };
+
         public static List<MapEntry> cachedMaps;
 
         public static void cacheMaps()
