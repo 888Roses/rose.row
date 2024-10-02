@@ -26,6 +26,7 @@ namespace rose.row.ui.console
         {
             var console = new GameObject("Console");
             console.AddComponent<ConsoleManager>();
+            DontDestroyOnLoad(console.gameObject);
         }
 
         private void Awake()
@@ -102,6 +103,8 @@ namespace rose.row.ui.console
 
         public void setEnabled(bool enabled)
         {
+            Debug.Log("Setting console enabled " + enabled);
+
             uiScreen.canvasGroup.setEnabled(enabled);
 
             if (enabled)
