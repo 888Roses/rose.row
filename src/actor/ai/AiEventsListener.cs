@@ -1,5 +1,6 @@
 ﻿using rose.row.data;
 using rose.row.easy_events;
+using rose.row.util;
 using UnityEngine;
 
 namespace rose.row.actor.ai
@@ -56,23 +57,23 @@ namespace rose.row.actor.ai
                     return;
 
                 if (info.sourceActor.TryGetComponent(out AdvancedAi advancedAi))
-                    advancedAi.whistle.tryWhistle();
+                    advancedAi.whistle.tryWhistle("actor.behaviour.after_kill");
             }
         }
 
         private static void onWhistle(ActorController controller)
         {
-            var actorsAround = ActorManager.ActorsInRange(controller.transform.position, whistleReactiveDistance.get());
+            var actorsAround = ActorManager.AliveActorsInRange(controller.transform.position, whistleReactiveDistance.get());
             foreach (var actor in actorsAround)
             {
-                if (actor.controller == controller || !actor.aiControlled || actor.dead)
+                if (actor.controller == controller || !actor.aiControlled)
                     continue;
 
-                if (Random.value <= whistleReactiveProbability.get())
+                if (Random.value <= whistleReactiveProbability.get() / (actor.team != controller.team() ? 4f : 1f))
                 {
                     if (actor.TryGetComponent(out AdvancedAi advancedAi))
                     {
-                        advancedAi.whistle.tryWhistle();
+                        advancedAi.whistle.tryWhistle("actor.behaviour.reactive");
                     }
                 }
             }

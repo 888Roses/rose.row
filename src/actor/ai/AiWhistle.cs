@@ -11,7 +11,7 @@ namespace rose.row.actor.ai
         public static readonly ConstantHolder<float> whistleCooldown = new ConstantHolder<float>(
             name: "actor.ai.whistle_cooldown",
             description: "Time before an AI can whistle again.",
-            defaultValue: 6f
+            defaultValue: 8f
         );
 
         public static readonly ConstantHolder<float> whistleDelayMin = new ConstantHolder<float>(
@@ -29,13 +29,15 @@ namespace rose.row.actor.ai
         public static readonly ConstantHolder<float> whistleSpontaneousProbability = new ConstantHolder<float>(
             name: "actor.ai.whistle_spontaneous_probability",
             description: "Chance that an AI actor will whistle out of nowhere.",
-            defaultValue: 0.0001f
+            defaultValue: 0.00001f
         );
 
         private float _whistleCooldown;
 
-        public void tryWhistle()
+        public void tryWhistle(string comingFrom)
         {
+            Debug.Log($"Actor '{ai.controller.actor.getNameSafe()}' tried to whistle: {comingFrom}");
+
             Invoke("doWhistle", Random.Range(whistleDelayMin.get(), whistleDelayMin.get()));
         }
 
@@ -47,6 +49,7 @@ namespace rose.row.actor.ai
                 Events.onAiWhistle.before?.Invoke(ai);
 
                 _whistleCooldown = Time.time + whistleCooldown.get();
+
                 Audio.playAtPoint(AudioRegistry.whistles.random().get(), transform.position);
 
                 Events.onWhistle.after?.Invoke(ai.controller);
@@ -54,11 +57,12 @@ namespace rose.row.actor.ai
             }
         }
 
-        private void Update()
+        // Using fixed update so it's not frame dependant.
+        private void FixedUpdate()
         {
             if (Random.value <= whistleSpontaneousProbability.get() && !ai.controller.dead())
             {
-                doWhistle();
+                tryWhistle("actor.behaviour.spontaneous");
             }
         }
     }
