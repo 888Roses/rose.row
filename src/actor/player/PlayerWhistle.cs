@@ -18,13 +18,17 @@ namespace rose.row.actor.player
 
         private void Update()
         {
+            // You shouldn't be able to whistle in a vehicle.
+            if (player.controller.actor.IsSeated())
+                return;
+
             if (Input.GetKeyDown(KeyCode.V) && Time.time > _whistleCooldown)
             {
                 Events.onWhistle.before?.Invoke(player.controller);
                 Events.onPlayerWhistle.before?.Invoke(player);
 
                 _whistleCooldown = Time.time + whistleCooldown.get();
-                Audio.playAtPoint(AudioRegistry.whistles.random().get(), transform.position);
+                Audio.play(AudioRegistry.whistles.random().get());
 
                 Events.onWhistle.after?.Invoke(player.controller);
                 Events.onPlayerWhistle.after?.Invoke(player);
