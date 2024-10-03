@@ -7,7 +7,7 @@ namespace rose.row.actor.player
         public FpsActorController controller;
 
         public PlayerWhistle whistle;
-        public PlayerDroppedWeaponPickup pickup;
+        public PlayerPickupWeapons pickup;
 
         public static void create(FpsActorController controller)
         {
@@ -18,7 +18,7 @@ namespace rose.row.actor.player
         private void Awake()
         {
             whistle = use<PlayerWhistle>();
-            pickup = use<PlayerDroppedWeaponPickup>();
+            pickup = use<PlayerPickupWeapons>();
         }
 
         public T use<T>() where T : PlayerBehaviour

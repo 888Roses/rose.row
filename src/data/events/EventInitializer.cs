@@ -14,6 +14,7 @@ using rose.row.main_menu.ui;
 using rose.row.ui.console;
 using rose.row.ui.ingame.crosshair;
 using rose.row.ui.ingame.ingame_displayables;
+using rose.row.ui.ingame.pickupable_weapons_popup;
 using rose.row.ui.ingame.scoreboard;
 using rose.row.ui.ingame.screens.death_screen;
 using rose.row.ui.ingame.screens.end_screen;
@@ -65,6 +66,7 @@ namespace rose.row
                 CrosshairManager.create();
 
                 KillfeedProvider.createKillfeedManager();
+                PickupableWeaponsPopupScreen.create();
             };
 
             Events.onGameManagerStartLevel.after += () =>

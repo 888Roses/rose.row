@@ -7,9 +7,10 @@ namespace rose.row.ui
         public static readonly int mainMenuUi = 20;
 
         public static readonly int ingame = 1;
-        public static int displayablesScreen = ingame;
+        public static int displayablesScreen => ingame + 0;
         public static int killfeedMenu => ingame + 1;
         public static int crosshair => ingame + 1;
+        public static int weaponPickupPopup => ingame + 1;
         public static int deathScreen => ingame + 2;
         public static int spawnMenu => ingame + 3;
         public static int weaponSelectionMenu => ingame + 4;
