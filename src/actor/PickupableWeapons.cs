@@ -55,20 +55,24 @@ namespace rose.row.actor
                 return;
             }
 
+            PickupableWeapon currentlyPickedupWeapon = null;
             if (actor.isHoldingPickedUpWeapon())
-                actor.dropWeaponOnGround();
+                currentlyPickedupWeapon = actor.dropWeaponOnGround(false);
 
             actor.EquipNewWeaponEntry(pickupableWeapon.entry, k_PickedUpWeaponSlotIndex, true);
             Traverse.Create(IngameUI.instance).Method("OnPlayerChangedWeapon").GetValue();
             activePickupableWeapons.Remove(pickupableWeapon);
             GameObject.Destroy(pickupableWeapon.gameObject);
+
+            if (currentlyPickedupWeapon != null)
+                activePickupableWeapons.Add(currentlyPickedupWeapon);
         }
 
         /// <summary>
         /// Drops a given weapon on the floor to be picked up by an entity.
         /// </summary>
         /// <param name="originalWeapon">The weapon you wish to drop on the floor.</param>
-        public static void dropWeaponOnGround(Weapon originalWeapon)
+        public static PickupableWeapon dropWeaponOnGround(Weapon originalWeapon, bool autoRegister = true)
         {
             // * Create copy.
             // * Bring and rotate according to the floor under it.
@@ -99,27 +103,30 @@ namespace rose.row.actor
             pickupableWeapon.weapon = droppedWeapon;
             pickupableWeapon.entry = originalWeapon.weaponEntry;
             // Register the dropped weapon.
-            activePickupableWeapons.Add(pickupableWeapon);
+            if (autoRegister)
+                activePickupableWeapons.Add(pickupableWeapon);
             // Disables the weapon script so it cannot do anything anymore except live in the world.
             droppedWeapon.enabled = false;
             // We can now enable it again (disabled so that the grounded raycast doesn't hit anything contained by the weapon).
             droppedWeapon.gameObject.SetActive(true);
             // Removes the arms model.
             Object.Destroy(droppedWeapon.arms);
+
+            return pickupableWeapon;
         }
 
         /// <summary>
         /// Drops the current active weapon of the actor on the ground.
         /// </summary>
         /// <param name="actor">The actor whose current active weapon you wish to drop.</param>
-        public static void dropWeaponOnGround(this Actor actor)
+        public static PickupableWeapon dropWeaponOnGround(this Actor actor, bool autoRegister = true)
         {
             if (actor == null || actor.activeWeapon == null)
             {
-                return;
+                return null;
             }
 
-            dropWeaponOnGround(actor.activeWeapon);
+            return dropWeaponOnGround(actor.activeWeapon, autoRegister);
             actor.DropWeapon(actor.activeWeapon.slot);
         }
 
