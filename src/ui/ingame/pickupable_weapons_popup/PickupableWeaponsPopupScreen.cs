@@ -65,7 +65,7 @@ namespace rose.row.ui.ingame.pickupable_weapons_popup
             key.setFont(Fonts.defaultFont);
             key.setTextAlign(VerticalAlignmentOptions.Geometry, HorizontalAlignmentOptions.Geometry);
             key.setShadow(1, Color.black);
-            key.setText("F");
+            key.setText(SteelInput.GetInput(SteelInput.KeyBinds.Use).PositiveLabel());
 
             setWeapon(null);
         }
