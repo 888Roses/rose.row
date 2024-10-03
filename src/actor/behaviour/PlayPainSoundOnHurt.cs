@@ -20,7 +20,7 @@ namespace rose.row.actor.behaviour
                 return;
             }
 
-            if (info.sourceActor == null || !actor.aiControlled)
+            if (info.isPlayerSource || !actor.aiControlled)
             {
                 return;
             }
