@@ -1,5 +1,4 @@
 ﻿using rose.row.data;
-using rose.row.util;
 using rose.row.weapons;
 using UnityEngine;
 
@@ -15,28 +14,28 @@ namespace rose.row.actor.player
 
         public static PickupableWeapon currentlyWatchedPickupableWeapon;
 
-        private void checkPickup(Vector3 rayOrigin, RaycastHit hit)
+        private void checkPickup(Vector3 position, RaycastHit hit)
         {
-            var distance = Vector3.Distance(rayOrigin.with(y: 0), hit.point.with(y: 0));
-            if (distance <= pickupDistance.get())
-                checkWeaponsInProximity(hit);
+            //var distance = Vector3.Distance(position.with(y: 0), hit.point.with(y: 0));
+            //if (distance <= pickupDistance.get())
+            //    checkWeaponsInProximity(hit);
         }
 
-        private void checkWeaponsInProximity(RaycastHit hit)
+        private void checkWeaponsInProximity()
         {
             foreach (var weapon in PickupableWeapons.activePickupableWeapons)
             {
                 if (weapon == null)
                     continue;
 
-                checkWeapon(hit, weapon);
+                checkWeapon(transform.position, weapon);
             }
         }
 
-        private void checkWeapon(RaycastHit hit, PickupableWeapon weapon)
+        private void checkWeapon(Vector3 position, PickupableWeapon weapon)
         {
             var bounds = weapon.bounds;
-            if (bounds.Contains(hit.point) || Vector3.Distance(hit.point, bounds.ClosestPoint(hit.point)) <= 0.25f)
+            if (bounds.Contains(position) || Vector3.Distance(position, bounds.ClosestPoint(position)) <= 0.25f)
             {
                 currentlyWatchedPickupableWeapon = weapon;
 
@@ -49,9 +48,10 @@ namespace rose.row.actor.player
         {
             currentlyWatchedPickupableWeapon = null;
 
-            var ray = player.cameraForward();
-            if (Physics.Raycast(ray, out var hit, 10f, 1 << 0))
-                checkPickup(ray.origin, hit);
+            //var ray = player.cameraForward();
+            //if (Physics.Raycast(ray, out var hit, 10f, 1 << 0))
+            //    checkPickup(ray.origin, hit);
+            checkWeaponsInProximity();
         }
 
         private void Update()
