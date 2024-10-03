@@ -23,7 +23,7 @@ namespace rose.row.actor.behaviour
             if (!info.isPlayerSource || !actor.aiControlled || info.sourceActor.team == actor.team || actor.dead)
                 return;
 
-            Audio.playAtPoint(AudioRegistry.hitPain.random().get(), info.point);
+            Audio.play(AudioRegistry.hitPain.random().get());
         }
     }
 }
