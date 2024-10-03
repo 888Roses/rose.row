@@ -15,5 +15,11 @@ namespace rose.row.util
         {
             return collection.Count() == 0;
         }
+
+        public static void removeIfContained<T>(this ICollection<T> collection, T item)
+        {
+            if (collection.Contains(item))
+                collection.Remove(item);
+        }
     }
 }

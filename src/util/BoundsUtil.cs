@@ -23,6 +23,25 @@ namespace rose.row.util
             return worldCorners;
         }
 
+        public static void gizmoDrawEdges(this Bounds bounds, Color colour, float duration = 0f)
+        {
+            Vector3 c = bounds.center;
+            Vector3 e = bounds.extents;
+
+            IngameDebugGizmos.DrawLine(new Vector3(c.x + e.x, c.y + e.y, c.z + e.z), new Vector3(c.x + e.x, c.y + e.y, c.z - e.z), colour, duration);
+            IngameDebugGizmos.DrawLine(new Vector3(c.x + e.x, c.y + e.y, c.z - e.z), new Vector3(c.x - e.x, c.y + e.y, c.z - e.z), colour, duration);
+            IngameDebugGizmos.DrawLine(new Vector3(c.x - e.x, c.y + e.y, c.z - e.z), new Vector3(c.x - e.x, c.y + e.y, c.z + e.z), colour, duration);
+            IngameDebugGizmos.DrawLine(new Vector3(c.x - e.x, c.y + e.y, c.z + e.z), new Vector3(c.x + e.x, c.y + e.y, c.z + e.z), colour, duration);
+            IngameDebugGizmos.DrawLine(new Vector3(c.x + e.x, c.y - e.y, c.z + e.z), new Vector3(c.x + e.x, c.y - e.y, c.z - e.z), colour, duration);
+            IngameDebugGizmos.DrawLine(new Vector3(c.x + e.x, c.y - e.y, c.z - e.z), new Vector3(c.x - e.x, c.y - e.y, c.z - e.z), colour, duration);
+            IngameDebugGizmos.DrawLine(new Vector3(c.x - e.x, c.y - e.y, c.z - e.z), new Vector3(c.x - e.x, c.y - e.y, c.z + e.z), colour, duration);
+            IngameDebugGizmos.DrawLine(new Vector3(c.x - e.x, c.y - e.y, c.z + e.z), new Vector3(c.x + e.x, c.y - e.y, c.z + e.z), colour, duration);
+            IngameDebugGizmos.DrawLine(new Vector3(c.x + e.x, c.y - e.y, c.z + e.z), new Vector3(c.x + e.x, c.y + e.y, c.z + e.z), colour, duration);
+            IngameDebugGizmos.DrawLine(new Vector3(c.x - e.x, c.y - e.y, c.z + e.z), new Vector3(c.x - e.x, c.y + e.y, c.z + e.z), colour, duration);
+            IngameDebugGizmos.DrawLine(new Vector3(c.x - e.x, c.y - e.y, c.z - e.z), new Vector3(c.x - e.x, c.y + e.y, c.z - e.z), colour, duration);
+            IngameDebugGizmos.DrawLine(new Vector3(c.x + e.x, c.y - e.y, c.z - e.z), new Vector3(c.x + e.x, c.y + e.y, c.z - e.z), colour, duration);
+        }
+
         public static Bounds getMaxBounds(this Transform transform, float maxDistance = -1f)
             => getMaxBounds(transform.gameObject);
 

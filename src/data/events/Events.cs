@@ -62,5 +62,7 @@ namespace rose.row.easy_events
 
         public static DynamicEvent<LoginInfo> onLoggedIn;
         public static DynamicEvent onFinishedLoading;
+
+        public static DynamicEvent<Actor, int> onActorSwitchActiveWeapon;
     }
 }

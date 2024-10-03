@@ -8,6 +8,18 @@ namespace rose.row.util
 {
     public static class StringUtil
     {
+        public static string repeat(char character, int count)
+        {
+            var b = new StringBuilder();
+
+            for (int i = 0; i < count; i++)
+            {
+                b.Append(character);
+            }
+
+            return b.ToString();
+        }
+
         public static string toLegalFileName(this string str)
         {
             var stringBuilder = new StringBuilder();

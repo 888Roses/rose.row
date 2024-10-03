@@ -6,13 +6,12 @@ namespace rose.row.data
     public static class Constants
     {
         public const string k_ActorCanFallOver = "actor.canFallOver";
-
         public const string k_VehicleRamForce = "vehicle.ramForce";
 
         public static readonly Dictionary<string, object> defaultValues = new Dictionary<string, object>()
         {
             { k_ActorCanFallOver, false },
-            { k_VehicleRamForce, 10f }
+            { k_VehicleRamForce, 10f },
         };
 
         /// <summary>

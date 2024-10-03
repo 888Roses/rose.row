@@ -1,4 +1,5 @@
-﻿using rose.row.actor.ai;
+﻿using rose.row.actor;
+using rose.row.actor.ai;
 using rose.row.actor.behaviour;
 using rose.row.actor.health;
 using rose.row.actor.player;
@@ -37,6 +38,8 @@ namespace rose.row
             EndGameScreen.subscribeToInitializationEvents();
             DeathScreen.subscribeToInitializationEvents();
             Scoreboard.subscribeToInitializationEvents();
+
+            PickupableWeapons.subscribeToInitializationEvents();
         }
 
         public static void createMenuUi()
