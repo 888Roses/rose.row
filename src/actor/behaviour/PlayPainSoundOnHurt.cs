@@ -20,15 +20,8 @@ namespace rose.row.actor.behaviour
                 return;
             }
 
-            if (info.isPlayerSource || !actor.aiControlled)
-            {
+            if (!info.isPlayerSource || !actor.aiControlled || info.sourceActor.team == actor.team || actor.dead)
                 return;
-            }
-
-            if (info.sourceActor.team == actor.team || actor.dead)
-            {
-                return;
-            }
 
             Audio.playAtPoint(AudioRegistry.hitPain.random().get(), info.point);
         }
