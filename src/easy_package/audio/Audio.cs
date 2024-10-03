@@ -150,6 +150,7 @@ namespace rose.row.easy_package.audio
                 worker.playOnAwake = false;
                 worker.spatialBlend = 1f;
                 worker.spatialize = true;
+                GameManager.SetOutputAudioMixer(worker, AudioMixer.FirstPerson);
 
                 _audioWorkers[i] = new AudioWorker(worker, false, Vector3.zero);
                 workerGameObject.transform.SetParent(audioWorkerContainer.transform);
@@ -178,7 +179,7 @@ namespace rose.row.easy_package.audio
             return firstWorker;
         }
 
-        public static void play(AudioClip clip, float volume = 1, float pitch = 1, ulong delay = 0)
+        public static void play(AudioClip clip, float volume = 1, float pitch = 1, ulong delay = 0, AudioMixer mixer = AudioMixer.FirstPerson)
         {
             initializeAudioWorkers();
 
@@ -194,18 +195,20 @@ namespace rose.row.easy_package.audio
             worker.audioSource.volume = volume;
             worker.audioSource.pitch = pitch;
             worker.audioSource.clip = clip;
+            GameManager.SetOutputAudioMixer(worker.audioSource, mixer);
             worker.audioSource.Play(delay);
         }
 
-        public static void playOneShot(AudioClip clip, float volume = 1)
+        public static void playOneShot(AudioClip clip, float volume = 1, AudioMixer mixer = AudioMixer.FirstPerson)
         {
             initializeAudioWorkers();
 
             var worker = getFreeWorker();
+            GameManager.SetOutputAudioMixer(worker.audioSource, mixer);
             worker.audioSource.PlayOneShot(clip, volume);
         }
 
-        public static void playAtPoint(AudioClip clip, Vector3 point, float volume = 1f, float pitch = 1f, ulong delay = 0)
+        public static void playAtPoint(AudioClip clip, Vector3 point, float volume = 1f, float pitch = 1f, ulong delay = 0, AudioMixer mixer = AudioMixer.FirstPerson)
         {
             initializeAudioWorkers();
 
@@ -220,6 +223,7 @@ namespace rose.row.easy_package.audio
             worker.audioSource.volume = volume;
             worker.audioSource.pitch = pitch;
             worker.audioSource.clip = clip;
+            GameManager.SetOutputAudioMixer(worker.audioSource, mixer);
             worker.audioSource.Play(delay);
         }
 
