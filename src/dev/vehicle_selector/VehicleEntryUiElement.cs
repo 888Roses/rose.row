@@ -56,7 +56,9 @@ namespace rose.row.dev.vehicle_selector
 
             var camera = PlayerFpParent.instance.fpCamera.transform;
             var created = Instantiate(prefab).transform;
-            created.transform.position = camera.position + camera.forward * 3 + Vector3.up * 2;
+            var maxBounds = created.getMaxBounds();
+            maxBounds.gizmoDrawEdges(Color.green, 3f);
+            created.transform.position = camera.position + camera.forward * Mathf.Max(maxBounds.size.x, maxBounds.size.z) + Vector3.up * Mathf.Max(2, maxBounds.size.y);
             created.transform.forward = camera.forward;
 
             VehicleSelectionScreen.instance.setEnabled(false);
