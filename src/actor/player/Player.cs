@@ -8,6 +8,8 @@ namespace rose.row.actor.player
 
         public PlayerWhistle whistle;
         public PlayerPickupWeapons pickup;
+        // TODO: Change this whenever I'll implement vehicles!
+        public PlayerVehicleHornTemp horn;
 
         public static void create(FpsActorController controller)
         {
@@ -19,6 +21,7 @@ namespace rose.row.actor.player
         {
             whistle = use<PlayerWhistle>();
             pickup = use<PlayerPickupWeapons>();
+            horn = use<PlayerVehicleHornTemp>();
         }
 
         public T use<T>() where T : PlayerBehaviour

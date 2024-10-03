@@ -6,6 +6,9 @@ namespace rose.row.easy_package.audio
     {
         public static string audioRoot => $"{Constants.basePath}/Audio";
 
+        // TODO: Change this whenever I'll implement vehicles!
+        public static readonly LocalAudioHolder hornTemp = new LocalAudioHolder("vehicles/horn_temp.wav");
+
         public static readonly LocalAudioHolder[] hitPain = new LocalAudioHolder[]
         {
             new LocalAudioHolder("pain/hit_pain_01.wav"),

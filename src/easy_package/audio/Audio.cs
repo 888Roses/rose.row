@@ -1,4 +1,5 @@
 ﻿using rose.row.easy_package.coroutines;
+using rose.row.util;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -220,6 +221,23 @@ namespace rose.row.easy_package.audio
             worker.audioSource.pitch = pitch;
             worker.audioSource.clip = clip;
             worker.audioSource.Play(delay);
+        }
+
+        #endregion
+
+        #region utility
+
+        public static AudioSource createAudioSource(string name, Transform parent)
+        {
+            var audioSourceGameObject = new GameObject(name);
+            audioSourceGameObject.transform.SetParent(parent);
+            audioSourceGameObject.transform.resetLocalTransform();
+
+            var audioSource = audioSourceGameObject.AddComponent<AudioSource>();
+            audioSource.loop = false;
+            audioSource.playOnAwake = false;
+
+            return audioSource;
         }
 
         #endregion
