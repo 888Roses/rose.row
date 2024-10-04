@@ -22,6 +22,7 @@ namespace rose.row.actor.player
             whistle = use<PlayerWhistle>();
             pickup = use<PlayerPickupWeapons>();
             horn = use<PlayerVehicleHornTemp>();
+            use<PlayerAntiTankerFuckTanksOmfg>();
         }
 
         public T use<T>() where T : PlayerBehaviour
