@@ -16,12 +16,40 @@ namespace rose.row.easy_package.ui.text
             _hasColor = true;
         }
 
+        public void setColor(string color)
+        {
+            if (ColorUtility.TryParseHtmlString(color, out var parsedColor))
+            {
+                _color = parsedColor;
+                _hasColor = true;
+            }
+            else
+            {
+                _color = Color.white;
+                _hasColor = false;
+            }
+        }
+
         public static implicit operator Color(ColorStyleProperty prop) => prop.color;
 
         public ColorStyleProperty(Color color)
         {
             _color = color;
             _hasColor = true;
+        }
+
+        public ColorStyleProperty(string color)
+        {
+            if (ColorUtility.TryParseHtmlString(color, out var parsedColor))
+            {
+                _color = parsedColor;
+                _hasColor = true;
+            }
+            else
+            {
+                _color = Color.white;
+                _hasColor = false;
+            }
         }
 
         public ColorStyleProperty()

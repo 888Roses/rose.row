@@ -33,40 +33,39 @@ namespace rose.row.ui.console
 
         private static void onLogMessageReceived(string condition, string stackTrace, LogType type)
         {
-            var text = new TextComponent(type + ": " + condition + " " + stackTrace);
+            var text = new TextComponent(condition + " " + stackTrace);
             var style = TextStyle.empty;
-            Color color;
+            string color;
             switch (type)
             {
                 case LogType.Assert:
-                    color = ConsoleColors.assert;
+                    color = "#3B83BD";
                     break;
 
                 case LogType.Error:
-                    color = ConsoleColors.error;
+                    color = "#E52B50";
                     break;
 
                 case LogType.Exception:
-                    color = ConsoleColors.exception;
-                    style.underlined.set(true);
+                    color = "#AF2B1E";
                     break;
 
                 case LogType.Log:
-                    color = ConsoleColors.log;
+                    color = "#f6f6f6";
                     break;
 
                 case LogType.Warning:
-                    color = ConsoleColors.warning;
+                    color = "#ffc61e";
                     break;
 
                 default:
-                    color = ConsoleColors.log;
+                    color = "#f6f6f6";
                     break;
             }
 
             style.color.setColor(color);
             text.setStyle(style);
-            ConsoleManager.instance.addMessage(text.getString());
+            ConsoleManager.instance.addMessage(new TextComponent(type.ToString() + ": ").withStyle(TextStyle.empty.withColor("#828282")).append(text).getString());
         }
 
         public static AbstractConsoleCommand getCommandWithRoot(string root)

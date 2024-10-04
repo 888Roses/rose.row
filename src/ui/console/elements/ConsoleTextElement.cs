@@ -1,7 +1,6 @@
 ﻿using rose.row.data;
 using rose.row.easy_package.ui.factory;
 using rose.row.easy_package.ui.factory.elements;
-using TMPro;
 using UnityEngine.UI;
 
 namespace rose.row.ui.console.elements
@@ -11,33 +10,43 @@ namespace rose.row.ui.console.elements
         public TextElement text;
 
         private string _message;
+        public string message => _message;
 
-        public string message
+        private bool _wasBuilt = false;
+
+        public void setMessage(string message)
         {
-            get => _message;
-            set
+            if (!_wasBuilt)
             {
-                _message = value;
-
-                if (_message.Contains("\n"))
-                {
-                    text.use<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
-                }
-
-                text.setText(value);
+                build();
             }
+
+            _message = message;
+            updateText();
+        }
+
+        public void updateText()
+        {
+            text.setText(_message + " " + text.text.preferredHeight);
+            LayoutRebuilder.MarkLayoutForRebuild(text.rectTransform);
+        }
+
+        private void Update()
+        {
+            setHeight(text.text.rectTransform.sizeDelta.y);
         }
 
         public override void build()
         {
             text = UiFactory.createUiElement<TextElement>("Text", this);
-            text.setAnchors(Anchors.FillParent);
-            text.setTextAlign(HorizontalAlignmentOptions.Left);
-            text.setTextAlign(VerticalAlignmentOptions.Middle);
+            text.setAnchors(Anchors.StretchTop);
+            text.setPivot(0.5f, 1);
             text.setColor(ConsoleColors.log);
             text.setFontSize(16);
             text.setFont(Fonts.consoleFont);
             text.setAllowRichText(true);
+
+            _wasBuilt = true;
         }
     }
 }

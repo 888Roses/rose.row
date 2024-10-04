@@ -9,10 +9,13 @@ namespace rose.row.easy_package.ui.text
         public static TextStyle empty => new TextStyle();
 
         public ColorStyleProperty color = new ColorStyleProperty();
-        public SimpleFormatStyleProperty bold = new SimpleFormatStyleProperty();
-        public SimpleFormatStyleProperty italic = new SimpleFormatStyleProperty();
-        public SimpleFormatStyleProperty underlined = new SimpleFormatStyleProperty();
-        public SimpleFormatStyleProperty strikethrough = new SimpleFormatStyleProperty();
+        public SimpleFormatStyleProperty bold = new SimpleFormatStyleProperty("b", false);
+        public SimpleFormatStyleProperty italic = new SimpleFormatStyleProperty("i", false);
+        public SimpleFormatStyleProperty underlined = new SimpleFormatStyleProperty("u", false);
+        public SimpleFormatStyleProperty strikethrough = new SimpleFormatStyleProperty("s", false);
+
+        public TextStyle withColor(string color)
+        { this.color = new ColorStyleProperty(color); return this; }
 
         public TextStyle withColor(Color color)
         { this.color = new ColorStyleProperty(color); return this; }

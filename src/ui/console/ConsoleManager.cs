@@ -1,11 +1,13 @@
-﻿using rose.row.default_package;
+﻿using rose.row.data;
+using rose.row.default_package;
 using rose.row.easy_package.ui.factory;
 using rose.row.easy_package.ui.factory.elements;
-using rose.row.ui.console.elements;
 using rose.row.ui.console.elements.inputfield;
 using rose.row.ui.cursor;
 using rose.row.util;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace rose.row.ui.console
 {
@@ -19,7 +21,8 @@ namespace rose.row.ui.console
 
         public UiElement wrapper;
         public UiElement padding;
-        public FlexibleListElement consoleMessagesList;
+        public ScrollableElement consoleMessagesList;
+        public VerticalListElement consoleMessagesListContent;
         public ConsoleInputFieldElement inputField;
 
         public static void create()
@@ -46,11 +49,18 @@ namespace rose.row.ui.console
             padding.setAnchors(UiElement.Anchors.FillParent);
             padding.setOffset(k_Padding, k_Padding, -k_Padding, -k_Padding);
 
-            consoleMessagesList = UiFactory.createUiElement<FlexibleListElement>("Messages List", padding);
+            consoleMessagesList = UiFactory.createUiElement<ScrollableElement>("Messages List", padding);
+            consoleMessagesList.build();
             consoleMessagesList.setAnchors(UiElement.Anchors.FillParent);
-            consoleMessagesList.itemGap = 4f;
-            consoleMessagesList.expandItemsHorizontal = true;
-            consoleMessagesList.maxItems = Mathf.CeilToInt((k_MaxItems / 1920f) * Screen.height);
+
+            consoleMessagesListContent = UiFactory.createUiElement<VerticalListElement>("Content", consoleMessagesList);
+            consoleMessagesListContent.build();
+            consoleMessagesListContent.setChildControlWidth(true);
+            consoleMessagesListContent.setChildForceExpandWidth(true);
+            consoleMessagesList.setContent(consoleMessagesListContent);
+            consoleMessagesListContent.setAnchors(UiElement.Anchors.StretchTop);
+            consoleMessagesListContent.image();
+            consoleMessagesListContent.use<Mask>().showMaskGraphic = false;
 
             inputField = UiFactory.createUiElement<ConsoleInputFieldElement>("Input Field", wrapper);
             inputField.setAnchors(UiElement.Anchors.StretchBottom);
@@ -72,10 +82,28 @@ namespace rose.row.ui.console
 
         public void addMessage(string message)
         {
-            var child = UiFactory.createUiElement<ConsoleTextElement>("Child", consoleMessagesList);
-            child.setHeight(k_ItemHeight);
-            child.message = message;
-            consoleMessagesList.addChild(child);
+            var text = UiFactory.createUiElement<TextElement>("Message", consoleMessagesListContent);
+            text.build();
+            text.setColor(ConsoleColors.log);
+            text.setFontSize(16);
+            text.setFont(Fonts.consoleFont);
+            text.setAllowRichText(true);
+
+            text.setAdaptiveHeight();
+            text.setText(message);
+
+            LayoutRebuilder.MarkLayoutForRebuild(text.rectTransform);
+            StartCoroutine(updateLayout());
+        }
+
+        private IEnumerator updateLayout()
+        {
+            yield return new WaitForEndOfFrame();
+
+            LayoutRebuilder.MarkLayoutForRebuild(consoleMessagesListContent.rectTransform);
+            LayoutRebuilder.MarkLayoutForRebuild(consoleMessagesList.rectTransform);
+
+            consoleMessagesList.scrollRect.verticalNormalizedPosition = 0;
         }
 
         private void Start()

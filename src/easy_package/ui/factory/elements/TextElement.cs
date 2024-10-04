@@ -1,7 +1,9 @@
-﻿using rose.row.data;
+﻿using MapEditor;
+using rose.row.data;
 using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace rose.row.easy_package.ui.factory.elements
 {
@@ -9,6 +11,8 @@ namespace rose.row.easy_package.ui.factory.elements
     {
         public UiElement textContainer;
         public TMP_Text text;
+
+        public bool isAdaptiveHeight;
 
         public override void build()
         {
@@ -19,6 +23,24 @@ namespace rose.row.easy_package.ui.factory.elements
             textContainer = UiFactory.createGenericUiElement("Text", this);
             textContainer.setAnchors(Anchors.FillParent);
             text = textContainer.use<TextMeshProUGUI>();
+        }
+
+        private void Update()
+        {
+            if (isAdaptiveHeight)
+            {
+                setHeight(text.rectTransform.sizeDelta.y);
+            }
+        }
+
+        public void setAdaptiveHeight()
+        {
+            text.rectTransform.anchorMin = new Vector2(0, 1);
+            text.rectTransform.anchorMax = new Vector2(1, 1);
+            text.rectTransform.pivot = new Vector2(0.5f, 1);
+            text.gameObject.GetOrCreateComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+
+            isAdaptiveHeight = true;
         }
 
         public void setInteractable(bool interactable)

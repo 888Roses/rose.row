@@ -1,5 +1,4 @@
-﻿using rose.row.easy_package.ui.factory;
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
 
 namespace rose.row.easy_package.ui.factory.elements
 {
@@ -34,6 +33,7 @@ namespace rose.row.easy_package.ui.factory.elements
             _content = content;
             _content.setPivot(0.5f, 1);
             _content.setParent(_container);
+            _content.setAnchoredPosition(0, 0);
 
             _contentSizeFitter = content.use<ContentSizeFitter>();
             _contentSizeFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
