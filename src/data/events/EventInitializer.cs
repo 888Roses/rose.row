@@ -20,6 +20,7 @@ using rose.row.ui.ingame.screens.death_screen;
 using rose.row.ui.ingame.screens.end_screen;
 using rose.row.ui.ingame.screens.killfeed;
 using rose.row.ui.ingame.screens.pause_menu;
+using rose.row.ui.ingame.weapon_display;
 using rose.row.ui.spawn_menu;
 using rose.row.util;
 
@@ -67,6 +68,7 @@ namespace rose.row
 
                 KillfeedProvider.createKillfeedManager();
                 PickupableWeaponsPopupScreen.create();
+                WeaponDisplayScreen.create();
             };
 
             Events.onGameManagerStartLevel.after += () =>

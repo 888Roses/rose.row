@@ -126,6 +126,9 @@
     {
         public static string basePath => $"{Constants.basePath}/Textures/UI";
 
+        // Weapon Display
+        public static readonly ImageHolder weaponDisplayBorder = new ImageHolder("weapon_display/border_highlight.png");
+
         // Spawn Menu
         public static readonly ImageHolder spawnMenuDeployingBackground = new ImageHolder("spawn_menu/deploying_background.png");
         public static readonly ImageHolder spawnMenuHomeIcon = new ImageHolder("spawn_menu/deploying_home.png");

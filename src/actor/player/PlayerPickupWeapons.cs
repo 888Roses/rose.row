@@ -1,4 +1,5 @@
 ﻿using rose.row.data;
+using rose.row.ui.ingame.weapon_display;
 using rose.row.weapons;
 using UnityEngine;
 
@@ -40,7 +41,10 @@ namespace rose.row.actor.player
                 currentlyWatchedPickupableWeapon = weapon;
 
                 if (SteelInput.GetInput(SteelInput.KeyBinds.Use).GetButtonDown())
+                {
                     PickupableWeapons.equipDroppedWeapon(FpsActorController.instance.actor, weapon);
+                    WeaponDisplayScreen.instance.updateWeaponItems();
+                }
             }
         }
 

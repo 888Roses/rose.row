@@ -23,6 +23,7 @@ namespace rose.row.actor.player
             pickup = use<PlayerPickupWeapons>();
             horn = use<PlayerVehicleHornTemp>();
             use<PlayerAntiTankerFuckTanksOmfg>();
+            use<PlayerUiUpdater>();
         }
 
         public T use<T>() where T : PlayerBehaviour
