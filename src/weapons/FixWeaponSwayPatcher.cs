@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using rose.row.util;
 using UnityEngine;
 
 namespace rose.row.weapons
