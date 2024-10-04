@@ -7,12 +7,10 @@ namespace rose.row.actor.ai
     {
         public AiActorController controller;
         public AiWhistle whistle;
-        public AiCheckGround checkGround;
 
         private void Awake()
         {
             whistle = use<AiWhistle>();
-            checkGround = use<AiCheckGround>();
         }
 
         public T use<T>() where T : AiBehaviour
