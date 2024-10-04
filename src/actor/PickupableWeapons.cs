@@ -84,6 +84,10 @@ namespace rose.row.actor
                 position: originalWeapon.transform.position,
                 rotation: originalWeapon.transform.rotation);
 
+            // Changing the layer of the instantiated weapon to 0 to make sure that it isn't still in the first person
+            // layer that can be seen on top of everything else on the map.
+            GameManager.SetupRecursiveLayer(droppedWeapon.transform, 0);
+
             // Disables the weapon so we can do all sort of raycasting without hitting the weapon's model by accident.
             droppedWeapon.gameObject.SetActive(false);
 
