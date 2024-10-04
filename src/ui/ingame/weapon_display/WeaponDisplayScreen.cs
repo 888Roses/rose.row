@@ -1,5 +1,6 @@
 ﻿using rose.row.data;
 using rose.row.default_package;
+using rose.row.easy_events;
 using rose.row.easy_package.ui.factory;
 using rose.row.easy_package.ui.factory.elements;
 using rose.row.util;
@@ -226,7 +227,19 @@ namespace rose.row.ui.ingame.weapon_display
         private void Awake()
         {
             build();
+
+            Events.onPlayerSpawn.before += onPlayerSpawn;
+            Events.onPlayerDie.after += onPlayerDie;
         }
+
+        private void OnDestroy()
+        {
+            Events.onPlayerSpawn.before -= onPlayerSpawn;
+            Events.onPlayerDie.after -= onPlayerDie;
+        }
+
+        private void onPlayerSpawn(FpsActorController e) => _element.gameObject.SetActive(true);
+        private void onPlayerDie(FpsActorController e) => _element.gameObject.SetActive(false);
 
         private void build()
         {
