@@ -66,12 +66,23 @@ namespace rose.row.ui.ingame.screens.end_screen
 
             VictoryUi.instance.victoryContainer.SetActive(false);
 
+            foreach (var actor in ActorManager.instance.actors)
+            {
+                actor.LeaveSeat(false);
+                if (actor.aiControlled)
+                    actor.Deactivate();
+            }
+
+            GameManager.FreezeGameplay();
+
             setEnabled(true);
             Destroy(DeathScreen.instance.gameObject);
             DeathCamera.instance.enable();
             FpsActorController.instance.DisableCameras();
             FpsActorController.instance.DisableInput();
             FpsActorController.instance.DisableMovement();
+            FpsActorController.instance.actor.Freeze();
+            FpsActorController.instance.actor.Hide();
         }
 
         private void Start()
