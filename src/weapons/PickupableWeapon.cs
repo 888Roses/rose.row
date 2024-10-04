@@ -20,7 +20,7 @@ namespace rose.row.weapons
         public static readonly ConstantHolder<float> k_DroppedWeaponLifetime = new ConstantHolder<float>(
             name: "weapon.dropped.lifetime",
             description: "How long can a dropped weapon stay in the world before disappearing.",
-            defaultValue: 10f
+            defaultValue: 30f
         );
 
         /// <summary>
