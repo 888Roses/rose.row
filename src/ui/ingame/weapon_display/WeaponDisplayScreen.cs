@@ -163,6 +163,7 @@ namespace rose.row.ui.ingame.weapon_display
         public WeaponDisplayWeaponElement createWeapon(int slot, bool selected)
         {
             var element = UiFactory.createUiElement<WeaponDisplayWeaponElement>($"Weapon Element {slot}", _container);
+            element.slot = slot;
             element.updateText();
             element.setAnchors(Anchors.BottomCenter, true, true);
             element.setActive(selected);
