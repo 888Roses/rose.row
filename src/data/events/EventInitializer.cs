@@ -31,6 +31,8 @@ namespace rose.row
     {
         public static void initializePostLoadEvents()
         {
+            Plugin.updateWindow();
+
             AudioEvents.subscribeToInitializationEvents();
             AiEventsListener.subscribeToInitializationEvents();
             PlayPainSoundOnHurt.subscribeToInitializationEvents();
@@ -47,12 +49,16 @@ namespace rose.row
 
         public static void createMenuUi()
         {
+            Plugin.updateWindow();
+
             MainMenuUiManager.create().initialize();
             DevEditorScreen.create();
         }
 
         public static void initialize()
         {
+            Plugin.updateWindow();
+
             ModHelper.subscribeToInitializationEvents();
 
             ConsoleManager.create();

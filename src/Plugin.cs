@@ -52,7 +52,7 @@ namespace rose.row
             Invoke(nameof(updateWindow), .5f);
         }
 
-        private void updateWindow()
+        public static void updateWindow()
         {
             WinApplicationManager.change(
                 $"{Constants.basePath}/Textures/icons/small.ico",
