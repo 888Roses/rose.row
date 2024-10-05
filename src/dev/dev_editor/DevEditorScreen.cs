@@ -38,6 +38,19 @@ namespace rose.row.dev.dev_editor
             build();
         }
 
+        private void Start()
+        {
+            setEnabled(false);
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.KeypadPeriod))
+            {
+                setEnabled(!_isEnabled);
+            }
+        }
+
         #region building
 
         private UiScreen _screen;
