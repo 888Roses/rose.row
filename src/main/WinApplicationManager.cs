@@ -1,10 +1,20 @@
-﻿using System;
+﻿using rose.row.data;
+using System;
 using System.Runtime.InteropServices;
 
 namespace rose.row.main
 {
     public static class WinApplicationManager
     {
+        public static void updateWindow()
+        {
+            WinApplicationManager.change(
+                $"{Constants.basePath}/Textures/icons/small.ico",
+                $"{Constants.basePath}/Textures/icons/big.ico",
+                "Rise of War"
+            );
+        }
+
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
 

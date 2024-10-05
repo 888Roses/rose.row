@@ -1,7 +1,6 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
-using rose.row.data;
 using rose.row.data.localisation;
 using rose.row.easy_package.coroutines;
 using rose.row.loading;
@@ -49,16 +48,17 @@ namespace rose.row
         {
             updateWindow();
 
-            Invoke(nameof(updateWindow), .5f);
+            Invoke(nameof(_updateWindow), .5f);
+        }
+
+        private void _updateWindow()
+        {
+            updateWindow();
         }
 
         public static void updateWindow()
         {
-            WinApplicationManager.change(
-                $"{Constants.basePath}/Textures/icons/small.ico",
-                $"{Constants.basePath}/Textures/icons/big.ico",
-                "Rise of War"
-            );
+            WinApplicationManager.updateWindow();
         }
     }
 }
