@@ -57,7 +57,7 @@ namespace rose.row.dev.dev_editor
 
         private void build()
         {
-            _screen = UiFactory.createUiScreen("Dev Editor", ScreenOrder.devEditor, transform);
+            _screen = UiFactory.createUiScreen("Dev Editor", ScreenOrder.devEditor, transform).withCanvasGroup();
             UiFactory.createUiElement<MainWindow>("Main Window", _screen);
             UiFactory.createUiElement<OverlayImageWindow>("Overlay Image Window", _screen);
         }
