@@ -48,6 +48,9 @@ namespace rose.row.ui.console
             padding = UiFactory.createGenericUiElement("Padding", wrapper);
             padding.setAnchors(UiElement.Anchors.FillParent);
             padding.setOffset(k_Padding, k_Padding, -k_Padding, -k_Padding);
+            padding.image();
+            var mask = padding.use<Mask>();
+            mask.showMaskGraphic = false;
 
             consoleMessagesList = UiFactory.createUiElement<ScrollableElement>("Messages List", padding);
             consoleMessagesList.build();
@@ -59,8 +62,6 @@ namespace rose.row.ui.console
             consoleMessagesListContent.setChildForceExpandWidth(true);
             consoleMessagesList.setContent(consoleMessagesListContent);
             consoleMessagesListContent.setAnchors(UiElement.Anchors.StretchTop);
-            consoleMessagesListContent.image();
-            consoleMessagesListContent.use<Mask>().showMaskGraphic = false;
 
             inputField = UiFactory.createUiElement<ConsoleInputFieldElement>("Input Field", wrapper);
             inputField.setAnchors(UiElement.Anchors.StretchBottom);
