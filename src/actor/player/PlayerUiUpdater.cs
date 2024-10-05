@@ -13,8 +13,17 @@ namespace rose.row.actor.player
             Events.onActorSwitchActiveWeapon.after += onActorSwitchActiveWeapon;
         }
 
+        private void OnDestroy()
+        {
+            Events.onPlayerSpawn.after -= onPlayerSpawn;
+            Events.onActorSwitchActiveWeapon.after -= onActorSwitchActiveWeapon;
+        }
+
         private void onActorSwitchActiveWeapon(Actor actor, int slot)
         {
+            if (actor == null)
+                return;
+
             StartCoroutine(onActorSwitchActiveWeaponCoroutine(actor, slot));
         }
 
