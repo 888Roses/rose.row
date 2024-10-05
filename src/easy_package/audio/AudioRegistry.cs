@@ -9,6 +9,24 @@ namespace rose.row.easy_package.audio
         // TODO: Change this whenever I'll implement vehicles!
         public static readonly LocalAudioHolder hornTemp = new LocalAudioHolder("vehicles/horn_temp.wav");
 
+        public static readonly LocalAudioHolder[] dieCrushed = new LocalAudioHolder[]
+        {
+            new LocalAudioHolder("die/crushed/die_crushed_01.wav"),
+            new LocalAudioHolder("die/crushed/die_crushed_02.wav"),
+            new LocalAudioHolder("die/crushed/die_crushed_03.wav"),
+            new LocalAudioHolder("die/crushed/die_crushed_04.wav"),
+        };
+
+        public static readonly LocalAudioHolder[] dieFall = new LocalAudioHolder[]
+        {
+            new LocalAudioHolder("die/fall/die_fall_01.wav"),
+            new LocalAudioHolder("die/fall/die_fall_02.wav"),
+            new LocalAudioHolder("die/fall/die_fall_03.wav"),
+            new LocalAudioHolder("die/fall/die_fall_04.wav"),
+            new LocalAudioHolder("die/fall/die_fall_05.wav"),
+            new LocalAudioHolder("die/fall/die_fall_06.wav"),
+        };
+
         public static readonly LocalAudioHolder[] hitPain = new LocalAudioHolder[]
         {
             new LocalAudioHolder("pain/hit_pain_01.wav"),

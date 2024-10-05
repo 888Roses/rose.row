@@ -35,7 +35,10 @@ namespace rose.row
 
             AudioEvents.subscribeToInitializationEvents();
             AiEventsListener.subscribeToInitializationEvents();
+
             PlayPainSoundOnHurt.subscribeToInitializationEvents();
+            PlayCrushedSoundOnPlayerDeath.subscribeToInitializationEvents();
+            PlayFallSoundOnPlayerDeath.subscribeToInitializationEvents();
 
             KillfeedProvider.subscribeToInitializationEvents();
             CustomActorHealth.subscribeToInitializationEvents();
