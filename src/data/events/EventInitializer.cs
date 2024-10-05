@@ -6,6 +6,7 @@ using rose.row.actor.player;
 using rose.row.actor.player.camera;
 using rose.row.audio;
 using rose.row.data.mod;
+using rose.row.dev.dev_editor;
 using rose.row.dev.dev_info_screen;
 using rose.row.dev.dev_weapon_selec;
 using rose.row.dev.vehicle_selector;
@@ -47,6 +48,7 @@ namespace rose.row
         public static void createMenuUi()
         {
             MainMenuUiManager.create().initialize();
+            DevEditorScreen.create();
         }
 
         public static void initialize()

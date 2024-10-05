@@ -21,5 +21,6 @@ namespace rose.row.ui
         public static int inGameMenu => ingame + 9;
 
         public static int console => Mathf.Max(mainMenuUi, ingame) + 100;
+        public static int devEditor => Mathf.Max(mainMenuUi, ingame) + 80;
     }
 }

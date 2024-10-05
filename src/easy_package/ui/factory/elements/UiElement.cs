@@ -24,6 +24,17 @@ namespace rose.row.easy_package.ui.factory.elements
             build();
         }
 
+        public void setBackgroundColor(string color)
+        {
+            if (ColorUtility.TryParseHtmlString(color, out Color parsedColor))
+                setBackgroundColor(parsedColor);
+        }
+
+        public void setBackgroundColor(Color color)
+        {
+            image().color = color;
+        }
+
         public virtual float relativeWidth(float width, float baseWidth = 1920f)
         {
             return width / baseWidth * Screen.width;
@@ -130,9 +141,9 @@ namespace rose.row.easy_package.ui.factory.elements
 
         public void setOffset(float minX, float minY, float maxX, float maxY) => setOffset(new Vector4(minX, minY, maxX, maxY));
 
-        public void setWidth(float width) => rectTransform.sizeDelta = rectTransform.sizeDelta.with(x: width);
+        public virtual void setWidth(float width) => rectTransform.sizeDelta = rectTransform.sizeDelta.with(x: width);
 
-        public void setHeight(float height) => rectTransform.sizeDelta = rectTransform.sizeDelta.with(y: height);
+        public virtual void setHeight(float height) => rectTransform.sizeDelta = rectTransform.sizeDelta.with(y: height);
 
         public void setSize(float width, float height)
         {
@@ -141,7 +152,8 @@ namespace rose.row.easy_package.ui.factory.elements
 
         public void setSize(Vector2 size)
         {
-            rectTransform.sizeDelta = size;
+            setWidth(size.x);
+            setHeight(size.y);
         }
 
         public void setSize(float size)
@@ -149,15 +161,15 @@ namespace rose.row.easy_package.ui.factory.elements
             setSize(Vector2.one * size);
         }
 
-        public float getWidth() => rectTransform.sizeDelta.x;
+        public virtual float getWidth() => rectTransform.rect.width;
 
-        public float getHeight() => rectTransform.sizeDelta.y;
+        public virtual float getHeight() => rectTransform.rect.height;
 
-        public Vector2 size => rectTransform.sizeDelta;
+        public virtual Vector2 size => rectTransform.sizeDelta;
 
-        public void setAnchoredPosition(Vector2 anchoredPosition) => rectTransform.anchoredPosition = anchoredPosition;
+        public virtual void setAnchoredPosition(Vector2 anchoredPosition) => rectTransform.anchoredPosition = anchoredPosition;
 
-        public void setAnchoredPosition(float x, float y) => setAnchoredPosition(new Vector2(x, y));
+        public virtual void setAnchoredPosition(float x, float y) => setAnchoredPosition(new Vector2(x, y));
 
         public Vector2 anchoredPosition => rectTransform.anchoredPosition;
 

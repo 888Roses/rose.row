@@ -20,5 +20,19 @@ namespace rose.row.util
             t.localRotation = Quaternion.identity;
             t.localScale = Vector3.one;
         }
+
+        public static T use<T>(this Transform transform) where T : Component
+        {
+            return transform.TryGetComponent(out T component)
+                    ? component
+                    : transform.gameObject.AddComponent<T>();
+        }
+
+        public static T use<T>(this GameObject gameObject) where T : Component
+        {
+            return gameObject.TryGetComponent(out T component)
+                    ? component
+                    : gameObject.gameObject.AddComponent<T>();
+        }
     }
 }

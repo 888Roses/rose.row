@@ -50,10 +50,21 @@ namespace rose.row.main_menu.ui
             loadedMods++;
         }
 
+        public const int k_LoginIndex = 0;
+        public const int k_WarMapIndex = 1;
+        public const int k_CharactersIndex = 1;
+
+        public bool isInLoginScreen() => _currentIndex == k_LoginIndex;
+        public bool isInDesktop() => !isInLoginScreen();
+
+        private int _currentIndex;
+        public int currentIndex => _currentIndex;
+
         public void goToDesktop()
         {
             _loginScreen.setEnabled(false);
             _desktopScreen.setEnabled(true);
+            _currentIndex = 1;
         }
 
         #region components

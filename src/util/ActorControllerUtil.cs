@@ -5,6 +5,12 @@ namespace rose.row.util
 {
     public static class ActorControllerUtil
     {
+        private static T getField<T>(this ActorController controller, string name)
+            => (T) Traverse.Create(controller).Field(name).GetValue();
+
+        private static void setField<T>(this ActorController controller, string name, T value)
+            => Traverse.Create(controller).Field(name).SetValue(value);
+
         /// <summary>
         /// Retrieves the team of that actor controller.
         /// </summary>
@@ -52,6 +58,15 @@ namespace rose.row.util
         {
             Traverse.Create(aiActorController).Field("isOnAvoidancePath").SetValue(value);
         }
+
+        public static bool isKicking(this FpsActorController controller)
+            => (bool) Traverse.Create(controller).Method("IsKicking").GetValue();
+
+        public static PlayerActionInput aimInput(this FpsActorController controller)
+            => (PlayerActionInput) Traverse.Create(controller).Field("aimInput").GetValue();
+
+        public static TimedAction sprintCannotFireAction(this FpsActorController controller)
+        => (TimedAction) Traverse.Create(controller).Field("sprintCannotFireAction").GetValue();
 
         #endregion
     }
