@@ -8,8 +8,9 @@
         <BaseOutputPath></BaseOutputPath>
         <RootNamespace>rose.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
         <Company>Rose</Company>
-        <AssemblyVersion>1.0.895.0</AssemblyVersion>
+        <AssemblyVersion>1.0.909.0</AssemblyVersion>
         <GenerateDocumentationFile>False</GenerateDocumentationFile>
+        <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -37,7 +38,7 @@
             <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Ravenfield\ravenfield_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
         </Reference>
         <Reference Include="com.rlabrecque.steamworks.net">
-          <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Ravenfield\ravenfield_Data\Managed\com.rlabrecque.steamworks.net.dll</HintPath>
+            <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Ravenfield\ravenfield_Data\Managed\com.rlabrecque.steamworks.net.dll</HintPath>
         </Reference>
         <Reference Include="netstandard">
             <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Ravenfield\ravenfield_Data\Managed\netstandard.dll</HintPath>
@@ -105,6 +106,10 @@
         <Reference Include="UnityEngine.UnityWebRequestWWWModule">
             <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Ravenfield\ravenfield_Data\Managed\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
         </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="assets\" />
     </ItemGroup>
 
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">

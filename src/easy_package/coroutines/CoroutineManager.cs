@@ -6,11 +6,15 @@ namespace rose.row.easy_package.coroutines
 {
     public class CoroutineManager : Singleton<CoroutineManager>
     {
+        public static bool initialized;
+
         public static void create()
         {
             var gameObject = new GameObject("Coroutine Manager (DO NOT DESTROY)");
             gameObject.AddComponent<CoroutineManager>();
             DontDestroyOnLoad(gameObject);
+
+            initialized = true;
         }
 
         public static Coroutine startCoroutine(string methodName) => instance.StartCoroutine(methodName);

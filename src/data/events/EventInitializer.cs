@@ -93,6 +93,12 @@ namespace rose.row
             SpawnMenu.initializeEvents();
 
             Events.onPlayerSpawn.before += Player.create;
+
+            loadInitialBundles();
+        }
+
+        public static void loadInitialBundles()
+        {
         }
     }
 }
