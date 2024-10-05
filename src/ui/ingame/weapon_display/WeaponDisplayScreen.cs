@@ -232,6 +232,12 @@ namespace rose.row.ui.ingame.weapon_display
             Events.onPlayerDie.after += onPlayerDie;
         }
 
+        private void Start()
+        {
+            // Disable the element at beginning of a match.
+            _element.gameObject.SetActive(false);
+        }
+
         private void OnDestroy()
         {
             Events.onPlayerSpawn.before -= onPlayerSpawn;
