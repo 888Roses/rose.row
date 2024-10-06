@@ -6,5 +6,6 @@
         public static bool isGameplayFrozen;
         public static bool isCursorLocked;
         public static bool forceAim;
+        public static bool isFlying;
     }
 }
