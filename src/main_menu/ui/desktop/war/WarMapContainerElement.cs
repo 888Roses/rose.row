@@ -85,8 +85,6 @@ namespace rose.row.main_menu.ui.desktop.war
             moveToBack();
             createPoints();
             createLinks();
-
-            Debug.Log(_cities.Count);
         }
 
         private void createPoints()

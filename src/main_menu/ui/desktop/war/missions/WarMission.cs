@@ -40,14 +40,12 @@ namespace rose.row.main_menu.ui.desktop.war.missions
             if (type == MissionType.Attack)
             {
                 var result = city.getFaction();
-                //Debug.Log($"Attack mode: {result == null}");
                 return result;
             }
 
             var factionsWithoutPlayer = Factions.registeredFactions.ToList();
             factionsWithoutPlayer.Remove(Factions.playerFaction);
             var result2 = factionsWithoutPlayer.random();
-            //Debug.Log($"Defense mode: {result2 == null} {factionsWithoutPlayer.Count}");
             return result2;
         }
     }

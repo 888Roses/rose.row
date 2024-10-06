@@ -112,8 +112,6 @@ namespace rose.row.rendering.game_preview
 
         private void generateVehiclePreviews()
         {
-            //Debug.Log("Generating or pulling vehicle previews from disk.");
-
             if (GamePreview.instance != null)
             {
                 if (_renderCoroutine != null)
@@ -162,7 +160,6 @@ namespace rose.row.rendering.game_preview
 
                 if (_scheduledRenderedVehicles.Count <= 0)
                 {
-                    //Debug.Log($"Finished rendering or pulling vehicle previews from disk.");
                     Events.onFinishedRenderingVehiclePreviews.before?.Invoke();
                     Events.onFinishedRenderingVehiclePreviews.after?.Invoke();
                 }

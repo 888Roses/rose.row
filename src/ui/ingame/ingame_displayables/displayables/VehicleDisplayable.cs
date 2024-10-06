@@ -95,6 +95,9 @@ namespace rose.row.ui.ingame.ingame_displayables.displayables
 
         private void OnDestroy()
         {
+            if (!DisplayableUi.displayables.Contains(this))
+                return;
+
             Debug.Log($"Vehicle destroyed. Removing it from displayable widgets.");
             DisplayableUi.displayables.Remove(this);
             DisplayableUi.refreshDisplayableWidgets();

@@ -69,7 +69,6 @@ namespace rose.row.ui.ingame.weapon_display
             if (weapon == null || weapon.uiSprite == null)
             {
                 imageBackground.image().color = Color.clear;
-                Debug.LogWarning($"Tried assigning a null weapon entry to a slot. This is not allowed!");
                 return;
             }
 

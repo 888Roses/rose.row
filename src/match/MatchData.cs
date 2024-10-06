@@ -12,9 +12,6 @@ namespace rose.row.match
 
         public static AbstractFaction getFactionOfTeam(int team)
         {
-            //Debug.Log(enemyFaction);
-            //Debug.Log(playerFaction);
-
             if (team == -1)
             {
                 return null;

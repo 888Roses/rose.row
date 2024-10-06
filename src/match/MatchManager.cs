@@ -18,7 +18,6 @@ namespace rose.row.match
             CurrentMatch.mission = mission;
             CurrentMatch.playerTeam = mission.type == WarMission.MissionType.Attack ? 1 : 0;
             CurrentMatch.enemyFaction = mission.getRandomFaction();
-            //Debug.Log("From match manager: " + ((CurrentMatch.enemyFaction == null) ? "NULL" : CurrentMatch.enemyFaction.factionName));
 
             // Loading the instant action page so that the different managers present on the page load.
             // If I didnt do that, there would be errors about the map manager not existing, etc.

@@ -10,10 +10,8 @@ namespace rose.row.actor.ai
         [HarmonyPrefix]
         static bool prefix(Squad __instance)
         {
-            //Debug.Log(__instance.activePathSegment());
             if (__instance.activePathSegment() != null)
             {
-                //Debug.Log("Issuing move segment!");
                 Debug.DrawLine(__instance.leader().actor.Position(), __instance.activePathSegment().destination, Color.magenta, 10f);
                 __instance.issueMovePathSegment(__instance.activePathSegment());
             }
@@ -69,7 +67,6 @@ namespace rose.row.actor.ai
         {
             if (__instance.isSquadLeader)
             {
-                //Debug.Log("Reissuing squad move segment");
                 __instance.squad.ReissueLastMoveSegment();
                 return false;
             }

@@ -36,8 +36,6 @@ namespace rose.row.actor.ai
 
         public void tryWhistle(string comingFrom)
         {
-            Debug.Log($"Actor '{ai.controller.actor.getNameSafe()}' tried to whistle: {comingFrom}");
-
             Invoke("doWhistle", Random.Range(whistleDelayMin.get(), whistleDelayMin.get()));
         }
 
