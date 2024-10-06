@@ -84,13 +84,14 @@ namespace rose.row.ui.ingame.scoreboard
             // TODO: Implement headshots alongside damage multiplier zones.
             if (info.sourceActor != null)
             {
+                var increment = info.sourceActor.team == actor.team ? -1 : 1;
                 if (players.ContainsKey(info.sourceActor))
                 {
-                    players[info.sourceActor].kills++;
+                    players[info.sourceActor].kills += increment;
                 }
                 else
                 {
-                    players.Add(info.sourceActor, new PlayerInfo() { kills = 1 });
+                    players.Add(info.sourceActor, new PlayerInfo() { kills = increment });
                 }
             }
 
