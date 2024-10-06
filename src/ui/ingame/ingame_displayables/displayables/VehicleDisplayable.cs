@@ -1,4 +1,5 @@
 ﻿using rose.row.data;
+using rose.row.easy_package.audio;
 using rose.row.easy_package.ui.factory;
 using rose.row.easy_package.ui.factory.elements;
 using rose.row.spawn;
@@ -42,6 +43,7 @@ namespace rose.row.ui.ingame.ingame_displayables.displayables
         public void OnPointerEnter(PointerEventData eventData)
         {
             _hovered = true;
+            Audio.play(AudioRegistry.mouse_hover.get());
             updateHoveredState();
         }
 
