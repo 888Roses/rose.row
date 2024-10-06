@@ -7,10 +7,12 @@ namespace rose.row.actor.ai
     {
         public AiActorController controller;
         public AiWhistle whistle;
+        public AiHitboxDisplay hitboxDisplay;
 
         private void Awake()
         {
             whistle = use<AiWhistle>();
+            hitboxDisplay = use<AiHitboxDisplay>();
         }
 
         public T use<T>() where T : AiBehaviour

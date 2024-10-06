@@ -11,6 +11,11 @@ namespace rose.row.util
         private static void setField<T>(this Actor actor, string name, T value)
             => Traverse.Create(actor).Field(name).SetValue(value);
 
+        public static bool isEnemy(this Actor actor)
+        {
+            return actor.team != LocalPlayer.actor.team;
+        }
+
         public static string getNameSafe(this Actor actor)
         {
             if (actor.scoreboardEntry == null)
