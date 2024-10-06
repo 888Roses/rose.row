@@ -46,13 +46,19 @@ namespace rose.row.easy_package.ui.factory
             return (T) createUiElement(typeof(T), name, parent);
         }
 
-        public static Component createUiElement(Type type, string name, Transform parent)
+        public static UiElement createUiElement(Type type, string name, UiElement element)
+            => createUiElement(type, name, element.transform);
+
+        public static UiElement createUiElement(Type type, string name, UiScreen screen)
+            => createUiElement(type, name, screen.transform);
+
+        public static UiElement createUiElement(Type type, string name, Transform parent)
         {
             var gameObject = new GameObject(name);
             var rectTransform = gameObject.AddComponent<RectTransform>();
             rectTransform.SetParent(parent);
             rectTransform.anchoredPosition = Vector2.zero;
-            return rectTransform.gameObject.AddComponent(type);
+            return (UiElement) rectTransform.gameObject.AddComponent(type);
         }
     }
 }

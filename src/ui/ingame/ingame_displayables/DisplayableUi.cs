@@ -1,7 +1,9 @@
 ﻿using rose.row.easy_events;
 using rose.row.easy_package.ui.factory;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace rose.row.ui.ingame.ingame_displayables
 {
@@ -40,8 +42,8 @@ namespace rose.row.ui.ingame.ingame_displayables
 
         #region displayables list
 
-        private static AbstractDisplayable[] _displayables;
-        public static AbstractDisplayable[] displayables => _displayables;
+        private static List<AbstractDisplayable> _displayables;
+        public static List<AbstractDisplayable> displayables => _displayables;
 
         /// <summary>
         /// Refreshes the <see cref="displayables"/> array, to match the current world
@@ -49,7 +51,7 @@ namespace rose.row.ui.ingame.ingame_displayables
         /// </summary>
         public static void refreshDisplayables()
         {
-            _displayables = GameObject.FindObjectsOfType<AbstractDisplayable>();
+            _displayables = new(Object.FindObjectsOfType<AbstractDisplayable>());
         }
 
         #endregion displayables list
@@ -98,17 +100,24 @@ namespace rose.row.ui.ingame.ingame_displayables
             {
                 foreach (var widget in _createdWidgets)
                     if (widget != null)
-                        GameObject.Destroy(widget.gameObject);
+                        Object.Destroy(widget.gameObject);
 
                 _createdWidgets.Clear();
             }
         }
 
-        public static void refreshDisplayableWidgets()
+        /// <summary>
+        /// Refreshes the displayable list to get all <see cref="AbstractDisplayable"/>s in the world and recreates every
+        /// UI widgets on screen based on those displayables.
+        /// </summary>
+        /// <param name="forceRefreshWorldDisplayables">
+        /// If passed True, forces this method to use <see cref="refreshDisplayables"/> to refresh all of the displayables in the world.
+        /// </param>
+        public static void refreshDisplayableWidgets(bool forceRefreshWorldDisplayables = false)
         {
             resetCreatedWidgetsList();
 
-            if (_displayables == null)
+            if (_displayables == null || forceRefreshWorldDisplayables)
             {
                 refreshDisplayables();
             }
@@ -119,14 +128,35 @@ namespace rose.row.ui.ingame.ingame_displayables
             }
         }
 
+        /// <summary>
+        /// Creates a new displayable widget for the given <see cref="AbstractDisplayable"/>.
+        /// </summary>
+        /// <param name="displayable">The displayable whose widget will be created.</param>
+        /// <returns>The newly created displayable ui widget.</returns>
         public static DisplayableUiWidget createDisplayableWidget(AbstractDisplayable displayable)
         {
-            var widget = UiFactory.createUiElement<DisplayableUiWidget>(
-                name: $"Widget {displayable.gameObject.name}",
-                screen: displayablesScreen
-            );
-            widget.build(displayable);
-            return widget;
+            try
+            {
+                var widget = (DisplayableUiWidget) UiFactory.createUiElement(
+                    type: displayable.displayableUiWidgetClass,
+                    name: $"Widget {displayable.gameObject.name}",
+                    screen: displayablesScreen
+                );
+                widget.build(displayable);
+                return widget;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Could not create displayable widget for displayable '{displayable.GetType().Name}':");
+                Debug.LogException(e);
+
+                var widget = UiFactory.createUiElement<DisplayableUiWidget>(
+                    name: $"Widget {displayable.gameObject.name}",
+                    screen: displayablesScreen
+                );
+                widget.build(displayable);
+                return widget;
+            }
         }
 
         #endregion displayable widgets

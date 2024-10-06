@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using rose.row.spawn;
 
 namespace rose.row.ui.ingame.screens.death_screen
 {
@@ -8,25 +9,42 @@ namespace rose.row.ui.ingame.screens.death_screen
         [HarmonyPostfix]
         private static void postfix(FpsActorController __instance)
         {
-            if (DeathScreen.canEnterQueuedVehicle())
+            var vehicle = Spawn.vehicleToSpawnIn;
+
+            if (vehicle == null)
+                return;
+
+            Spawn.clearVehicleToSpawnIn();
+
+            if (vehicle.dead)
+                return;
+
+            Seat targetSeat = null;
+
+            if (vehicle.AllSeatsTaken())
             {
-                var vehicle = DeathScreen.queuedVehicle;
-                if (vehicle.AllSeatsTaken())
+                foreach (var seat in vehicle.seats)
                 {
-                    if (vehicle.seats.Count > 1)
-                    {
-                        vehicle.seats[1].occupant.LeaveSeat(false);
-                    }
-                    else
-                    {
-                        vehicle.seats[0].occupant.LeaveSeat(false);
-                    }
+                    if (!seat.occupant.aiControlled)
+                        continue;
+
+                    // TODO: Watch out for flying actors!
+                    seat.occupant.LeaveSeat(true);
+                    targetSeat = seat;
                 }
 
-                __instance.actor.EnterVehicle(vehicle);
+                if (targetSeat == null)
+                    return;
+            }
+            else
+            {
+                targetSeat = vehicle.GetEmptySeat(false);
             }
 
-            return;
+            if (targetSeat == null)
+                return;
+
+            __instance.actor.EnterSeat(targetSeat, true);
         }
     }
 }

@@ -35,6 +35,10 @@ namespace rose.row.easy_package.ui.factory.elements
             image().color = color;
         }
 
+        public void setBackground(Texture2D texture) => image().texture = texture;
+        public void setBackground(Texture texture) => setBackground(texture as Texture2D);
+        public void setBackground(Sprite sprite) => setBackground(sprite.texture);
+
         public virtual float relativeWidth(float width, float baseWidth = 1920f)
         {
             return width / baseWidth * Screen.width;

@@ -63,8 +63,8 @@ namespace rose.row.ui.ingame.screens.death_screen
             Events.onPlayerDie.after += enable;
             Events.onPointCaptured.after += onCapturePointCaptured;
 
-            Events.onVehicleSpawn.after += onVehicleSpawned;
-            Events.onVehicleDie.before += onVehicleDestroyed;
+            //Events.onVehicleSpawn.after += onVehicleSpawned;
+            //Events.onVehicleDie.before += onVehicleDestroyed;
 
             Events.onLoadoutUiShow.after += onLoadoutShow;
 
@@ -85,8 +85,8 @@ namespace rose.row.ui.ingame.screens.death_screen
             Events.onPlayerDie.after -= enable;
             Events.onPointCaptured.after -= onCapturePointCaptured;
 
-            Events.onVehicleSpawn.after -= onVehicleSpawned;
-            Events.onVehicleDie.before -= onVehicleDestroyed;
+            //Events.onVehicleSpawn.after -= onVehicleSpawned;
+            //Events.onVehicleDie.before -= onVehicleDestroyed;
 
             Events.onLoadoutUiShow.after -= onLoadoutShow;
         }
