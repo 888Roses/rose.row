@@ -17,6 +17,12 @@ namespace rose.row.easy_package.audio
             new LocalAudioHolder("die/crushed/die_crushed_04.wav"),
         };
 
+        public static readonly LocalAudioHolder[] dieFallBody = new LocalAudioHolder[]
+        {
+            new LocalAudioHolder("die/fall/body_die_fall_01.wav"),
+            new LocalAudioHolder("die/fall/body_die_fall_02.wav"),
+        };
+
         public static readonly LocalAudioHolder[] dieFall = new LocalAudioHolder[]
         {
             new LocalAudioHolder("die/fall/die_fall_01.wav"),
