@@ -1,6 +1,5 @@
 ﻿using rose.row.easy_events;
 using rose.row.easy_package.ui.factory;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -124,6 +123,9 @@ namespace rose.row.ui.ingame.ingame_displayables
 
             foreach (var displayable in _displayables)
             {
+                if (displayable == null)
+                    continue;
+
                 _createdWidgets.Add(createDisplayableWidget(displayable));
             }
         }
@@ -145,10 +147,10 @@ namespace rose.row.ui.ingame.ingame_displayables
                 widget.build(displayable);
                 return widget;
             }
-            catch (Exception e)
+            catch /*(Exception e)*/
             {
-                Debug.LogError($"Could not create displayable widget for displayable '{displayable.GetType().Name}':");
-                Debug.LogException(e);
+                // Debug.LogError($"Could not create displayable widget for displayable '{displayable.GetType().Name}':");
+                // Debug.LogException(e);
 
                 var widget = UiFactory.createUiElement<DisplayableUiWidget>(
                     name: $"Widget {displayable.gameObject.name}",
