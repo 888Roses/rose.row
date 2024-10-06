@@ -56,6 +56,7 @@ namespace rose.row.ui.ingame.scoreboard
 
         private UiScreen _uiScreen;
         private ScoreboardElement _element;
+        public ScoreboardElement element => _element;
 
         private void build()
         {

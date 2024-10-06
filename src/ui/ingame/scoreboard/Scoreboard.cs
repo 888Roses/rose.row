@@ -15,6 +15,8 @@ namespace rose.row.ui.ingame.scoreboard
     {
         public static Dictionary<Actor, PlayerInfo> players = new Dictionary<Actor, PlayerInfo>();
 
+        public static Action onScoreboardUpdate;
+
         public static void subscribeToInitializationEvents()
         {
             Events.onGameManagerStartLevel.after += onGameStarts;
@@ -58,6 +60,8 @@ namespace rose.row.ui.ingame.scoreboard
                     players.Add(actor, new PlayerInfo() { captures = 1 });
                 }
             }
+
+            updateOrder();
         }
 
         private static void onActorDies(Actor actor, DamageInfo info, bool silentKill)
@@ -89,6 +93,27 @@ namespace rose.row.ui.ingame.scoreboard
                     players.Add(info.sourceActor, new PlayerInfo() { kills = 1 });
                 }
             }
+
+            updateOrder();
+        }
+
+        private static void updateOrder()
+        {
+            onScoreboardUpdate?.Invoke();
+        }
+
+        public static int rank(Actor actor)
+        {
+            var i = 0;
+            foreach (var pair in players)
+            {
+                if (pair.Key == actor)
+                    return i;
+
+                i++;
+            }
+
+            return -1;
         }
 
         private static void onGameStarts()

@@ -46,6 +46,7 @@ namespace rose.row
             EndGameScreen.subscribeToInitializationEvents();
             DeathScreen.subscribeToInitializationEvents();
             Scoreboard.subscribeToInitializationEvents();
+            ScoreboardElement.subscribeToInitializationEvents();
 
             PickupableWeapons.subscribeToInitializationEvents();
         }

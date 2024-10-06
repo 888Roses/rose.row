@@ -8,6 +8,28 @@ namespace rose.row.ui.ingame.scoreboard
     /// </summary>
     public class ScoreboardElement : UiElement
     {
+        #region events
+
+        public static void subscribeToInitializationEvents()
+        {
+            Scoreboard.onScoreboardUpdate += () =>
+            {
+                var element = ScoreboardScreen.instance.element;
+                if (element == null)
+                    return;
+
+                element.onScoreboardUpdate();
+            };
+        }
+
+        private void onScoreboardUpdate()
+        {
+            _blue.onScoreboardUpdate();
+            _red.onScoreboardUpdate();
+        }
+
+        #endregion
+
         #region constants
 
         /// <summary>

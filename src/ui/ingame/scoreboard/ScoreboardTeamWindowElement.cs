@@ -2,6 +2,7 @@
 using rose.row.easy_package.ui.factory.elements;
 using rose.row.util;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace rose.row.ui.ingame.scoreboard
 {
@@ -15,6 +16,16 @@ namespace rose.row.ui.ingame.scoreboard
         public const float k_TeamWindowWidth = 600f;
 
         #endregion constants
+
+        #region events
+
+        public void onScoreboardUpdate()
+        {
+            scoreboardEntries = scoreboardEntries.OrderByDescending(x => x.playerInfo.score).ToList();
+            updateElements();
+        }
+
+        #endregion
 
         public int team;
 
@@ -74,6 +85,15 @@ namespace rose.row.ui.ingame.scoreboard
 
             scoreboardEntries.Add(scoreboardEntry);
             header.playerCountText.setText($"PLAYERS: {scoreboardEntries.Count}");
+        }
+
+        private void updateElements()
+        {
+            for (var i = 0; i < scoreboardEntries.Count; i++)
+            {
+                var offsetY = i * ScoreboardEntryElement.k_PlayerEntryHeight;
+                scoreboardEntries[i].setAnchoredPosition(0f, -offsetY);
+            }
         }
     }
 }
