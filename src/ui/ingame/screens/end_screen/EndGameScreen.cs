@@ -64,18 +64,24 @@ namespace rose.row.ui.ingame.screens.end_screen
                 Audio.play(AudioRegistry.win.get());
             }
 
+            Debug.Log($"Game ended.");
+
             VictoryUi.instance.victoryContainer.SetActive(false);
 
             foreach (var actor in ActorManager.instance.actors)
             {
-                actor.LeaveSeat(false);
+                if (actor.IsSeated())
+                    actor.LeaveSeat(false);
+
                 if (actor.aiControlled)
                     actor.Deactivate();
             }
 
+            Debug.Log($"Still works?");
             GameManager.FreezeGameplay();
 
             setEnabled(true);
+            Debug.Log($"Apparently this works...");
             Destroy(DeathScreen.instance.gameObject);
             DeathCamera.instance.enable();
             FpsActorController.instance.DisableCameras();
@@ -83,6 +89,7 @@ namespace rose.row.ui.ingame.screens.end_screen
             FpsActorController.instance.DisableMovement();
             FpsActorController.instance.actor.Freeze();
             FpsActorController.instance.actor.Hide();
+            Debug.Log($"End of the method :c");
         }
 
         private void Start()
