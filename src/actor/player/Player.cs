@@ -24,6 +24,7 @@ namespace rose.row.actor.player
             horn = use<PlayerVehicleHornTemp>();
             use<PlayerAntiTankerFuckTanksOmfg>();
             use<PlayerUiUpdater>();
+            use<PlayerFallDamage>();
         }
 
         public T use<T>() where T : PlayerBehaviour
