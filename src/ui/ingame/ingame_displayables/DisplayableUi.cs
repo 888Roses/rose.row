@@ -147,15 +147,13 @@ namespace rose.row.ui.ingame.ingame_displayables
                 widget.build(displayable);
                 return widget;
             }
-            catch /*(Exception e)*/
+            catch
             {
-                // Debug.LogError($"Could not create displayable widget for displayable '{displayable.GetType().Name}':");
-                // Debug.LogException(e);
-
                 var widget = UiFactory.createUiElement<DisplayableUiWidget>(
                     name: $"Widget {displayable.gameObject.name}",
                     screen: displayablesScreen
                 );
+
                 widget.build(displayable);
                 return widget;
             }
