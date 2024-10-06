@@ -11,5 +11,7 @@
         public static bool isFlying;
         public static bool showVehicleInfo;
         public static bool showHitboxes;
+        public static bool showBones;
+        public static bool showPickupableWeaponBoxes;
     }
 }

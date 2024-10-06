@@ -1,5 +1,6 @@
 ﻿using rose.row.actor;
 using rose.row.data;
+using rose.row.dev.dev_editor;
 using rose.row.util;
 using UnityEngine;
 
@@ -79,7 +80,7 @@ namespace rose.row.weapons
                 dispose();
             }
 
-            if (IngameDebugGizmos.IsEnabled())
+            if (DevMainInfo.isDebugEnabled && DevMainInfo.showPickupableWeaponBoxes)
             {
                 bounds.gizmoDrawEdges(Color.green, 1f);
             }
