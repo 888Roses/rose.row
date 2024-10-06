@@ -7,5 +7,6 @@
         public static bool isCursorLocked;
         public static bool forceAim;
         public static bool isFlying;
+        public static bool showVehicleInfo;
     }
 }
