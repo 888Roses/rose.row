@@ -102,20 +102,6 @@ namespace rose.row.ui.ingame.scoreboard
             onScoreboardUpdate?.Invoke();
         }
 
-        public static int rank(Actor actor)
-        {
-            var i = 0;
-            foreach (var pair in players)
-            {
-                if (pair.Key == actor)
-                    return i;
-
-                i++;
-            }
-
-            return -1;
-        }
-
         private static void onGameStarts()
         {
             players.Clear();
