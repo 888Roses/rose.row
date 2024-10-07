@@ -1,4 +1,5 @@
 ﻿using rose.row.easy_package.ui.factory.elements;
+using rose.row.util;
 using UnityEngine;
 
 namespace rose.row.ui.ingame.ingame_displayables
@@ -57,7 +58,7 @@ namespace rose.row.ui.ingame.ingame_displayables
 
         protected virtual void calculateScreenPosition(Camera playerCamera)
         {
-            transform.position = playerCamera.WorldToScreenPoint(displayablePosition);
+            transform.position = playerCamera.WorldToScreenPoint(displayablePosition).with(z: 0);
         }
 
         protected virtual void calculateAlpha(Camera playerCamera)
