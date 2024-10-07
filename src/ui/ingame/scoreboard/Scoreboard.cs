@@ -150,6 +150,8 @@ namespace rose.row.ui.ingame.scoreboard
                     Debug.LogWarning($"Could not generate actor scoreboard success message: {e.Message}");
                 }
             }
+
+            updateOrder();
         }
     }
 }

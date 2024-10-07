@@ -1,5 +1,6 @@
 ﻿using rose.row.default_package;
 using rose.row.easy_package.ui.factory;
+using rose.row.util;
 using UnityEngine;
 using static rose.row.easy_package.ui.factory.elements.UiElement;
 
@@ -44,7 +45,7 @@ namespace rose.row.ui.ingame.scoreboard
 
         private void updateEnabledState()
         {
-            _uiScreen.gameObject.SetActive(_isEnabled);
+            _uiScreen.canvasGroup.setEnabled(_isEnabled);
         }
 
         #endregion disable/enable
@@ -70,7 +71,7 @@ namespace rose.row.ui.ingame.scoreboard
                 name: "Screen",
                 order: ScreenOrder.leaderboard,
                 parent: transform
-            );
+            ).withCanvasGroup();
         }
 
         private void createUiElement()

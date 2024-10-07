@@ -93,6 +93,7 @@ namespace rose.row.ui.ingame.scoreboard
             {
                 var offsetY = i * ScoreboardEntryElement.k_PlayerEntryHeight;
                 scoreboardEntries[i].setAnchoredPosition(0f, -offsetY);
+                scoreboardEntries[i].update();
             }
         }
     }

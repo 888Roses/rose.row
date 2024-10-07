@@ -56,7 +56,7 @@ namespace rose.row.ui.ingame.scoreboard
             }
         }
 
-        private void Update()
+        public void update()
         {
             scoreText.setText(playerInfo.score.ToString());
             capturesText.setText(playerInfo.captures.ToString());
