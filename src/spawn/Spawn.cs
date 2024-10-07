@@ -24,7 +24,7 @@ namespace rose.row.spawn
 
             // If the player hasn't selected a spawn point yet, we want to set their selected spawn point to the first non null
             // spawn point, of the same team as the player.
-            //if (MinimapUi.instance.selectedSpawnPoint == null)
+            if (MinimapUi.instance.selectedSpawnPoint == null)
             {
                 var point = ActorManager.instance.spawnPoints.FirstOrDefault(
                     x => x != null
@@ -36,8 +36,6 @@ namespace rose.row.spawn
             }
 
             LoadoutUi.instance.OnDeployClick();
-            //LoadoutUi.Hide();
-            //LocalPlayer.controller.hasAcceptedLoadoutAfterDeath = true;
         }
     }
 }
