@@ -1,6 +1,7 @@
 ﻿using rose.row.data;
 using rose.row.easy_package.ui.factory;
 using rose.row.easy_package.ui.factory.elements;
+using rose.row.util;
 using TMPro;
 
 namespace rose.row.ui.ingame.scoreboard
@@ -56,23 +57,28 @@ namespace rose.row.ui.ingame.scoreboard
             }
         }
 
+        private string toScoreboardValue(int value)
+        {
+            return value == 0 ? "" : value.ToString();
+        }
+
         public void update()
         {
-            scoreText.setText(playerInfo.score.ToString());
-            capturesText.setText(playerInfo.captures.ToString());
-            killsText.setText(playerInfo.kills.ToString());
-            deathsText.setText(playerInfo.deaths.ToString());
-            headshotsText.setText(playerInfo.headshots.ToString());
-            destroyedTanksText.setText(playerInfo.destroyedTanks.ToString());
-            destroyedPlanesText.setText(playerInfo.destroyedPlanes.ToString());
+            scoreText.setText(toScoreboardValue(playerInfo.score));
+            capturesText.setText(toScoreboardValue(playerInfo.captures));
+            killsText.setText(toScoreboardValue(playerInfo.kills));
+            deathsText.setText(toScoreboardValue(playerInfo.deaths));
+            headshotsText.setText(toScoreboardValue(playerInfo.headshots));
+            destroyedTanksText.setText(toScoreboardValue(playerInfo.destroyedTanks));
+            destroyedPlanesText.setText(toScoreboardValue(playerInfo.destroyedPlanes));
         }
 
         public override void build()
         {
             setHeight(k_PlayerEntryHeight);
-            image().texture = ImageRegistry.scoreboardPlayerEntry.get();
+            image().texture = actor.isPlayer() ? ImageRegistry.scoreboardPlayerEntrySelected.get() : ImageRegistry.scoreboardPlayerEntry.get();
 
-            scoreboardIndexText = addToStack("Scoreboard Index Text", getScoreboardIndex(), 15f);
+            scoreboardIndexText = addToStack("Scoreboard Index Text", getScoreboardIndex(), 15f, autoColourText: false);
             createNameText();
             squadText = addToStack("Squad Text", playerInfo.squad, 119f);
             scoreText = addToStack("Score Text", playerInfo.score.ToString(), 39f);
@@ -94,7 +100,10 @@ namespace rose.row.ui.ingame.scoreboard
             iconContainer.setWidth(29f);
 
             var icon = UiFactory.createGenericUiElement(name, iconContainer);
-            var texture = ImageRegistry.scoreboardPing[playerInfo.ping].get();
+            var pingTextures = actor.isPlayer()
+                ? ImageRegistry.scoreboardPingSquad[playerInfo.ping]
+                : ImageRegistry.scoreboardPing[playerInfo.ping];
+            var texture = pingTextures.get();
             icon.image().texture = texture;
             icon.setSize(texture.width, texture.height);
 
@@ -103,7 +112,7 @@ namespace rose.row.ui.ingame.scoreboard
 
         private void createNameText()
         {
-            nameText = addToStack("Name Text", playerInfo.name, 183f, false);
+            nameText = addToStack("Name Text", playerInfo.name, 183f, false, true);
             var storedPos = nameText.anchoredPosition;
             nameText.setAnchoredPosition(storedPos.x + k_PlayerEntryHeight + 4f, storedPos.y);
 
@@ -115,9 +124,9 @@ namespace rose.row.ui.ingame.scoreboard
             rankImage.image().texture = playerInfo.faction.factionRanks[playerInfo.rank].get();
         }
 
-        private TextElement addToStack(string name, string content, float width, bool centerHorizontal = true)
+        private TextElement addToStack(string name, string content, float width, bool centerHorizontal = true, bool autoColourText = true)
         {
-            var text = createRegularText(name, this);
+            var text = createRegularText(name, this, autoColourText);
             text.setText(content);
             text.setAnchors(Anchors.StretchLeft);
             text.setPivot(0, 0.5f);
@@ -133,12 +142,13 @@ namespace rose.row.ui.ingame.scoreboard
             return text;
         }
 
-        private TextElement createRegularText(string name, UiElement parent)
+        private TextElement createRegularText(string name, UiElement parent, bool autoColourText = true)
         {
             var text = UiFactory.createUiElement<TextElement>(name, parent);
             text.build();
             text.setFont(Fonts.defaultFont);
-            text.setColor("#CBCBC9");
+            text.setColor((actor.isPlayer() && autoColourText) ? "#B3E46E" : "#CBCBC9");
+
             text.setFontSize(18);
 
             return text;

@@ -36,5 +36,7 @@ namespace rose.row.util
         public static bool getupActionWasStarted(this Actor actor) => actor.getField<bool>("getupActionWasStarted");
         public static void setGetupActionWasStarted(this Actor actor, bool value) => actor.setField("getupActionWasStarted", value);
         public static float fallStartHeight(this Actor actor) => actor.getField<float>("fallStartHeight");
+
+        public static bool isPlayer(this Actor actor) => !actor.aiControlled;
     }
 }
