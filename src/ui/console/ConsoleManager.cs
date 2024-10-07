@@ -124,10 +124,11 @@ namespace rose.row.ui.console
                 setEnabled(!isEnabled());
             }
 
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                setEnabled(false);
-            }
+            // Handled from the pause menu instead.
+            //if (Input.GetKeyDown(KeyCode.Escape))
+            //{
+            //    setEnabled(false);
+            //}
         }
 
         public void setEnabled(bool enabled)

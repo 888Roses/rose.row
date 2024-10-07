@@ -2,6 +2,7 @@
 using rose.row.data.localisation;
 using rose.row.easy_package.ui.factory;
 using rose.row.easy_package.ui.factory.elements;
+using rose.row.ui.console;
 using rose.row.ui.elements;
 using System;
 using System.Collections.Generic;
@@ -82,6 +83,12 @@ namespace rose.row.ui.ingame.screens.pause_menu
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
+                if (ConsoleManager.instance.isEnabled())
+                {
+                    ConsoleManager.instance.setEnabled(false);
+                    return;
+                }
+
                 setEnabled(!isEnabled);
             }
         }
