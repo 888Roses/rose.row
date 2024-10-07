@@ -12,6 +12,7 @@ using rose.row.dev.dev_weapon_selec;
 using rose.row.dev.vehicle_selector;
 using rose.row.easy_events;
 using rose.row.main_menu.ui;
+using rose.row.spawn;
 using rose.row.ui.console;
 using rose.row.ui.ingame.crosshair;
 using rose.row.ui.ingame.ingame_displayables;
@@ -39,6 +40,8 @@ namespace rose.row
             PlayPainSoundOnHurt.subscribeToInitializationEvents();
             PlayCrushedSoundOnPlayerDeath.subscribeToInitializationEvents();
             PlayFallSoundOnPlayerDeath.subscribeToInitializationEvents();
+
+            AdvancedSpawnPoint.subscribeToInitializationEvents();
 
             KillfeedProvider.subscribeToInitializationEvents();
             CustomActorHealth.subscribeToInitializationEvents();

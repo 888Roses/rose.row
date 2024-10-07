@@ -53,10 +53,11 @@ namespace rose.row.easy_package.audio
             new LocalAudioHolder("whistle/whistle_05.wav"),
         };
 
-        public static readonly LocalAudioHolder win = new LocalAudioHolder("yippeeeeeeeeeeeeee.mp3");
-        public static readonly LocalAudioHolder capturePointNeutralized = new LocalAudioHolder("capture_point/capture_point_neutralized.wav");
-        public static readonly LocalAudioHolder capturePointGM = new LocalAudioHolder("capture_point/capture_point_gm.wav");
-        public static readonly LocalAudioHolder capturePointUS = new LocalAudioHolder("capture_point/capture_point_us.wav");
-        public static readonly LocalAudioHolder capturePointRU = new LocalAudioHolder("capture_point/capture_point_ru.wav");
+        public static readonly LocalAudioHolder win = new("yippeeeeeeeeeeeeee.mp3");
+        public static readonly LocalAudioHolder capturePointNeutralizedFriendly = new("capture_point/capture_point_neutralized_friendly.wav");
+        public static readonly LocalAudioHolder capturePointNeutralizedEnemy = new("capture_point/capture_point_neutralized_enemy.wav");
+        public static readonly LocalAudioHolder capturePointGM = new("capture_point/capture_point_gm.wav");
+        public static readonly LocalAudioHolder capturePointUS = new("capture_point/capture_point_us.wav");
+        public static readonly LocalAudioHolder capturePointRU = new("capture_point/capture_point_ru.wav");
     }
 }
