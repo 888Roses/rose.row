@@ -74,9 +74,13 @@ namespace rose.row.easy_package.ui.factory.elements
         public void setColor(string hex)
         {
             if (ColorUtility.TryParseHtmlString(hex, out var color))
+            {
                 setColor(color);
-
-            setColor(Color.white);
+            }
+            else
+            {
+                setColor(Color.white);
+            }
         }
 
         public void setTextAlign(HorizontalAlignmentOptions align)
