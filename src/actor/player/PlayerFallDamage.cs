@@ -1,4 +1,5 @@
-﻿using rose.row.util;
+﻿using rose.row.easy_events;
+using rose.row.util;
 using UnityEngine;
 
 namespace rose.row.actor.player
@@ -6,10 +7,30 @@ namespace rose.row.actor.player
     public class PlayerFallDamage : PlayerBehaviour
     {
         private float _lastFallDistance;
+        private float _invulnerabilityTimeStamp;
 
-        private void OnGUI()
+        private void Awake()
         {
-            GUI.Label(new Rect(24, 24, 200, 200), $"FallDistance: {_lastFallDistance} - {player.controller.actor.fallStartHeight()} = {_lastFallDistance - player.controller.actor.fallStartHeight()}");
+            Events.onPlayerSpawn.after += onPlayerSpawn;
+            Events.onActorLeaveSeat.after += onActorLeaveSeat;
+        }
+
+
+        private void OnDestroy()
+        {
+            Events.onPlayerSpawn.after -= onPlayerSpawn;
+            Events.onActorLeaveSeat.after -= onActorLeaveSeat;
+        }
+
+        private void onPlayerSpawn(FpsActorController controller)
+        {
+            _invulnerabilityTimeStamp = Time.time;
+        }
+
+        private void onActorLeaveSeat(Actor actor, bool forcedByFallingOver)
+        {
+            if (!actor.aiControlled)
+                _invulnerabilityTimeStamp = Time.time;
         }
 
         private void Update()
@@ -17,7 +38,7 @@ namespace rose.row.actor.player
             var actor = player.controller.actor;
             var fallDistance = actor.fallStartHeight();
 
-            if (fallDistance != _lastFallDistance)
+            if (fallDistance != _lastFallDistance && !actor.IsSeated() && Time.time > _invulnerabilityTimeStamp + 0.5f)
             {
                 var difference = _lastFallDistance - fallDistance;
                 if (difference > 5f)

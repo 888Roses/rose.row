@@ -16,6 +16,7 @@ namespace rose.row.easy_events
         public static DynamicEvent<Actor, DamageInfo, bool> onActorDie;
         public static DynamicEvent<Actor, DamageInfo> onActorHurt;
         public static DynamicEvent<Actor> onActorAwake;
+        public static DynamicEvent<Actor, bool> onActorLeaveSeat;
 
         /// <summary>
         /// Note that this event will not actually have the actor fall over since this functionality is disabled by default.
