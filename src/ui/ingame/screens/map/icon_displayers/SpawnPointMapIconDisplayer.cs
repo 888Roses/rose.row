@@ -15,7 +15,7 @@ namespace rose.row.ui.ingame.screens.map.icon_displayers
         public void setup(SpawnPoint spawnPoint)
         {
             this.spawnPoint = spawnPoint;
-            buildUi();
+            //buildUi();
         }
 
         public override Transform target => spawnPoint.transform;
@@ -84,6 +84,8 @@ namespace rose.row.ui.ingame.screens.map.icon_displayers
 
         public virtual void refreshUi()
         {
+            return;
+
             capturePointBackground.image().texture = capturePointTextureFromTeam(spawnPoint.owner);
             ownerBackground.image().texture = spawnPointTextureFromTeam(spawnPoint.owner);
 

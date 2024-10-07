@@ -1,4 +1,5 @@
-﻿using rose.row.data.factions;
+﻿using rose.row.data;
+using rose.row.data.factions;
 using rose.row.match;
 using UnityEngine;
 
@@ -42,6 +43,40 @@ namespace rose.row.util
 
             OrderManager.RefreshAllOrders();
             MinimapUi.UpdateSpawnPointButtons();
+        }
+
+        public static Texture2D getCapturePointBackground(this SpawnPoint spawnPoint)
+        {
+            switch (spawnPoint.owner)
+            {
+                case -1:
+                    return ImageRegistry.capturePointNeutral.get();
+
+                case 0:
+                    return ImageRegistry.capturePointFriendly.get();
+
+                case 1:
+                    return ImageRegistry.capturePointEnemy.get();
+            }
+
+            return ImageRegistry.capturePointNeutral.get();
+        }
+
+        public static Texture2D getSpawnPointBackground(this SpawnPoint spawnPoint)
+        {
+            switch (spawnPoint.owner)
+            {
+                case -1:
+                    return ImageRegistry.spawnPointNeutral.get();
+
+                case 0:
+                    return ImageRegistry.spawnPointFriendly.get();
+
+                case 1:
+                    return ImageRegistry.spawnPointEnemy.get();
+            }
+
+            return ImageRegistry.spawnPointNeutral.get();
         }
 
         public static bool isAroundSpawnPoint(this Vector3 position, SpawnPoint spawnPoint, float additionalRange = 0)
@@ -90,6 +125,11 @@ namespace rose.row.util
                 return Factions.playerFaction;
 
             return CurrentMatch.enemyFaction;
+        }
+
+        public static bool isOwnedByPlayerTeam(this SpawnPoint spawnPoint)
+        {
+            return spawnPoint.owner == CurrentMatch.playerTeam;
         }
     }
 }
