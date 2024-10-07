@@ -31,6 +31,7 @@ namespace rose.row.ui.ingame.screens.death_screen
                     // TODO: Watch out for flying actors!
                     seat.occupant.LeaveSeat(true);
                     targetSeat = seat;
+                    break;
                 }
 
                 if (targetSeat == null)
