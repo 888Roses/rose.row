@@ -6,7 +6,7 @@ namespace rose.row.ui.ingame.scoreboard
     {
         public int rank;
         public AbstractFaction faction;
-        public int ping;
+        public int ping = 3;
 
         public string name;
         public string squad;

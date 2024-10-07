@@ -34,6 +34,7 @@ namespace rose.row.ui.ingame.scoreboard
         public TextElement destroyedTanksText;
         public TextElement destroyedPlanesText;
         public UiElement ping;
+        public UiElement playerIsDead;
 
         protected override void Awake() { }
 
@@ -73,6 +74,11 @@ namespace rose.row.ui.ingame.scoreboard
             destroyedPlanesText.setText(toScoreboardValue(playerInfo.destroyedPlanes));
         }
 
+        private void Update()
+        {
+            playerIsDead.gameObject.SetActive(actor.dead);
+        }
+
         public override void build()
         {
             setHeight(k_PlayerEntryHeight);
@@ -89,6 +95,20 @@ namespace rose.row.ui.ingame.scoreboard
             destroyedTanksText = addToStack("Destroyed Tanks Text", playerInfo.destroyedTanks.ToString(), 29f);
             destroyedPlanesText = addToStack("Destroyed Planes Text", playerInfo.destroyedPlanes.ToString(), 29f);
             ping = createPing();
+            playerIsDead = createPlayerIsDead();
+        }
+
+        private UiElement createPlayerIsDead()
+        {
+            var icon = UiFactory.createGenericUiElement("Icon", nameText);
+            var texture = (actor.isPlayer() ? ImageRegistry.scoreboardPlayerDeadSquad : ImageRegistry.scoreboardPlayerDead).get();
+            icon.image().texture = texture;
+            icon.setAnchors(Anchors.MiddleRight);
+            icon.setPivot(1, 0.5f);
+            icon.setSize(texture.width, texture.height);
+            icon.setAnchoredPosition(-icon.getWidth() - 4, 0);
+
+            return icon;
         }
 
         private UiElement createPing()
@@ -99,7 +119,7 @@ namespace rose.row.ui.ingame.scoreboard
             iconContainer.setAnchoredPosition(_stack, 0);
             iconContainer.setWidth(29f);
 
-            var icon = UiFactory.createGenericUiElement(name, iconContainer);
+            var icon = UiFactory.createGenericUiElement("Icon", iconContainer);
             var pingTextures = actor.isPlayer()
                 ? ImageRegistry.scoreboardPingSquad[playerInfo.ping]
                 : ImageRegistry.scoreboardPing[playerInfo.ping];
