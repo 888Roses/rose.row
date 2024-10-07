@@ -44,6 +44,7 @@ namespace rose.row.ui.ingame.scoreboard
             this.scoreboardIndex = scoreboardIndex;
 
             build();
+            update();
         }
 
         private string getScoreboardIndex()
