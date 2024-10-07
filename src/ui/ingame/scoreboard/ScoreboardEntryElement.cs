@@ -85,6 +85,9 @@ namespace rose.row.ui.ingame.scoreboard
             image().texture = actor.isPlayer() ? ImageRegistry.scoreboardPlayerEntrySelected.get() : ImageRegistry.scoreboardPlayerEntry.get();
 
             scoreboardIndexText = addToStack("Scoreboard Index Text", getScoreboardIndex(), 15f, autoColourText: false);
+            if (actor.isPlayer())
+                scoreboardIndexText.setColor("#000000");
+
             createNameText();
             squadText = addToStack("Squad Text", playerInfo.squad, 119f);
             scoreText = addToStack("Score Text", playerInfo.score.ToString(), 39f);
