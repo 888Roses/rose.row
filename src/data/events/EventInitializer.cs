@@ -25,6 +25,7 @@ using rose.row.ui.ingame.screens.pause_menu;
 using rose.row.ui.ingame.weapon_display;
 using rose.row.ui.spawn_menu;
 using rose.row.util;
+using rose.row.weapons;
 
 namespace rose.row
 {
@@ -52,6 +53,7 @@ namespace rose.row
             ScoreboardElement.subscribeToInitializationEvents();
 
             PickupableWeapons.subscribeToInitializationEvents();
+            ResetPickupableWeaponSlotOnSpawn.subscribeToInitializationEvents();
         }
 
         public static void createMenuUi()
