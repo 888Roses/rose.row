@@ -90,7 +90,7 @@ namespace rose.row.ui.ingame.screens.map.icon_displayers
         public virtual bool canBeSeen()
         {
             return vehicle.HasDriver() && vehicle.Driver().team == ActorManager.instance.player.team
-                    && DeathScreen.canEnterVehicle(vehicle);
+                    && DeathScreenOld.canEnterVehicle(vehicle);
         }
 
         private void Update()
@@ -109,8 +109,8 @@ namespace rose.row.ui.ingame.screens.map.icon_displayers
         {
             if (canBeSeen())
             {
-                DeathScreen.queuedVehicle = vehicle;
-                DeathScreen.spawn();
+                DeathScreenOld.queuedVehicle = vehicle;
+                DeathScreenOld.spawn();
             }
         }
 
@@ -139,8 +139,8 @@ namespace rose.row.ui.ingame.screens.map.icon_displayers
 
         private void dispose()
         {
-            if (DeathScreen.instance.vehicleDisplayers.Contains(this))
-                DeathScreen.instance.vehicleDisplayers.Remove(this);
+            if (DeathScreenOld.instance.vehicleDisplayers.Contains(this))
+                DeathScreenOld.instance.vehicleDisplayers.Remove(this);
 
             Destroy(gameObject);
         }

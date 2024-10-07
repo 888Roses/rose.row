@@ -48,7 +48,7 @@ namespace rose.row
             CustomActorHealth.subscribeToInitializationEvents();
             DisplayableUi.subscribeToInitializationEvents();
             EndGameScreen.subscribeToInitializationEvents();
-            DeathScreen.subscribeToInitializationEvents();
+            DeathState.subscribeToInitializationEvents();
             Scoreboard.subscribeToInitializationEvents();
             ScoreboardElement.subscribeToInitializationEvents();
 
@@ -77,7 +77,7 @@ namespace rose.row
             {
                 PauseMenu.create();
                 DeathCamera.create();
-                DeathScreen.create();
+                DeathState.create();
                 WeaponSelectionScreen.create();
                 VehicleSelectionScreen.create();
 

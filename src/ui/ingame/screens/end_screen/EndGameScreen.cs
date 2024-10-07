@@ -78,7 +78,7 @@ namespace rose.row.ui.ingame.screens.end_screen
             GameManager.FreezeGameplay();
 
             setEnabled(true);
-            Destroy(DeathScreen.instance.gameObject);
+            Destroy(DeathScreenOld.instance.gameObject);
             DeathCamera.instance.enable();
             FpsActorController.instance.DisableCameras();
             FpsActorController.instance.DisableInput();

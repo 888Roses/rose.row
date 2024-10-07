@@ -11,9 +11,11 @@ namespace rose.row.ui.ingame.screens.death_screen
     using rose.row.ui;
     using rose.row.ui.cursor;
     using rose.row.ui.ingame.screens.map.icon_displayers;
+    using System;
     using util;
 
-    public class DeathScreen : Singleton<DeathScreen>
+    [Obsolete]
+    public class DeathScreenOld : Singleton<DeathScreenOld>
     {
         public static Vehicle queuedVehicle = null;
         public static bool hasSetupEvents;
@@ -47,7 +49,7 @@ namespace rose.row.ui.ingame.screens.death_screen
         public static void create()
         {
             var screen = UiFactory.createUiScreen("Death Screen Ui", order: ScreenOrder.deathScreen);
-            var deathScreenUi = new GameObject("Death Screen").AddComponent<DeathScreen>();
+            var deathScreenUi = new GameObject("Death Screen").AddComponent<DeathScreenOld>();
             screen.canvas.transform.SetParent(deathScreenUi.transform);
             deathScreenUi._screen = screen;
         }
