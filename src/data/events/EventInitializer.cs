@@ -47,8 +47,11 @@ namespace rose.row
             KillfeedProvider.subscribeToInitializationEvents();
             CustomActorHealth.subscribeToInitializationEvents();
             DisplayableUi.subscribeToInitializationEvents();
+
             EndGameScreen.subscribeToInitializationEvents();
             DeathState.subscribeToInitializationEvents();
+            // DeathCamera.subscribeToInitializationEvents();
+
             Scoreboard.subscribeToInitializationEvents();
             ScoreboardElement.subscribeToInitializationEvents();
 
@@ -76,7 +79,7 @@ namespace rose.row
             Events.onGameManagerStartLevel.before += () =>
             {
                 PauseMenu.create();
-                DeathCamera.create();
+                OldDeathCamera.create();
                 DeathState.create();
                 WeaponSelectionScreen.create();
                 VehicleSelectionScreen.create();

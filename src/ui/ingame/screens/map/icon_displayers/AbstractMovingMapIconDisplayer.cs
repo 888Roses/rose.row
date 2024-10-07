@@ -10,8 +10,8 @@ namespace rose.row.ui.ingame.screens.map.icon_displayers
         public virtual Vector3 getScreenPosition(bool nullZPos = true)
         {
             Camera camera;
-            if (DeathCamera.instance.camera.enabled)
-                camera = DeathCamera.instance.camera;
+            if (OldDeathCamera.instance.camera.enabled)
+                camera = OldDeathCamera.instance.camera;
             else
                 camera = Camera.main;
 

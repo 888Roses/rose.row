@@ -79,7 +79,7 @@ namespace rose.row.ui.ingame.screens.end_screen
 
             setEnabled(true);
             Destroy(DeathScreenOld.instance.gameObject);
-            DeathCamera.instance.enable();
+            OldDeathCamera.instance.enable();
             FpsActorController.instance.DisableCameras();
             FpsActorController.instance.DisableInput();
             FpsActorController.instance.DisableMovement();

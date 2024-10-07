@@ -220,7 +220,7 @@ namespace rose.row.ui.ingame.screens.death_screen
             if (_spawnPointDisplayers == null || _spawnPointDisplayers.Count == 0)
                 return;
 
-            var camera = DeathCamera.instance.camera;
+            var camera = OldDeathCamera.instance.camera;
             foreach (var displayer in _spawnPointDisplayers)
             {
                 var capturePointPos = displayer.spawnPoint
