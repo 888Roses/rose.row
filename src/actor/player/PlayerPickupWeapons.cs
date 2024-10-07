@@ -1,5 +1,6 @@
 ﻿using rose.row.data;
 using rose.row.ui.ingame.weapon_display;
+using rose.row.util;
 using rose.row.weapons;
 using UnityEngine;
 
@@ -14,13 +15,6 @@ namespace rose.row.actor.player
         );
 
         public static PickupableWeapon currentlyWatchedPickupableWeapon;
-
-        private void checkPickup(Vector3 position, RaycastHit hit)
-        {
-            //var distance = Vector3.Distance(position.with(y: 0), hit.point.with(y: 0));
-            //if (distance <= pickupDistance.get())
-            //    checkWeaponsInProximity(hit);
-        }
 
         private void checkWeaponsInProximity()
         {
@@ -51,15 +45,14 @@ namespace rose.row.actor.player
         private void updatePickupDetection()
         {
             currentlyWatchedPickupableWeapon = null;
-
-            //var ray = player.cameraForward();
-            //if (Physics.Raycast(ray, out var hit, 10f, 1 << 0))
-            //    checkPickup(ray.origin, hit);
             checkWeaponsInProximity();
         }
 
         private void Update()
         {
+            if (player.controller.dead())
+                return;
+
             updatePickupDetection();
         }
     }
