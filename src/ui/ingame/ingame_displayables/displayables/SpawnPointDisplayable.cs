@@ -94,11 +94,24 @@ namespace rose.row.ui.ingame.ingame_displayables.displayables
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            Spawn.spawn(null);
+            if (displayable is SpawnPointDisplayable spawnPointDisplayable)
+            {
+                if (!spawnPointDisplayable.spawnPoint.isAlly())
+                    return;
+
+                MinimapUi.SelectSpawnPoint(spawnPointDisplayable.spawnPoint);
+                Spawn.spawn(null);
+            }
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
+            if (displayable is SpawnPointDisplayable spawnPointDisplayable)
+            {
+                if (!spawnPointDisplayable.spawnPoint.isAlly())
+                    return;
+            }
+
             _hovered = true;
             Audio.play(AudioRegistry.mouse_hover.get());
             updateHoveredState();
@@ -106,6 +119,12 @@ namespace rose.row.ui.ingame.ingame_displayables.displayables
 
         public void OnPointerExit(PointerEventData eventData)
         {
+            if (displayable is SpawnPointDisplayable spawnPointDisplayable)
+            {
+                if (!spawnPointDisplayable.spawnPoint.isAlly())
+                    return;
+            }
+
             _hovered = false;
             updateHoveredState();
         }
@@ -119,7 +138,7 @@ namespace rose.row.ui.ingame.ingame_displayables.displayables
         {
             base.calculateAlpha(playerCamera);
             var group = use<CanvasGroup>();
-            var interactable = group.alpha != 0f;
+            var interactable = group.alpha > 0.75f;
             group.interactable = interactable;
             group.blocksRaycasts = interactable;
         }
@@ -147,7 +166,13 @@ namespace rose.row.ui.ingame.ingame_displayables.displayables
 
         public override float getAlpha(Camera playerCamera)
         {
-            return (LocalPlayer.actor == null || !LocalPlayer.actor.dead) ? 0f : 1f;
+            if (LocalPlayer.actor == null || !LocalPlayer.actor.dead)
+                return 0f;
+
+            if (spawnPoint.isEnemy())
+                return 0.75f;
+
+            return 1f;
         }
 
         #endregion

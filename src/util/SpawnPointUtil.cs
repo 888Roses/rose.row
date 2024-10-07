@@ -127,9 +127,13 @@ namespace rose.row.util
             return CurrentMatch.enemyFaction;
         }
 
-        public static bool isOwnedByPlayerTeam(this SpawnPoint spawnPoint)
+        public static bool isAlly(this SpawnPoint spawnPoint)
         {
             return spawnPoint.owner == CurrentMatch.playerTeam;
         }
+
+        public static bool isEnemy(this SpawnPoint spawnPoint) => !isAlly(spawnPoint) && !isNeutral(spawnPoint);
+
+        public static bool isNeutral(this SpawnPoint spawnPoint) => spawnPoint.owner == -1;
     }
 }
