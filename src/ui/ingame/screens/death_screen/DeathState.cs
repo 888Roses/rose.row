@@ -54,11 +54,20 @@ namespace rose.row.ui.ingame.screens.death_screen
 
         #endregion
 
+        #region gameObject management
+
         public static void create()
         {
             var gameObject = new GameObject("Death State");
             gameObject.AddComponent<DeathState>();
         }
+
+        public void dispose()
+        {
+            Destroy(gameObject);
+        }
+
+        #endregion
 
         private void Start()
         {
