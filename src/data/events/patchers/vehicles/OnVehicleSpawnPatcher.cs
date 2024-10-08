@@ -5,22 +5,6 @@ using UnityEngine;
 
 namespace rose.row
 {
-    //[HarmonyPatch(typeof(Vehicle), nameof(Vehicle.Die))]
-    //internal class AdvancedVehiclePatcher_OnDestroyed
-    //{
-    //    [HarmonyPrefix]
-    //    private static void prefix(Vehicle __instance, DamageInfo info)
-    //    {
-    //        Events.onVehicleDie.before?.Invoke(__instance, info);
-    //    }
-
-    //    [HarmonyPostfix]
-    //    private static void postfix(Vehicle __instance, DamageInfo info)
-    //    {
-    //        Events.onVehicleDie.after?.Invoke(__instance, info);
-    //    }
-    //}
-
     [HarmonyPatch(typeof(VehicleSpawner), nameof(VehicleSpawner.SpawnVehicleAt))]
     internal class AdvancedVehiclePatcher_SpawnVehicleAt
     {
