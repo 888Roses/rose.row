@@ -1,5 +1,7 @@
 ﻿using HarmonyLib;
 using rose.row.data;
+using rose.row.easy_package.audio;
+using rose.row.util;
 using UnityEngine;
 
 namespace rose.row.actor.behaviour
@@ -40,6 +42,11 @@ namespace rose.row.actor.behaviour
                         );
                     }
                 }
+
+                if (info.isPlayerSource)
+                    Audio.play(AudioRegistry.dieFallBody.random().get());
+                else
+                    Audio.playAtPoint(AudioRegistry.dieFallBody.random().get(), info.point, mixer: AudioMixer.World);
             }
         }
     }
