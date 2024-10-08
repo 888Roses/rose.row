@@ -91,7 +91,7 @@ namespace rose.row.ui.ingame.ingame_displayables.displayables
         private void Start()
         {
             Debug.Log($"Vehicle spawned. Registering it in displayable widgets.");
-            DisplayableUi.displayables.Add(this);
+            DisplayableUi.displayables?.Add(this);
             DisplayableUi.refreshDisplayableWidgets();
         }
 
@@ -101,7 +101,7 @@ namespace rose.row.ui.ingame.ingame_displayables.displayables
                 return;
 
             Debug.Log($"Vehicle destroyed. Removing it from displayable widgets.");
-            DisplayableUi.displayables.Remove(this);
+            DisplayableUi.displayables?.Remove(this);
             DisplayableUi.refreshDisplayableWidgets();
         }
 

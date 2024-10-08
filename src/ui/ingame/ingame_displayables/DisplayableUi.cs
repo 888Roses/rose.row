@@ -114,20 +114,24 @@ namespace rose.row.ui.ingame.ingame_displayables
         /// </param>
         public static void refreshDisplayableWidgets(bool forceRefreshWorldDisplayables = false)
         {
-            resetCreatedWidgetsList();
-
-            if (_displayables == null || forceRefreshWorldDisplayables)
+            try
             {
-                refreshDisplayables();
-            }
+                resetCreatedWidgetsList();
 
-            foreach (var displayable in _displayables)
-            {
-                if (displayable == null)
-                    continue;
+                if (_displayables == null || forceRefreshWorldDisplayables)
+                {
+                    refreshDisplayables();
+                }
 
-                _createdWidgets.Add(createDisplayableWidget(displayable));
+                foreach (var displayable in _displayables)
+                {
+                    if (displayable == null)
+                        continue;
+
+                    _createdWidgets.Add(createDisplayableWidget(displayable));
+                }
             }
+            catch { }
         }
 
         /// <summary>
