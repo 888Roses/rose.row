@@ -1,5 +1,4 @@
-﻿using rose.row.data;
-using rose.row.dev.dev_editor;
+﻿using rose.row.dev.dev_editor;
 using rose.row.util;
 using UnityEngine;
 
@@ -7,18 +6,12 @@ namespace rose.row.actor.ai
 {
     public class AiHitboxDisplay : AiBehaviour
     {
-        public static readonly ConstantHolder<float> hitboxDistance = new(
-            name: "debug.distance",
-            description: "Maximum visible distance for gizmos.",
-            defaultValue: 50f
-        );
-
         private void FixedUpdate()
         {
             if (!DevMainInfo.isDebugEnabled)
                 return;
 
-            if (Vector3.Distance(transform.position, LocalPlayer.actor.transform.position) > hitboxDistance.get())
+            if (!DevMainInfo.isGizmoRenderable(transform.position))
                 return;
 
             var colour = ai.controller.actor.isEnemy() ? Color.red : Color.cyan;

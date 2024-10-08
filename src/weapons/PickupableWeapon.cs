@@ -25,6 +25,15 @@ namespace rose.row.weapons
         );
 
         /// <summary>
+        /// Enflates the hitbox of pickupable weapons to make it easier to pick them up off the ground.
+        /// </summary>
+        public static readonly ConstantHolder<float> k_DroppedWeaponHitboxEnflate = new(
+            name: "weapon.dropped.enflate",
+            description: "Enflates the hitbox of pickupable weapons to make it easier to pick them up off the ground.",
+            defaultValue: 1.5f
+        );
+
+        /// <summary>
         /// The weapon attached to this pickupable weapon.
         /// </summary>
         /// <remarks>
@@ -80,7 +89,7 @@ namespace rose.row.weapons
                 dispose();
             }
 
-            if (DevMainInfo.isDebugEnabled && DevMainInfo.showPickupableWeaponBoxes)
+            if (DevMainInfo.isDebugEnabled && DevMainInfo.showPickupableWeaponBoxes && DevMainInfo.isGizmoRenderable(transform.position))
             {
                 bounds.gizmoDrawEdges(Color.green, 1f);
             }
@@ -127,17 +136,7 @@ namespace rose.row.weapons
                     }
                 }
 
-                // for (var i = 1; i < renderers.Length; i++)
-                // {
-                //     // Huge mistake here with the '=' instead of '=='. Wondering how that's gonna affect the gameplay.
-                //     if (renderers[i].transform.parent = weapon.transform)
-                //     {
-                //         if (renderers[i].bounds.extents.magnitude >= bounds.extents.magnitude / 2)
-                //         {
-                //             bounds.Encapsulate(renderers[i].bounds);
-                //         }
-                //     }
-                // }
+                bounds.Expand(k_DroppedWeaponHitboxEnflate.get());
 
                 return bounds;
             }
