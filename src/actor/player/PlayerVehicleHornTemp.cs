@@ -1,4 +1,5 @@
 ﻿using rose.row.easy_package.audio;
+using rose.row.util;
 using UnityEngine;
 
 namespace rose.row.actor.player
@@ -18,10 +19,23 @@ namespace rose.row.actor.player
 
         private void Update()
         {
-            if (SteelInput.GetButtonDown(SteelInput.KeyBinds.Fire))
+            var actor = player.controller.actor;
+            if (actor.IsSeated() && actor.IsDriver())
             {
-                var actor = player.controller.actor;
-                if (actor.IsSeated() && actor.IsDriver() && !actor.seat.HasActiveWeapon())
+                if (actor.seat.HasActiveWeapon() && actor.seat.activeWeapon.enabled)
+                {
+                    if (actor.seat.activeWeapon.isHorn())
+                    {
+                        Destroy(actor.seat.activeWeapon);
+                        actor.seat.activeWeapon = null;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+
+                if (SteelInput.GetButtonDown(SteelInput.KeyBinds.Fire))
                 {
                     _hornAudioSource.Play();
                 }

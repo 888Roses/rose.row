@@ -28,5 +28,7 @@ namespace rose.row.util
 
         public static Projectile spawnProjectile(this Weapon weapon, Vector3 direction, Vector3 muzzlePosition, bool hasUser)
             => (Projectile) Traverse.Create(weapon).Method("SpawnProjectile", direction, muzzlePosition, hasUser).GetValue();
+
+        public static bool isHorn(this Weapon weapon) => weapon is CarHorn;
     }
 }
