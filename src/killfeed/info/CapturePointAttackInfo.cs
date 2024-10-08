@@ -14,7 +14,7 @@
 
         public override string getMessage(int xp)
         {
-            var name = KillInfoUtil.yellow("Attack");
+            var name = KillInfoUtil.yellow("Raiding");
             var xpMessage = KillInfoUtil.text($" {xp} XP");
             return name.append(xpMessage).getString();
         }
