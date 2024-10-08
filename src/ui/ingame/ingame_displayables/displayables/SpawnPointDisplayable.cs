@@ -113,7 +113,7 @@ namespace rose.row.ui.ingame.ingame_displayables.displayables
             }
 
             _hovered = true;
-            Audio.play(AudioRegistry.mouse_hover.get());
+            Audio.play(AudioRegistry.mouseHover.get());
             updateHoveredState();
         }
 

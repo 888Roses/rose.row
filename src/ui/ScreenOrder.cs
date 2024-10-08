@@ -17,6 +17,7 @@ namespace rose.row.ui
         public static int weaponSelectionMenu => ingame + 5;
         public static int vehicleSelectionMenu => ingame + 6;
         public static int endGameScreen => ingame + 7;
+        public static int startMatchScreen => ingame + 7;
         public static int leaderboard => ingame + 8;
         public static int inGameMenu => ingame + 9;
 

@@ -16,6 +16,7 @@ using rose.row.spawn;
 using rose.row.ui.console;
 using rose.row.ui.ingame.crosshair;
 using rose.row.ui.ingame.ingame_displayables;
+using rose.row.ui.ingame.match_start;
 using rose.row.ui.ingame.pickupable_weapons_popup;
 using rose.row.ui.ingame.scoreboard;
 using rose.row.ui.ingame.screens.death_screen;
@@ -98,6 +99,8 @@ namespace rose.row
 
                 ScoreboardScreen.create(); // TODO: Renable scoreboard in-game instead of in the main menu.
                 SpawnMenuScreen.create();
+
+                MatchStartScreen.create();
             };
 
             // Very important that this stays AFTER "Events.onGameManagerStartLevel.after", because it contains a

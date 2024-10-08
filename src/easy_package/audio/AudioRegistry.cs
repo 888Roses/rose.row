@@ -6,7 +6,13 @@ namespace rose.row.easy_package.audio
     {
         public static string audioRoot => $"{Constants.basePath}/Audio";
 
-        public static readonly LocalAudioHolder mouse_hover = new LocalAudioHolder("ui/mouse_hover.wav");
+        public static readonly LocalAudioHolder[] startMatchTickingSounds = new LocalAudioHolder[]
+        {
+            new("ui/start_match/tick_0.wav"),
+            new("ui/start_match/tick_1.wav"),
+        };
+
+        public static readonly LocalAudioHolder mouseHover = new LocalAudioHolder("ui/mouse_hover.wav");
 
         // TODO: Change this whenever I'll implement vehicles!
         public static readonly LocalAudioHolder hornTemp = new LocalAudioHolder("vehicles/horn_temp.wav");

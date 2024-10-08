@@ -1,5 +1,6 @@
 ﻿using rose.row.default_package;
 using rose.row.easy_package.ui.factory;
+using rose.row.ui.ingame.match_start;
 using rose.row.util;
 using UnityEngine;
 using static rose.row.easy_package.ui.factory.elements.UiElement;
@@ -27,7 +28,7 @@ namespace rose.row.ui.ingame.scoreboard
 
         private void Update()
         {
-            setEnabled(SteelInput.GetButton(SteelInput.KeyBinds.Scoreboard));
+            setEnabled(SteelInput.GetButton(SteelInput.KeyBinds.Scoreboard) || MatchStartScreen.instance != null);
         }
 
         #region disable/enable

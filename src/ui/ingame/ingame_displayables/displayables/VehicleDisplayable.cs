@@ -43,7 +43,7 @@ namespace rose.row.ui.ingame.ingame_displayables.displayables
         public void OnPointerEnter(PointerEventData eventData)
         {
             _hovered = true;
-            Audio.play(AudioRegistry.mouse_hover.get());
+            Audio.play(AudioRegistry.mouseHover.get());
             updateHoveredState();
         }
 
