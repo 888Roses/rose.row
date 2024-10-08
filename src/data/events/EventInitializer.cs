@@ -43,6 +43,7 @@ namespace rose.row
             PlayFallSoundOnPlayerDeath.subscribeToInitializationEvents();
 
             AdvancedSpawnPoint.subscribeToInitializationEvents();
+            AiSpawnInVehicle.subscribeToInitializationEvents();
 
             KillfeedProvider.subscribeToInitializationEvents();
             CustomActorHealth.subscribeToInitializationEvents();
