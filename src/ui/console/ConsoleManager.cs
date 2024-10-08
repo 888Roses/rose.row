@@ -124,11 +124,14 @@ namespace rose.row.ui.console
                 setEnabled(!isEnabled());
             }
 
-            // Handled from the pause menu instead.
-            //if (Input.GetKeyDown(KeyCode.Escape))
-            //{
-            //    setEnabled(false);
-            //}
+            // We only want to handle closing the console using the Escape key in the console if the player is not in a game.
+            // If they are in a match, then we can relly on the Pause Menu to do so.
+            // TODO: This is not very good code, and I would prefer to have a way to "suppress" sort of events like opening the pause menu.
+            // This way, the console could close and "suppress" opening the pause menu.
+            if (Input.GetKeyDown(KeyCode.Escape) && !GameManager.IsIngame())
+            {
+                setEnabled(false);
+            }
         }
 
         public void setEnabled(bool enabled)

@@ -8,7 +8,7 @@
         <BaseOutputPath></BaseOutputPath>
         <RootNamespace>rose.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
         <Company>Rose</Company>
-        <AssemblyVersion>1.0.1063.0</AssemblyVersion>
+        <AssemblyVersion>1.0.1064.0</AssemblyVersion>
         <GenerateDocumentationFile>False</GenerateDocumentationFile>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
