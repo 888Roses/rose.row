@@ -22,7 +22,7 @@ namespace rose.row.ui.ingame.scoreboard
             Events.onGameManagerStartLevel.after += onGameStarts;
 
             Events.onActorDie.after += onActorDies;
-            Events.onPointCaptured.after += onPointCaptured;
+            Events.onSpawnPointCaptured.after += onPointCaptured;
         }
 
         private static void onPointCaptured(SpawnPoint point, int team, bool isInitialTeam)

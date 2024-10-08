@@ -24,13 +24,13 @@ namespace rose.row.actor.player
 
             if (Input.GetKeyDown(KeyCode.V) && Time.time > _whistleCooldown)
             {
-                Events.onWhistle.before?.Invoke(player.controller);
+                Events.onActorWhistle.before?.Invoke(player.controller);
                 Events.onPlayerWhistle.before?.Invoke(player);
 
                 _whistleCooldown = Time.time + whistleCooldown.get();
                 Audio.play(AudioRegistry.whistles.random().get());
 
-                Events.onWhistle.after?.Invoke(player.controller);
+                Events.onActorWhistle.after?.Invoke(player.controller);
                 Events.onPlayerWhistle.after?.Invoke(player);
             }
         }

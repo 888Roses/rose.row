@@ -39,7 +39,7 @@ namespace rose.row.spawn
         /// </summary>
         public static void subscribeToInitializationEvents()
         {
-            Events.onPointCaptured.before += onPointCapturedEvent;
+            Events.onSpawnPointCaptured.before += onPointCapturedEvent;
         }
 
         private static void onPointCapturedEvent(SpawnPoint point, int team, bool isInitialOwner)

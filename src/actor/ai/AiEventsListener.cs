@@ -33,7 +33,7 @@ namespace rose.row.actor.ai
 
         public static void subscribeToInitializationEvents()
         {
-            Events.onWhistle.after += onWhistle;
+            Events.onActorWhistle.after += onWhistle;
             Events.onActorDie.after += onActorDie;
         }
 

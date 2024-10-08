@@ -35,20 +35,20 @@ namespace rose.row
         private static void prefix(VehicleSpawner __instance, int team)
         {
             Events.onVehicleSpawn.before?.Invoke(null,
-                                                       __instance.typeToSpawn,
-                                                       __instance.transform.position,
-                                                       __instance.transform.rotation,
-                                                       team);
+                                          __instance.typeToSpawn,
+                                          __instance.transform.position,
+                                          __instance.transform.rotation,
+                                          team);
         }
 
         [HarmonyPostfix]
         private static void postfix(VehicleSpawner __instance, int team)
         {
             Events.onVehicleSpawn.after?.Invoke(__instance.lastSpawnedVehicle,
-                                                      __instance.typeToSpawn,
-                                                      __instance.transform.position,
-                                                      __instance.transform.rotation,
-                                                      team);
+                                         __instance.typeToSpawn,
+                                         __instance.transform.position,
+                                         __instance.transform.rotation,
+                                         team);
         }
     }
 }

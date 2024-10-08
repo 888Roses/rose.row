@@ -24,7 +24,7 @@ namespace rose.row.ui.ingame.ingame_displayables.displayables
 
         private void OnDestroy()
         {
-            Events.onPointCaptured.after -= onPointCaptured;
+            Events.onSpawnPointCaptured.after -= onPointCaptured;
         }
 
         private void onPointCaptured(SpawnPoint point, int team, bool isInitialOwner)
@@ -37,7 +37,7 @@ namespace rose.row.ui.ingame.ingame_displayables.displayables
         public override void build()
         {
             base.build();
-            Events.onPointCaptured.after += onPointCaptured;
+            Events.onSpawnPointCaptured.after += onPointCaptured;
 
             _hoveredBorder = UiFactory.createGenericUiElement(
                 name: "Hovered Border",

@@ -9,7 +9,7 @@ namespace rose.row.audio
     {
         public static void subscribeToInitializationEvents()
         {
-            Events.onPointCaptured.after += onPointCaptured;
+            Events.onSpawnPointCaptured.after += onPointCaptured;
         }
 
         private static void onPointCaptured(SpawnPoint point, int team, bool isInitialTeam)

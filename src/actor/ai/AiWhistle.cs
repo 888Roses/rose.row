@@ -43,14 +43,14 @@ namespace rose.row.actor.ai
         {
             if (Time.time > _whistleCooldown)
             {
-                Events.onWhistle.before?.Invoke(ai.controller);
+                Events.onActorWhistle.before?.Invoke(ai.controller);
                 Events.onAiWhistle.before?.Invoke(ai);
 
                 _whistleCooldown = Time.time + whistleCooldown.get();
 
                 Audio.playAtPoint(AudioRegistry.whistles.random().get(), transform.position);
 
-                Events.onWhistle.after?.Invoke(ai.controller);
+                Events.onActorWhistle.after?.Invoke(ai.controller);
                 Events.onAiWhistle.after?.Invoke(ai);
             }
         }

@@ -14,7 +14,8 @@ namespace rose.row.match
             if (Maps.cachedMaps == null)
                 Maps.cacheMaps();
 
-            Events.onMatchManagerStartGame.before?.Invoke();
+            Events.onMatchManagerLaunchMatch.before?.Invoke();
+
             CurrentMatch.mission = mission;
             CurrentMatch.playerTeam = mission.type == WarMission.MissionType.Attack ? 1 : 0;
             CurrentMatch.enemyFaction = mission.getRandomFaction();
@@ -93,7 +94,7 @@ namespace rose.row.match
 
             GameManager.StartLevel(map, parameters);
 
-            Events.onMatchManagerStartGame.after?.Invoke();
+            Events.onMatchManagerLaunchMatch.after?.Invoke();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace rose.row.ui.ingame.screens.killfeed
             // the XP even if we killed the guy (or girl, or person) :)
             Events.onActorHurt.before += onActorHurt;
 
-            Events.onPointCaptured.after += onPointCaptured;
+            Events.onSpawnPointCaptured.after += onPointCaptured;
         }
 
         private static void onPointCaptured(SpawnPoint spawnPoint, int team, bool isInitialTeam)
