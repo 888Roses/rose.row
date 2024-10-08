@@ -210,6 +210,7 @@ namespace rose.row.main_menu.ui.login.elements
         private void Update()
         {
             updateSizes();
+            _modLoadingProgress.setProgress(ModHelper.progress);
         }
 
         #endregion creating components
