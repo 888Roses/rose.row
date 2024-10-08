@@ -231,7 +231,7 @@ namespace rose.row.easy_package.audio
 
         #region utility
 
-        public static AudioSource createAudioSource(string name, Transform parent)
+        public static AudioSource createAudioSource(string name, Transform parent, AudioMixer mixer = AudioMixer.FirstPerson)
         {
             var audioSourceGameObject = new GameObject(name);
             audioSourceGameObject.transform.SetParent(parent);
@@ -240,6 +240,7 @@ namespace rose.row.easy_package.audio
             var audioSource = audioSourceGameObject.AddComponent<AudioSource>();
             audioSource.loop = false;
             audioSource.playOnAwake = false;
+            GameManager.SetOutputAudioMixer(audioSource, mixer);
 
             return audioSource;
         }
