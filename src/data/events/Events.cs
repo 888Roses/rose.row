@@ -1,6 +1,5 @@
 ﻿using rose.row.actor.ai;
 using rose.row.actor.player;
-using rose.row.client;
 using rose.row.data;
 using rose.row.easy_package.events;
 using rose.row.match;
@@ -12,7 +11,7 @@ namespace rose.row.easy_events
     {
         #region loading process
 
-        public static DynamicEvent<LoginInfo> onLoggedIn;
+        //public static DynamicEvent<LoginInfo> onLoggedIn;
         public static DynamicEvent onFinishedLoading;
         public static DynamicEvent onFinishedRenderingVehiclePreviews;
 
