@@ -1,5 +1,7 @@
 ﻿using rose.row.data;
 using rose.row.data.localisation;
+using rose.row.dev.dev_weapon_selec;
+using rose.row.dev.vehicle_selector;
 using rose.row.easy_package.ui.factory;
 using rose.row.easy_package.ui.factory.elements;
 using rose.row.ui.console;
@@ -86,6 +88,18 @@ namespace rose.row.ui.ingame.screens.pause_menu
                 if (ConsoleManager.instance.isEnabled())
                 {
                     ConsoleManager.instance.setEnabled(false);
+                    return;
+                }
+
+                if (VehicleSelectionScreen.instance.isEnabled)
+                {
+                    VehicleSelectionScreen.instance.setEnabled(false);
+                    return;
+                }
+
+                if (WeaponSelectionScreen.instance.isEnabled)
+                {
+                    WeaponSelectionScreen.instance.setEnabled(false);
                     return;
                 }
 
