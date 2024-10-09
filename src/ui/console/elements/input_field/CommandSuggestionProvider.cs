@@ -65,6 +65,7 @@ namespace rose.row.ui.console.elements.inputfield
             string getSuggestionRoot(string lastArgument) => getSuggestionRootWithBase(valueTrimmed, lastArgument);
 
             var consoleCommand = Console.getCommandWithRoot(valueTrimmed);
+
             if (valueTrimmed.Contains(" "))
             {
                 var splits = valueTrimmed.safeSplitWhitespace();
@@ -195,6 +196,9 @@ namespace rose.row.ui.console.elements.inputfield
                     {
                         if (value.EndsWith(" "))
                         {
+                            if (value == consoleCommand.root + " ")
+                                return;
+
                             var splits = valueTrimmed.safeSplitWhitespace();
                             if (splits.Count > 0)
                             {

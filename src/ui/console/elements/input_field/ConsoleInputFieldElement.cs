@@ -112,6 +112,7 @@ namespace rose.row.ui.console.elements.inputfield
         private void updateCompletionVisibility()
         {
             var visible =
+                completion.suggestionList.count > 0 &&
                 inputField.isFocused &&
                 !string.IsNullOrEmpty(inputField.inputField.text) &&
                 completion.selected != null;

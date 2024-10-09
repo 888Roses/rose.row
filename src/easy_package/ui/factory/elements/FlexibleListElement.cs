@@ -12,6 +12,7 @@ namespace rose.row.easy_package.ui.factory.elements
 
         private List<UiElement> _children;
         public List<UiElement> children => _children;
+        public int count => _children.Count;
 
         protected override void Awake()
         {
