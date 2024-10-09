@@ -34,16 +34,16 @@ namespace rose.row.ui.console.elements.inputfield
                 if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
                     currentLastSentCommandsIndex--;
-                    if (currentLastSentCommandsIndex >= Console.sentCommands.Count)
-                        currentLastSentCommandsIndex = 0;
+                    if (currentLastSentCommandsIndex < 0)
+                        currentLastSentCommandsIndex = Console.sentCommands.Count - 1;
                     setCurrentCommand(Console.sentCommands[currentLastSentCommandsIndex]);
                 }
 
                 if (Input.GetKeyDown(KeyCode.DownArrow))
                 {
                     currentLastSentCommandsIndex++;
-                    if (currentLastSentCommandsIndex < 0)
-                        currentLastSentCommandsIndex = Console.sentCommands.Count - 1;
+                    if (currentLastSentCommandsIndex >= Console.sentCommands.Count)
+                        currentLastSentCommandsIndex = 0;
                     setCurrentCommand(Console.sentCommands[currentLastSentCommandsIndex]);
                 }
             }
