@@ -25,29 +25,44 @@ namespace rose.row.easy_package.audio
             new LocalAudioHolder("die/crushed/die_crushed_04.wav"),
         };
 
+        public static readonly LocalAudioHolder[] die = new LocalAudioHolder[]
+        {
+            new LocalAudioHolder("die/default/die_01.wav"),
+            new LocalAudioHolder("die/default/die_02.wav"),
+            new LocalAudioHolder("die/default/die_03.wav"),
+            new LocalAudioHolder("die/default/die_04.wav"),
+            new LocalAudioHolder("die/default/die_05.wav"),
+            new LocalAudioHolder("die/default/die_06.wav"),
+        };
+
         public static readonly LocalAudioHolder[] dieFallBody = new LocalAudioHolder[]
         {
             new LocalAudioHolder("die/fall/body_die_fall_01.wav"),
             new LocalAudioHolder("die/fall/body_die_fall_02.wav"),
         };
 
-        public static readonly LocalAudioHolder[] dieFall = new LocalAudioHolder[]
-        {
-            new LocalAudioHolder("die/fall/die_fall_01.wav"),
-            new LocalAudioHolder("die/fall/die_fall_02.wav"),
-            new LocalAudioHolder("die/fall/die_fall_03.wav"),
-            new LocalAudioHolder("die/fall/die_fall_04.wav"),
-            new LocalAudioHolder("die/fall/die_fall_05.wav"),
-            new LocalAudioHolder("die/fall/die_fall_06.wav"),
-        };
-
         public static readonly LocalAudioHolder[] hitPain = new LocalAudioHolder[]
         {
-            new LocalAudioHolder("pain/hit_pain_01.wav"),
-            new LocalAudioHolder("pain/hit_pain_02.wav"),
-            new LocalAudioHolder("pain/hit_pain_03.wav"),
-            new LocalAudioHolder("pain/hit_pain_04.wav"),
-            new LocalAudioHolder("pain/hit_pain_05.wav"),
+            new LocalAudioHolder("pain/hit/hit_pain_01.wav"),
+            new LocalAudioHolder("pain/hit/hit_pain_02.wav"),
+            new LocalAudioHolder("pain/hit/hit_pain_03.wav"),
+            new LocalAudioHolder("pain/hit/hit_pain_04.wav"),
+            new LocalAudioHolder("pain/hit/hit_pain_05.wav"),
+        };
+
+        public static readonly LocalAudioHolder[] fpsPain = new LocalAudioHolder[]
+        {
+            new("pain/fps/fps_pain_01.wav"),
+            new("pain/fps/fps_pain_02.wav"),
+            new("pain/fps/fps_pain_03.wav"),
+            new("pain/fps/fps_pain_04.wav"),
+            new("pain/fps/fps_pain_05.wav"),
+            new("pain/fps/fps_pain_06.wav"),
+            new("pain/fps/fps_pain_07.wav"),
+            new("pain/fps/fps_pain_08.wav"),
+            new("pain/fps/fps_pain_09.wav"),
+            new("pain/fps/fps_pain_10.wav"),
+            new("pain/fps/fps_pain_11.wav"),
         };
 
         public static readonly LocalAudioHolder[] whistles = new LocalAudioHolder[]

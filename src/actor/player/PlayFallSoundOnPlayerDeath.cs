@@ -15,7 +15,7 @@ namespace rose.row.actor.player
         {
             if (actor != null && !actor.aiControlled && info.type == DamageInfo.DamageSourceType.FallDamage)
             {
-                Audio.play(AudioRegistry.dieFall.random().get());
+                Audio.play(AudioRegistry.die.random().get());
                 Audio.play(AudioRegistry.dieFallBody.random().get());
             }
         }

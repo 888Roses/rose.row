@@ -42,6 +42,7 @@ namespace rose.row
             PlayPainSoundOnHurt.subscribeToInitializationEvents();
             PlayCrushedSoundOnPlayerDeath.subscribeToInitializationEvents();
             PlayFallSoundOnPlayerDeath.subscribeToInitializationEvents();
+            PlayerFpsSoundManager.subscribeToInitializationEvents();
 
             AdvancedSpawnPoint.subscribeToInitializationEvents();
             AiSpawnInVehicle.subscribeToInitializationEvents();
