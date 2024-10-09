@@ -69,22 +69,6 @@ namespace rose.row.ui.spawn_menu
             _canvasGroup = use<CanvasGroup>();
         }
 
-        private void OnGUI()
-        {
-            var gameModeBase = Traverse
-                                    .Create<GameModeBase>()
-                                    .Field("activeGameMode");
-            if (gameModeBase != null)
-            {
-                var respawnTime = GameManager.GameParameters().respawnTime;
-                var remaining = (float) gameModeBase
-                                            .Field("respawnWaveAction")
-                                            .Method("Remaining")
-                                            .GetValue();
-                GUI.Label(new Rect(10, 200, 400, 400), $"Remaining Spawn Time: {1 - Mathf.Clamp01(remaining / respawnTime)}");
-            }
-        }
-
         private void Update()
         {
             var gameModeBase = Traverse
@@ -106,7 +90,8 @@ namespace rose.row.ui.spawn_menu
                 _progress.setProgress(0f);
             }
 
-            _canvasGroup.setEnabled(FpsActorController.instance.hasAcceptedLoadoutAfterDeath);
+            _canvasGroup.setEnabled(FpsActorController.instance.hasAcceptedLoadoutAfterDeath
+                && (bool) Traverse.Create(LoadoutUi.instance).Field("hasAcceptedLoadoutOnce").GetValue());
         }
     }
 }
