@@ -2,6 +2,7 @@
 using rose.row.data;
 using rose.row.easy_package.ui.factory;
 using rose.row.easy_package.ui.factory.elements;
+using rose.row.util;
 using TMPro;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ namespace rose.row.ui.spawn_menu
         private StandardTextElement _deployingText;
         private StandardTextElement _travellingText;
         private ProgressBarElement _progress;
+        private CanvasGroup _canvasGroup;
 
         public override void build()
         {
@@ -63,6 +65,8 @@ namespace rose.row.ui.spawn_menu
                 VerticalAlignmentOptions.Geometry);
             _travellingText.setSize(400, 0f);
             _travellingText.setAnchoredPosition(8, -24 - 18f);
+
+            _canvasGroup = use<CanvasGroup>();
         }
 
         private void OnGUI()
@@ -101,6 +105,8 @@ namespace rose.row.ui.spawn_menu
             {
                 _progress.setProgress(0f);
             }
+
+            _canvasGroup.setEnabled(FpsActorController.instance.hasAcceptedLoadoutAfterDeath);
         }
     }
 }
