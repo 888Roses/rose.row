@@ -1,5 +1,6 @@
 ﻿using rose.row.easy_package.ui.factory;
 using rose.row.easy_package.ui.factory.elements;
+using UnityEngine;
 
 namespace rose.row.ui.ingame.scoreboard
 {
@@ -70,8 +71,7 @@ namespace rose.row.ui.ingame.scoreboard
         {
             //_blue.setAnchoredPosition(0, -_blue.getHeight() / 2 - k_TeamWindowGap / 2);
             //_red.setAnchoredPosition(0, _red.getHeight() / 2 + k_TeamWindowGap / 2);
-            _blue.setAnchoredPosition(-ScoreboardTeamWindowElement.k_TeamWindowWidth / 2 - k_TeamWindowGap / 2, 0);
-            _red.setAnchoredPosition(ScoreboardTeamWindowElement.k_TeamWindowWidth / 2 + k_TeamWindowGap / 2, 0);
+            updateWindowsPosition();
         }
 
         private ScoreboardTeamWindowElement createTeamWindow(int team)
@@ -83,6 +83,22 @@ namespace rose.row.ui.ingame.scoreboard
             window.build(team);
 
             return window;
+        }
+
+        public void updateWindowsPosition()
+        {
+            var offsetY = Mathf.Max(_red.getHeight(), _blue.getHeight()) / 2f;
+
+            var bluePosX = -ScoreboardTeamWindowElement.k_TeamWindowWidth / 2 - k_TeamWindowGap / 2;
+            var bluePosY = -_blue.getHeight() / 2;
+
+            var redPosX = ScoreboardTeamWindowElement.k_TeamWindowWidth / 2 + k_TeamWindowGap / 2;
+            var redPosY = -_red.getHeight() / 2;
+
+            _blue.setAnchoredPosition(bluePosX, bluePosY + offsetY);
+            _red.setAnchoredPosition(redPosX, redPosY + offsetY);
+
+
         }
 
         #endregion building
