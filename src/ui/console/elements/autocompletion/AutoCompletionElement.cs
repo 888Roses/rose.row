@@ -8,7 +8,7 @@ namespace rose.row.ui.console.elements.autocompletion
 {
     public class AutoCompletionElement : UiElement
     {
-        public const int k_BorderWidth = 2;
+        public const int k_BorderWidth = 1;
         public const int k_Padding = 12;
 
         public CanvasGroup group;
@@ -31,12 +31,12 @@ namespace rose.row.ui.console.elements.autocompletion
 
             border = UiFactory.createGenericUiElement("Border", this);
             border.setAnchors(Anchors.FillParent);
-            border.image().color = ConsoleColors.autoCompletionBorder;
+            border.setBackgroundColor("#282828AA");
 
             wrapper = UiFactory.createGenericUiElement("Wrapper", border);
             wrapper.setAnchors(Anchors.FillParent);
             wrapper.setOffset(k_BorderWidth, k_BorderWidth, -k_BorderWidth, -k_BorderWidth);
-            wrapper.image().color = ConsoleColors.background;
+            border.setBackgroundColor("#0A0A0AEE");
 
             padding = UiFactory.createGenericUiElement("Padding", wrapper);
             padding.setAnchors(Anchors.FillParent);
@@ -46,6 +46,11 @@ namespace rose.row.ui.console.elements.autocompletion
             suggestionList.setAnchors(Anchors.FillParent);
             suggestionList.itemGap = 0f;
             suggestionList.expandItemsHorizontal = true;
+        }
+
+        public float getHeight()
+        {
+            return suggestionList.count * 24f + 2 * k_BorderWidth + 2 * k_Padding;
         }
 
         private void Update()

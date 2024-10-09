@@ -51,32 +51,46 @@ namespace rose.row.ui.console.elements.inputfield
 
         public override void build()
         {
-            image().color = ConsoleColors.background;
+            setBackgroundColor("#0A0A0A");
 
             inputField = UiFactory.createUiElement<InputFieldElement>("Input Field", this);
             inputField.setAnchors(Anchors.FillParent);
-            inputField.font = Fonts.consoleFont;
-            inputField.textColor = ConsoleColors.inputFieldText;
-            inputField.placeholderColor = ConsoleColors.inputFieldPlaceholder;
+            //inputField.font = Fonts.consoleFont;
+            //inputField.textColor = ConsoleColors.inputFieldText;
+            //inputField.placeholderColor = ConsoleColors.inputFieldPlaceholder;
             inputField.padding = new Vector2(ConsoleManager.k_Padding, 0);
             inputField.build();
+            inputField.setFont(Fonts.consoleFont);
+            inputField.setPlaceholderFont(Fonts.consoleFont);
+            inputField.setColor("#D7D7D7");
+            inputField.setPlaceholderColor("#828282");
+            inputField.setCaretColor("#D7D7D7");
+            inputField.setSelectionColor("#282828");
+            inputField.setCaretWidth(2);
+            inputField.setOnFocusSelectAll(false);
+            inputField.setFontSize(16f, true);
+            inputField.setPlaceholderFontSize(16f, true);
+            inputField.setPlaceholderItalic(true);
 
             completionText = InputFieldElement.createInputFieldText(
                 "Completion Text",
-                inputField.viewport,
-                Fonts.consoleFont,
-                16f,
-                ConsoleColors.autoCompletionSuggestionText,
-                false
+                inputField.viewport
+            //Fonts.consoleFont,
+            //16f,
+            //ConsoleColors.autoCompletionSuggestionText,
+            //false
             );
+            completionText.setFont(Fonts.consoleFont);
+            completionText.setFontSize(16f, true);
+            completionText.setColor("#828282");
 
             completion = UiFactory.createUiElement<AutoCompletionElement>("Auto Completion", this);
-            completion.setAnchors(Anchors.StretchBottom);
+            completion.setAnchors(Anchors.StretchTop);
             completion.setPivot(0.5f, 0);
             // Height relative to the window's height.
             var h = (400f / 1920f) * Screen.height;
             completion.setHeight(h);
-            completion.setAnchoredPosition(0, -h);
+            //completion.setAnchoredPosition(0, h);
             completion.onValidateSuggestion += onCompletionValidateSuggestion;
             completion.setEnabled(false);
 
@@ -145,6 +159,12 @@ namespace rose.row.ui.console.elements.inputfield
             CommandSuggestionProvider.populateSuggestedCommands(value, completion);
             updateCompletionText(value);
             updateCompletionVisibility();
+            updateCompletionSize();
+        }
+
+        private void updateCompletionSize()
+        {
+            completion.setHeight(completion.getHeight());
         }
 
         private void updateCompletionText(string value)
@@ -173,7 +193,7 @@ namespace rose.row.ui.console.elements.inputfield
             }
 
             var transparentStyle = TextStyle.empty.withColor(Color.clear);
-            var completionStyle = TextStyle.empty.withColor(ConsoleColors.autoCompletionSuggestionText);
+            var completionStyle = TextStyle.empty.withColor("#828282");
             var component = new TextComponent(currentTextBuilder.ToString()).withStyle(transparentStyle);
             component.append(new TextComponent(completionTextBuilder.ToString()).withStyle(completionStyle));
             completionText.setText(component.getString());

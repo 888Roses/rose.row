@@ -36,10 +36,10 @@ namespace rose.row.main_menu.ui.login.elements
             _background.background.image().texture = ImageRegistry.fieldShadow.get();
 
             _inputField = UiFactory.createUiElement<InputFieldElement>("Input Field", this);
-            _inputField.font = Fonts.defaultFont;
-            _inputField.fontSize = 24f;
-            _inputField.textColor = Color.white;
-            _inputField.placeholderColor = new Color32(235, 235, 235, 255);
+            //_inputField.font = Fonts.defaultFont;
+            //_inputField.fontSize = 24f;
+            //_inputField.textColor = Color.white;
+            //_inputField.placeholderColor = new Color32(235, 235, 235, 255);
             _inputField.padding = Vector2.zero;
 
             _inputField.build();
@@ -51,6 +51,13 @@ namespace rose.row.main_menu.ui.login.elements
             _inputField.setAnchors(Anchors.FillParent);
             _background.setAnchors(Anchors.FillParent);
             _background.setOffset(-1, -1, 1, 1);
+
+            _inputField.setFont(Fonts.defaultFont);
+            _inputField.setPlaceholderFont(Fonts.defaultFont);
+            _inputField.setFontSize(24f);
+            _inputField.setPlaceholderFontSize(24f);
+            _inputField.setColor(Color.white);
+            _inputField.setPlaceholderColor("#D7D7D7");
         }
 
         private void setAlignment(TextElement element)

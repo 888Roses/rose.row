@@ -30,11 +30,16 @@ namespace rose.row.ui.console.elements.autocompletion
             text = UiFactory.createUiElement<TextElement>("Text", this);
             text.setAnchors(Anchors.FillParent);
             text.setFont(Fonts.consoleFont);
-            text.setColor(ConsoleColors.autoCompletionSuggestionText);
+            text.setColor("#D7D7D7");
             text.setFontSize(16f);
             text.setTextAlign(VerticalAlignmentOptions.Middle);
             text.setAllowRichText(true);
             setSelected(false);
+        }
+
+        public void Update()
+        {
+            text.setFontSize(relativeHeight(16f));
         }
 
         public void OnPointerEnter(PointerEventData eventData)
@@ -44,9 +49,7 @@ namespace rose.row.ui.console.elements.autocompletion
 
         public void setSelected(bool selected)
         {
-            image().color = selected
-                ? ConsoleColors.autoCompletionSuggestionBackground
-                : ConsoleColors.background;
+            setBackgroundColor(selected ? "#28282850" : "#0A0A0A50");
         }
 
         public void setSuggestion(string text, string completedText)

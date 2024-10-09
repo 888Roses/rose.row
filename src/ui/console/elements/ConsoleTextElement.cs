@@ -1,6 +1,7 @@
 ﻿using rose.row.data;
 using rose.row.easy_package.ui.factory;
 using rose.row.easy_package.ui.factory.elements;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace rose.row.ui.console.elements
@@ -41,7 +42,7 @@ namespace rose.row.ui.console.elements
             text = UiFactory.createUiElement<TextElement>("Text", this);
             text.setAnchors(Anchors.StretchTop);
             text.setPivot(0.5f, 1);
-            text.setColor(ConsoleColors.log);
+            text.setColor(Console.getColorForLogType(LogType.Log));
             text.setFontSize(16);
             text.setFont(Fonts.consoleFont);
             text.setAllowRichText(true);

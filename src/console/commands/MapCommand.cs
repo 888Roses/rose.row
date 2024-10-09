@@ -45,7 +45,7 @@ namespace rose.row.console.commands
             if (instance == null)
             {
                 var component = new TextComponent("Could not find maps because the managers responsible for that are not initialised.");
-                component.setStyle(TextStyle.empty.withColor(ConsoleColors.error));
+                component.setStyle(TextStyle.empty.withColor(Console.getColorForLogType(LogType.Error)));
                 list.Add(new SuggestionPair(component.getString(), ""));
                 return list;
             }
@@ -69,7 +69,7 @@ namespace rose.row.console.commands
                 {
                     var displayName = new TextComponent(map.getDisplayName());
                     var description = new TextComponent(" " + map.sceneName);
-                    var descriptionStyle = TextStyle.empty.withColor(ConsoleColors.autoCompletionSuggestionDescription);
+                    var descriptionStyle = TextStyle.empty.withColor("#828282");
                     description.setStyle(descriptionStyle);
                     displayName.append(description);
                     var valueBuilder = new StringBuilder();

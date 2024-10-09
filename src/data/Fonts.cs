@@ -11,7 +11,7 @@ namespace rose.row.data
         public static readonly string defaultFont = "FetteEngDOT_HG.ttf";
         public static readonly string fancyFont = "AlteDin.ttf";
         public static readonly string titleFont = "AiramLT_Std.ttf";
-        public static readonly string consoleFont = "SourceCodePro-Regular.ttf";
+        public static readonly string consoleFont = "SF-Mono-Regular.otf";
 
         public static readonly Dictionary<string, TMP_FontAsset> fonts = new Dictionary<string, TMP_FontAsset>();
 

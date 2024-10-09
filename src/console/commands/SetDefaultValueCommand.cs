@@ -1,7 +1,6 @@
 ﻿using rose.row.console.commands.arguments;
 using rose.row.data;
 using rose.row.easy_package.ui.text;
-using rose.row.ui.console;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -51,7 +50,7 @@ namespace rose.row.console.commands
                 {
                     var displayName = new TextComponent(defaultValue.Key);
                     var description = new TextComponent($" (current: {defaultValue.Value})");
-                    var descriptionStyle = TextStyle.empty.withColor(ConsoleColors.autoCompletionSuggestionDescription);
+                    var descriptionStyle = TextStyle.empty.withColor("#828282");
                     description.setStyle(descriptionStyle);
                     displayName.append(description);
                     var valueBuilder = new StringBuilder();

@@ -7,12 +7,14 @@ using UnityEngine.UI;
 
 namespace rose.row.easy_package.ui.factory.elements
 {
-    public class TextElement : UiElement
+    public class TextElement : UiElement, ITextElement
     {
         public UiElement textContainer;
         public TMP_Text text;
 
         public bool isAdaptiveHeight;
+        public bool isFontSizeAdaptive;
+        public float adaptiveFontSize;
 
         public override void build()
         {
@@ -30,6 +32,14 @@ namespace rose.row.easy_package.ui.factory.elements
             if (isAdaptiveHeight)
             {
                 setHeight(text.rectTransform.sizeDelta.y);
+            }
+
+            if (isFontSizeAdaptive)
+            {
+                text.fontSize = relativeHeight(adaptiveFontSize);
+
+                if (shadowText != null)
+                    shadowText.fontSize = text.fontSize;
             }
         }
 
@@ -107,10 +117,16 @@ namespace rose.row.easy_package.ui.factory.elements
             setTextAlign(hor);
         }
 
-        public void setFontSize(float fontSize)
+        public void setFontSize(float fontSize, bool isAdaptive = false)
         {
             text.fontSize = fontSize;
             updateShadowText();
+
+            if (isAdaptive)
+            {
+                isFontSizeAdaptive = true;
+                adaptiveFontSize = fontSize;
+            }
         }
 
         public void setFont(TMP_FontAsset font)

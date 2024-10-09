@@ -25,5 +25,13 @@ namespace rose.row.util
             var _a = a.HasValue ? a.Value : color.a;
             return new Color32(_r, _g, _b, _a);
         }
+
+        public static Color toColor(this string hex)
+        {
+            if (ColorUtility.TryParseHtmlString(hex, out var color))
+                return color;
+
+            return Color.white;
+        }
     }
 }

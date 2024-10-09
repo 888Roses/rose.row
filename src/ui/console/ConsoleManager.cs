@@ -41,9 +41,9 @@ namespace rose.row.ui.console
             ).withCanvasGroup();
 
             wrapper = UiFactory.createGenericUiElement("Wrapper", uiScreen);
-            wrapper.setAnchors(new UiElement.LiteralAnchors(0, 0.5f, 1f, 1f));
+            wrapper.setAnchors(UiElement.Anchors.FillParent);
             wrapper.setPivot(0, 1);
-            wrapper.image().color = ConsoleColors.background;
+            wrapper.setBackgroundColor("#0A0A0ACC");
 
             padding = UiFactory.createGenericUiElement("Padding", wrapper);
             padding.setAnchors(UiElement.Anchors.FillParent);
@@ -55,6 +55,7 @@ namespace rose.row.ui.console
             consoleMessagesList = UiFactory.createUiElement<ScrollableElement>("Messages List", padding);
             consoleMessagesList.build();
             consoleMessagesList.setAnchors(UiElement.Anchors.FillParent);
+            consoleMessagesList.setOffset(0, 32f, 0, 0);
 
             consoleMessagesListContent = UiFactory.createUiElement<VerticalListElement>("Content", consoleMessagesList);
             consoleMessagesListContent.build();
@@ -67,7 +68,7 @@ namespace rose.row.ui.console
             inputField.setAnchors(UiElement.Anchors.StretchBottom);
             inputField.setPivot(0.5f, 0);
             inputField.setOffset(0, 0, 0, 0);
-            inputField.setAnchoredPosition(0, -32f);
+            inputField.setAnchoredPosition(0, 0);
             inputField.setHeight(32f);
             inputField.rebuild();
 
@@ -85,8 +86,8 @@ namespace rose.row.ui.console
         {
             var text = UiFactory.createUiElement<TextElement>("Message", consoleMessagesListContent);
             text.build();
-            text.setColor(ConsoleColors.log);
-            text.setFontSize(16);
+            text.setColor(Console.getColorForLogType(LogType.Log));
+            text.setFontSize(16, true);
             text.setFont(Fonts.consoleFont);
             text.setAllowRichText(true);
 

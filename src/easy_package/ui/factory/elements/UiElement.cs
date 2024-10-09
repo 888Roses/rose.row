@@ -44,9 +44,9 @@ namespace rose.row.easy_package.ui.factory.elements
             return width / baseWidth * Screen.width;
         }
 
-        public virtual float relativeHeight(float width, float baseHeight = 1080f)
+        public virtual float relativeHeight(float height, float baseHeight = 1080f)
         {
-            return width / baseHeight * Screen.height;
+            return height / baseHeight * Screen.height;
         }
 
         #region style

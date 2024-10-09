@@ -11,10 +11,10 @@ namespace rose.row.ui.console.elements.inputfield
         public static string getPrettyCommandName(AbstractConsoleCommand command)
         {
             var builder = new TextComponent(command.root);
-            builder.setStyle(TextStyle.empty.withColor(ConsoleColors.autoCompletionSuggestionText));
+            builder.setStyle(TextStyle.empty.withColor("#D7D7D7"));
 
             var description = new TextComponent(" " + command.description);
-            description.setStyle(TextStyle.empty.withColor(ConsoleColors.autoCompletionSuggestionDescription));
+            description.setStyle(TextStyle.empty.withColor("#828282"));
 
             return builder.append(description).getString();
         }

@@ -31,39 +31,24 @@ namespace rose.row.ui.console
                 consoleCommands.Add((AbstractConsoleCommand) Activator.CreateInstance(consoleCommand));
         }
 
+        public static string getColorForLogType(LogType type)
+        {
+            return type switch
+            {
+                LogType.Assert => "#3B83BD",
+                LogType.Error => "#E52B50",
+                LogType.Exception => "#AF2B1E",
+                LogType.Log => "#f6f6f6",
+                LogType.Warning => "#ffc61e",
+                _ => "#f6f6f6",
+            };
+        }
+
         private static void onLogMessageReceived(string condition, string stackTrace, LogType type)
         {
             var text = new TextComponent(condition + " " + stackTrace);
             var style = TextStyle.empty;
-            string color;
-            switch (type)
-            {
-                case LogType.Assert:
-                    color = "#3B83BD";
-                    break;
-
-                case LogType.Error:
-                    color = "#E52B50";
-                    break;
-
-                case LogType.Exception:
-                    color = "#AF2B1E";
-                    break;
-
-                case LogType.Log:
-                    color = "#f6f6f6";
-                    break;
-
-                case LogType.Warning:
-                    color = "#ffc61e";
-                    break;
-
-                default:
-                    color = "#f6f6f6";
-                    break;
-            }
-
-            style.color.setColor(color);
+            style.color.setColor(getColorForLogType(type));
             text.setStyle(style);
             ConsoleManager.instance.addMessage(new TextComponent(type.ToString() + ": ").withStyle(TextStyle.empty.withColor("#828282")).append(text).getString());
         }
