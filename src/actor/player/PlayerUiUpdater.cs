@@ -37,12 +37,16 @@ namespace rose.row.actor.player
         {
             yield return new WaitForEndOfFrame();
             if (!actor.aiControlled)
-                WeaponDisplayScreen.instance.updateWeaponItems();
+                if (WeaponDisplayScreen.instance != null)
+                    WeaponDisplayScreen.instance.updateWeaponItems();
         }
 
         private void onPlayerSpawn(FpsActorController controller)
         {
-            WeaponDisplayScreen.instance.updateWeaponItems();
+            if (WeaponDisplayScreen.instance != null)
+            {
+                WeaponDisplayScreen.instance.updateWeaponItems();
+            }
         }
     }
 }

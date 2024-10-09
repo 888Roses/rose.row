@@ -223,12 +223,27 @@ namespace rose.row.ui.ingame.weapon_display
         private UiScreen _screen;
         private WeaponDisplayElement _element;
 
+        public static void subscribeToInitializationEvents()
+        {
+            Events.onPlayerSpawn.before += onPlayerSpawnStatic;
+            Events.onPlayerDie.after += onPlayerDieStatic;
+        }
+
+        private static void onPlayerDieStatic(FpsActorController controller)
+        {
+            if (instance != null)
+                instance.onPlayerDie(controller);
+        }
+
+        private static void onPlayerSpawnStatic(FpsActorController controller)
+        {
+            if (instance != null)
+                instance.onPlayerSpawn(controller);
+        }
+
         private void Awake()
         {
             build();
-
-            Events.onPlayerSpawn.before += onPlayerSpawn;
-            Events.onPlayerDie.after += onPlayerDie;
         }
 
         private void Start()
@@ -237,14 +252,16 @@ namespace rose.row.ui.ingame.weapon_display
             _element.gameObject.SetActive(false);
         }
 
-        private void OnDestroy()
+        private void onPlayerSpawn(FpsActorController controller)
         {
-            Events.onPlayerSpawn.before -= onPlayerSpawn;
-            Events.onPlayerDie.after -= onPlayerDie;
+            if (_element != null)
+                _element.gameObject.SetActive(true);
         }
-
-        private void onPlayerSpawn(FpsActorController e) => _element.gameObject.SetActive(true);
-        private void onPlayerDie(FpsActorController e) => _element.gameObject.SetActive(false);
+        private void onPlayerDie(FpsActorController controller)
+        {
+            if (_element != null)
+                _element.gameObject.SetActive(false);
+        }
 
         private void build()
         {
@@ -254,7 +271,10 @@ namespace rose.row.ui.ingame.weapon_display
 
         public void updateWeaponItems()
         {
-            _element.updateWeapons(FpsActorController.instance.actor.weapons, FpsActorController.instance.actor.activeWeapon.slot);
+            var player = LocalPlayer.actor;
+            var activeWeapon = player.activeWeapon;
+            var slot = activeWeapon == null ? 0 : activeWeapon.slot;
+            _element.updateWeapons(player.weapons, slot);
         }
     }
 }

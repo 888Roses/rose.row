@@ -62,6 +62,7 @@ namespace rose.row
             DropWeaponListener.subscribeToInitializationEvents();
             PickupableWeapons.subscribeToInitializationEvents();
             ResetPickupableWeaponSlotOnSpawn.subscribeToInitializationEvents();
+            WeaponDisplayScreen.subscribeToInitializationEvents();
 
             PlayerUiUpdater.subscribeToInitializationEvents();
         }
