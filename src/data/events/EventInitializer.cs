@@ -47,6 +47,7 @@ namespace rose.row
             AiSpawnInVehicle.subscribeToInitializationEvents();
 
             KillfeedProvider.subscribeToInitializationEvents();
+            CrosshairManager.subscribeToInitializationEvents();
             CustomActorHealth.subscribeToInitializationEvents();
             DisplayableUi.subscribeToInitializationEvents();
 
@@ -57,8 +58,11 @@ namespace rose.row
             Scoreboard.subscribeToInitializationEvents();
             ScoreboardElement.subscribeToInitializationEvents();
 
+            DropWeaponListener.subscribeToInitializationEvents();
             PickupableWeapons.subscribeToInitializationEvents();
             ResetPickupableWeaponSlotOnSpawn.subscribeToInitializationEvents();
+
+            PlayerUiUpdater.subscribeToInitializationEvents();
         }
 
         public static void createMenuUi()

@@ -59,17 +59,31 @@ namespace rose.row.ui.ingame.crosshair
         public CrosshairBranchElement right => branches[k_CrosshairBranchRight];
         public CrosshairBranchElement left => branches[k_CrosshairBranchLeft];
 
+        public static void subscribeToInitializationEvents()
+        {
+            Events.onActorDie.after += onKillStatic;
+            Events.onActorHurt.after += onDamageStatic;
+        }
+
+        private static void onKillStatic(Actor actor, DamageInfo info, bool isSilentKill)
+        {
+            if (instance != null)
+            {
+                instance.onKill(actor, info, isSilentKill);
+            }
+        }
+
+        private static void onDamageStatic(Actor actor, DamageInfo info)
+        {
+            if (instance != null)
+            {
+                instance.onDamage(actor, info);
+            }
+        }
+
         private void Awake()
         {
             build();
-            Events.onActorHurt.before += onDamage;
-            Events.onActorDie.after += onKill;
-        }
-
-        private void OnDestroy()
-        {
-            Events.onActorHurt.before -= onDamage;
-            Events.onActorDie.after -= onKill;
         }
 
         private void onKill(Actor actor, DamageInfo info, bool isSilentKill)

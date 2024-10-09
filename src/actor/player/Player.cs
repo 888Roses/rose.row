@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using rose.row.default_package;
+using UnityEngine;
 
 namespace rose.row.actor.player
 {
-    public class Player : MonoBehaviour
+    public class Player : Singleton<Player>
     {
         public FpsActorController controller;
 
@@ -10,6 +11,7 @@ namespace rose.row.actor.player
         public PlayerPickupWeapons pickup;
         // TODO: Change this whenever I'll implement vehicles!
         public PlayerVehicleHornTemp horn;
+        public PlayerUiUpdater uiUpdater;
 
         public static void create(FpsActorController controller)
         {
@@ -23,7 +25,7 @@ namespace rose.row.actor.player
             pickup = use<PlayerPickupWeapons>();
             horn = use<PlayerVehicleHornTemp>();
             use<PlayerAntiTankerFuckTanksOmfg>();
-            use<PlayerUiUpdater>();
+            uiUpdater = use<PlayerUiUpdater>();
             use<PlayerFallDamage>();
         }
 

@@ -7,16 +7,22 @@ namespace rose.row.actor.player
 {
     public class PlayerUiUpdater : PlayerBehaviour
     {
-        private void Awake()
+        public static void subscribeToInitializationEvents()
         {
-            Events.onPlayerSpawn.after += onPlayerSpawn;
-            Events.onActorSwitchActiveWeapon.after += onActorSwitchActiveWeapon;
+            Events.onPlayerSpawn.after += onPlayerSpawnStatic;
+            Events.onActorSwitchActiveWeapon.after += onActorSwitchActiveWeaponStatic;
         }
 
-        private void OnDestroy()
+        private static void onActorSwitchActiveWeaponStatic(Actor actor, int slot)
         {
-            Events.onPlayerSpawn.after -= onPlayerSpawn;
-            Events.onActorSwitchActiveWeapon.after -= onActorSwitchActiveWeapon;
+            if (Player.instance != null && Player.instance.uiUpdater != null)
+                Player.instance.uiUpdater.onActorSwitchActiveWeapon(actor, slot);
+        }
+
+        private static void onPlayerSpawnStatic(FpsActorController controller)
+        {
+            if (Player.instance != null && Player.instance.uiUpdater != null)
+                Player.instance.uiUpdater.onPlayerSpawn(controller);
         }
 
         private void onActorSwitchActiveWeapon(Actor actor, int slot)

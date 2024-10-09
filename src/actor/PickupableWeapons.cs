@@ -21,6 +21,7 @@ namespace rose.row.actor
             Events.onActorSwitchActiveWeapon.before += onBeforeActorSwitchActiveWeapon;
             Events.onActorSwitchActiveWeapon.after += onAfterActorSwitchActiveWeapon;
         }
+
         private static void onBeforeActorSwitchActiveWeapon(Actor actor, int slot)
         {
             var previousSlot = actor.activeWeapon == null ? 0 : actor.activeWeapon.slot;
@@ -30,6 +31,7 @@ namespace rose.row.actor
             else
                 _lastEquipedActiveWeaponSlot.Add(actor, previousSlot);
         }
+
         private static void onAfterActorSwitchActiveWeapon(Actor actor, int slot)
         {
             if (!_lastEquipedActiveWeaponSlot.ContainsKey(actor))
