@@ -25,7 +25,7 @@ namespace rose.row.ui.ingame.screens.death_screen
             {
                 foreach (var seat in vehicle.seats)
                 {
-                    if (!seat.occupant.aiControlled)
+                    if (!seat.occupant.aiControlled || seat.IsDriverSeat())
                         continue;
 
                     // TODO: Watch out for flying actors!
