@@ -97,8 +97,6 @@ namespace rose.row.ui.ingame.scoreboard
 
             _blue.setAnchoredPosition(bluePosX, bluePosY + offsetY);
             _red.setAnchoredPosition(redPosX, redPosY + offsetY);
-
-
         }
 
         #endregion building
