@@ -8,6 +8,7 @@ using System;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace rose.row.ui.ingame.weapon_display
 {
@@ -36,6 +37,11 @@ namespace rose.row.ui.ingame.weapon_display
             group = use<CanvasGroup>();
             group.interactable = false;
             group.blocksRaycasts = false;
+
+            // Using an image and a mask with "showMaskGraphic" set to false so that the background
+            // of the item (which is the weapon's widget) doesn't display outside of that element.
+            image();
+            use<Mask>().showMaskGraphic = false;
 
             background = UiFactory.createGenericUiElement("Background", this);
             background.setAnchors(Anchors.FillParent);
