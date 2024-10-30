@@ -13,7 +13,8 @@ namespace rose.row.match
         {
             "island",
             "coastline",
-            "dustbowl"
+            "dustbowl",
+            "temple"
         };
 
         public static List<MapEntry> cachedMaps;
